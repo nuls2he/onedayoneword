@@ -10,4 +10,6 @@ public class Member {
 	private String child ;
 	private String location ;
 	private String time ;
+	
+	
 }
