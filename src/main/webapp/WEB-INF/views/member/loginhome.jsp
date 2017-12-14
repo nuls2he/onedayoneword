@@ -22,7 +22,7 @@
 <script>
 
 $('#gologin').click(function() {
-	location.href = '/login';
+	location.href = '/login/login';
 });
 
 </script>

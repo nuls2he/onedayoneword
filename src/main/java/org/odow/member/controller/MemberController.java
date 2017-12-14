@@ -41,6 +41,7 @@ public class MemberController {
 
 	}
 	
+	
 	@PostMapping("/dup")
 	@ResponseBody
 	public Boolean dupCheck(String id) {
