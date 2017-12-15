@@ -34,7 +34,11 @@
 	</bean>
 	
 	<mybatis-spring:scan base-package="org.odow.member.mappers" />
+	<mybatis-spring:scan base-package="org.odow.main.mappers" />
 	
+	<context:annotation-config></context:annotation-config>
 	<context:component-scan base-package="org.odow.member.service"></context:component-scan>
+	<context:component-scan base-package="org.odow.main.service"></context:component-scan>
+	
 		
 </beans>
