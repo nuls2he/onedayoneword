@@ -19,11 +19,15 @@ public class MemberController {
 	@Autowired
 	MemberServiceImpl service;
 	
-	@GetMapping("/loginhome")
+	@GetMapping("/home")
 	public void home() {
 		
 	}
-
+	
+	@GetMapping("/loginhome")
+	public void loginhome() {
+		
+	}
 	
 	@GetMapping("/login")
 	public void login1() {
@@ -37,7 +41,7 @@ public class MemberController {
 		log.info(""+ member);
 		service.login(member);
 
-		return "redirect:/login/home";
+		return "redirect:/member/loginhome";
 
 	}
 	
