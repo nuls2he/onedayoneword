@@ -20,4 +20,9 @@ public class MainController {
 		model.addAttribute("bList", service.getBoy());
 		model.addAttribute("gList", service.getGirl());
 	}
+	
+	@GetMapping("/index")
+	public void index() {
+		
+	}
 }
