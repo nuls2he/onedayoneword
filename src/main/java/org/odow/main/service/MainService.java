@@ -1,4 +1,4 @@
-package org.odow.main.service;
+ package org.odow.main.service;
 
 import java.util.List;
 
@@ -9,5 +9,6 @@ public interface MainService {
 	public List<Keyword> getAll();
 	public List<Keyword> getBoy();
 	public List<Keyword> getGirl();
-
+	public List<String> getNaver();
+	
 }

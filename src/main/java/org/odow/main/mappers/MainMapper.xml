@@ -15,7 +15,7 @@
 	<select id="getBoy" resultType="keyword">
 		select keyword, count(*) count
 		  from test_keyword
-		 where siteno = 1
+		 where siteno = 2
 		 group by keyword
 		 order by count desc
 		 limit 1, 118
@@ -24,9 +24,15 @@
 	<select id="getGirl" resultType="keyword">
 		select keyword, count(*) count
 		  from test_keyword
-		 where siteno = 2
+		 where siteno = 1
 		 group by keyword
 		 order by count desc
 		 limit 1, 118
+	</select>
+	
+	<select id="getNaver" resultType="keyword">
+		select keyword 
+		  from test_naver 
+		 order by rank;
 	</select>
 </mapper>

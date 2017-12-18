@@ -5,32 +5,31 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<link rel="apple-touch-icon" sizes="76x76" href="/resources/img/apple-icon.png">
-	<link rel="icon" type="image/png" href="/resources/img/favicon.png">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>home</title>
+	<title>one day one word</title>
+		
+	<!-- GLOBAL MANDATORY STYLES -->
+        <link href="http://fonts.googleapis.com/css?family=Hind:300,400,500,600,700" rel="stylesheet" type="text/css">
+        <link href="/resources/HTML/vendor/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css"/>
+        <link href="/resources/HTML/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 
-	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+        <!-- PAGE LEVEL PLUGIN STYLES -->
+        <link href="/resources/HTML/css/animate.css" rel="stylesheet">
+        <link href="/resources/HTML/vendor/swiper/css/swiper.min.css" rel="stylesheet" type="text/css"/>
 
-	<!--     Fonts and icons     -->
-	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" />
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+        <!-- THEME STYLES -->
+        <link href="/resources/HTML/css/layout.min.css" rel="stylesheet" type="text/css"/>
 
-	<!-- CSS Files -->
-    <link href="/resources/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="/resources/css/material-kit.css" rel="stylesheet"/>
-
-	<!-- CSS Just for demo purpose, don't include it in your project -->
-	<link href="/resources/css/demo.css" rel="stylesheet" />
-
-    <style>
+        <!-- Favicon -->
+        <link rel="shortcut icon" href="favicon.ico"/>
+        
+            <style>
         html, body {
             height: 100%;
         }
         body {
-            background-color: #ffffff;
+            background-color: #000000;
             margin: 0;
             font-family: Helvetica, sans-serif;;
             overflow: hidden;
@@ -108,36 +107,46 @@
             background-color: rgba(0,255,255,0.75);
         }
     </style>
+
 </head>
 
-<body class="index-page">
+<body class="index-page page-on-scroll">
 
-<script src="/resources/js/three.js"></script>
-<script src="/resources/js/tween.min.js"></script>
-<script src="/resources/js/TrackballControls.js"></script>
-<script src="/resources/js/CSS3DRenderer.js"></script>
-
-<div>
+<script src="/resources/HTML/js/three.js"></script>
+<script src="/resources/HTML/js/tween.min.js"></script>
+<script src="/resources/HTML/js/TrackballControls.js"></script>
+<script src="/resources/HTML/js/CSS3DRenderer.js"></script>
+		
 	<c:import url="../includes/header.jsp"></c:import>
+		
+       <!--========== SLIDER ==========-->
+       <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+           <div class="container"></div>
 
-<!-- 		<div class="wrapper"> -->
-<!-- 			<div class="header header-filter" style="background-image: url('/resources/img/bg2.jpeg');"> -->
-	<!-- 		<div class="container"> -->
-				<div id="container"></div>
-	<!-- 		</div> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
+           <!-- Wrapper for slides -->
+           <div class="carousel-inner" role="listbox">
+               <div class="item active">
+                   <img class="img-responsive" src="/resources/HTML/img/1920x1080/01.jpg" alt="Slider Image">
+                  		<div id="container">
+                   		</div>
+                   		
+                   		<div id="menu">
+						    <button id="table">전체 보기</button>
+						    <button id="sphere">10대 남자</button>
+						    <button id="helix">10대 여자</button>
+						    <button id="grid">네이버</button>
+						</div>
+               </div>
+           </div>
+       </div>
+        <!--========== SLIDER ==========-->
+
+        <!--========== PAGE LAYOUT ==========-->
+
+        <div class="bg-color-sky-light"></div>
+        
+        <!--========== END PAGE LAYOUT ==========-->
 	
-		<div id="menu">
-		    <button id="table">전체 보기</button>
-		    <button id="sphere">10대 남자</button>
-		    <button id="helix">10대 여자</button>
-		    <button id="grid">네이버</button>
-		</div>
-
-	<c:import url="../includes/footer.jsp"></c:import>
-</div>
-
 <script>
     var table = [
         "1", "Hydrogen", "1.00794", 1, 1,
@@ -260,13 +269,11 @@
         "Og", "Oganesson", "(294)", 18, 7
     ];
     
-    
     var index = 0;
 	<c:forEach items="${aList}" var="keyword">
 		table[index] = "${keyword.keyword}";
 		index += 5;
 	</c:forEach> 
-
 
     var camera, scene, renderer;
     var controls;
@@ -359,18 +366,54 @@
         
         var button = document.getElementById( 'table' );
         button.addEventListener( 'click', function ( event ) {
+        	var $container = $("#container");
+            index = 0;
+        	<c:forEach items="${aList}" var="keyword">
+        		table[index] = "${keyword.keyword}";
+        		index += 5;
+        	</c:forEach> 
+        	$container.empty();
+        	init();
             transform( targets.table, 2000 );
         }, false );
+        
         var button = document.getElementById( 'sphere' );
         button.addEventListener( 'click', function ( event ) {
+        	var $container = $("#container");
+            index = 0;
+        	<c:forEach items="${bList}" var="keyword">
+        		table[index] = "${keyword.keyword}";
+        		index += 5;
+        	</c:forEach>
+        	$container.empty();
+        	init();
             transform( targets.sphere, 2000 );
         }, false );
+        
         var button = document.getElementById( 'helix' );
         button.addEventListener( 'click', function ( event ) {
+        	var $container = $("#container");
+            index = 0;
+        	<c:forEach items="${gList}" var="keyword">
+        		table[index] = "${keyword.keyword}";
+        		index += 5;
+        	</c:forEach>
+        	$container.empty();
+        	init();
             transform( targets.helix, 2000 );
         }, false );
+        
         var button = document.getElementById( 'grid' );
         button.addEventListener( 'click', function ( event ) {
+        	var $container = $("#container");
+            index = 0;
+        	<c:forEach items="${nList}" var="keyword">
+        		table[index] = "${keyword.keyword}";
+        		index += 5;
+        		console.log("${keyword.keyword}");
+        	</c:forEach>
+        	$container.empty();
+        	init();
             transform( targets.grid, 2000 );
         }, false );
         transform( targets.table, 2000 );
@@ -413,16 +456,29 @@
     }
 </script>
 
-<!--   Core JS Files   -->
-<script src="/resources/js/jquery.min.js" type="text/javascript"></script>
-<script src="/resources/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="/resources/js/material.min.js"></script>
+<!-- Back To Top -->
+<a href="javascript:void(0);" class="js-back-to-top back-to-top">Top</a>
 
-<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-<script src="/resources/js/nouislider.min.js" type="text/javascript"></script>
+<!-- JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+<!-- CORE PLUGINS -->
+<script src="/resources/HTML/vendor/jquery.min.js" type="text/javascript"></script>
+<script src="/resources/HTML/vendor/jquery-migrate.min.js" type="text/javascript"></script>
+<script src="/resources/HTML/vendor/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 
-<!--  Plugin for the Datepicker, full documentation here: http://www.eyecon.ro/bootstrap-datepicker/ -->
-<script src="/resources/js/bootstrap-datepicker.js" type="text/javascript"></script>
+<!-- PAGE LEVEL PLUGINS -->
+<script src="/resources/HTML/vendor/jquery.easing.js" type="text/javascript"></script>
+<script src="/resources/HTML/vendor/jquery.back-to-top.js" type="text/javascript"></script>
+<script src="/resources/HTML/vendor/jquery.smooth-scroll.js" type="text/javascript"></script>
+<script src="/resources/HTML/vendor/jquery.wow.min.js" type="text/javascript"></script>
+<script src="/resources/HTML/vendor/jquery.parallax.min.js" type="text/javascript"></script>
+<script src="/resources/HTML/vendor/swiper/js/swiper.jquery.min.js" type="text/javascript"></script>
 
+<!-- PAGE LEVEL SCRIPTS -->
+<script src="/resources/HTML/js/layout.min.js" type="text/javascript"></script>
+<script src="/resources/HTML/js/components/swiper.min.js" type="text/javascript"></script>
+<script src="/resources/HTML/js/components/wow.min.js" type="text/javascript"></script>
+
+<c:import url="../includes/footer.jsp"></c:import>
 </body>
+	
 </html>

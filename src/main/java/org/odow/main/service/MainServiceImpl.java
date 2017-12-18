@@ -15,6 +15,7 @@ public class MainServiceImpl implements MainService {
 	
 	@Override
 	public List<Keyword> getAll() {
+		System.out.println("impl");
 		return mapper.getAll();
 	}
 
@@ -26,6 +27,11 @@ public class MainServiceImpl implements MainService {
 	@Override
 	public List<Keyword> getGirl() {
 		return mapper.getGirl();
+	}
+
+	@Override
+	public List<String> getNaver() {
+		return mapper.getNaver();
 	}
 
 }

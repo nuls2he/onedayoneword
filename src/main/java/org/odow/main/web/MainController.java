@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/home/*")
+@RequestMapping("/main/*")
 public class MainController {
 
 	@Autowired
@@ -22,7 +22,11 @@ public class MainController {
 	}
 	
 	@GetMapping("/index")
-	public void index() {
-		
+	public void index(Model model) {
+		System.out.println("dd");
+		model.addAttribute("aList", service.getAll());
+		model.addAttribute("bList", service.getBoy());
+		model.addAttribute("gList", service.getGirl());
+		model.addAttribute("nList", service.getNaver());
 	}
 }
