@@ -1,1 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="org.odow.main.mappers.MainMapper">
+	<select id="getAll" resultType="keyword">
+		select keyword, count(*) count
+		  from test_keyword
+		 group by keyword
+		 order by count desc
+		 limit 1, 118
+	</select>
+	
+	<select id="getBoy" resultType="keyword">
+		select keyword, count(*) count
+		  from test_keyword
+		 where siteno = 1
+		 group by keyword
+		 order by count desc
+		 limit 1, 118
+	</select>
+	
+	<select id="getGirl" resultType="keyword">
+		select keyword, count(*) count
+		  from test_keyword
+		 where siteno = 2
+		 group by keyword
+		 order by count desc
+		 limit 1, 118
+	</select>
+</mapper>
