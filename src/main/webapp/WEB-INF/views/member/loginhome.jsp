@@ -128,7 +128,7 @@
 									</div> -->
 								</div>
 								<div class="footer text-center">
-									<a class="btn btn-simple btn-primary btn-lg" > 로그인
+									<a class="btn btn-simple btn-primary btn-lg" id="gomain"> 로그인
 										</a>
 								</div>
 								<div class="footer text-center">
@@ -168,6 +168,8 @@
 			$('#gologin').click(function() {
 				location.href = '/member/login';
 			});
+			
+			
 		</script>
 </body>
 

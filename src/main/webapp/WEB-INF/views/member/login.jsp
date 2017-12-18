@@ -5,6 +5,7 @@
 <html>
 <head>
 <style>
+
 .wrapper {
 	background-color: white;
 	height: 100%;
@@ -66,7 +67,7 @@ div.centerBtn > button{
 					</label>
 				</p>
 				<br>
-
+			<div style="align:center">
 				<!-- Custom select structure -->
 				<div class="select_mate" align="center" data-mate-select="active"
 					style="text-align: center">
@@ -104,6 +105,7 @@ div.centerBtn > button{
 					<ul class="cont_select_int">
 					</ul>
 				</div>
+			</div>
 			</div>
 	<br>
 	<br>
