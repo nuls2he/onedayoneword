@@ -39,6 +39,7 @@
 	<context:annotation-config></context:annotation-config>
 	<context:component-scan base-package="org.odow.member.service"></context:component-scan>
 	<context:component-scan base-package="org.odow.main.service"></context:component-scan>
+	<context:component-scan base-package="org.odow.content.service"></context:component-scan>
 	
 		
 </beans>

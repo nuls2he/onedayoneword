@@ -3,11 +3,11 @@
 
 <footer class="footer">
             <!-- Links -->
-            <div class="footer-seperator">
+            <!-- <div class="footer-seperator">
                 <div class="content-lg container">
                     <div class="row">
                         <div class="col-sm-2 sm-margin-b-50">
-                            <!-- List -->
+                            List
                             <ul class="list-unstyled footer-list">
                                 <li class="footer-list-item"><a class="footer-list-link" href="#">Home</a></li>
                                 <li class="footer-list-item"><a class="footer-list-link" href="#">About</a></li>
@@ -18,17 +18,17 @@
                                 <li class="footer-list-item"><a class="footer-list-link" href="#">Contact</a></li>
                                 <li class="footer-list-item"><a class="footer-list-link" href="#">Terms</a></li>
                             </ul>
-                            <!-- End List -->
+                            End List
                         </div>
                         <div class="col-sm-4 sm-margin-b-30">
-                            <!-- List -->
+                            List
                             <ul class="list-unstyled footer-list">
                                 <li class="footer-list-item"><a class="footer-list-link" href="#">Twitter</a></li>
                                 <li class="footer-list-item"><a class="footer-list-link" href="#">Facebook</a></li>
                                 <li class="footer-list-item"><a class="footer-list-link" href="#">Instagram</a></li>
                                 <li class="footer-list-item"><a class="footer-list-link" href="#">YouTube</a></li>
                             </ul>
-                            <!-- End List -->
+                            End List
                         </div>
                         <div class="col-sm-5 sm-margin-b-30">
                             <h2 class="color-white">Send Us A Note</h2>
@@ -39,9 +39,9 @@
                             <button type="submit" class="btn-theme btn-theme-sm btn-base-bg text-uppercase">Submit</button>
                         </div>
                     </div>
-                    <!--// end row -->
+                    // end row
                 </div>
-            </div>
+            </div> -->
             <!-- End Links -->
 
             <!-- Copyright -->
