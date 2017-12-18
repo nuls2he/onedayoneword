@@ -13,5 +13,8 @@ public interface MemberMapper {
 	@Select("select count(id) from test_login where id = #{id}")
 	public int idcheck(String id);
 	
+	@Select("select pw , id from test_login where id = #{id}")
+	public String logincheck(String id);
+	
 	
 }

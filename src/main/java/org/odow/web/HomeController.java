@@ -47,4 +47,9 @@ public class HomeController {
 		
 	}
 	
+	@GetMapping("/intro")
+	public void intro() {
+		
+	}
+	
 }

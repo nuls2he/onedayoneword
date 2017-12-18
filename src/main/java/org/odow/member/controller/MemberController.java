@@ -1,13 +1,17 @@
 package org.odow.member.controller;
 
 
+import javax.servlet.http.HttpSession;
+
 import org.odow.domain.Member;
 import org.odow.member.service.MemberServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.extern.java.Log;
@@ -19,11 +23,13 @@ public class MemberController {
 	@Autowired
 	MemberServiceImpl service;
 	
-	@GetMapping("/home")
-	public void home() {
-		
-	}
-	
+	@GetMapping("/testlogin")
+		public void testlog(Model model , HttpSession session) {
+			if(session.getAttribute("login") != null) {
+				System.out.println("들어옴");
+				System.out.println(session.getAttribute("login"));
+			}
+		}
 	@GetMapping("/loginhome")
 	public void loginhome() {
 		
@@ -45,6 +51,15 @@ public class MemberController {
 
 	}
 	
+	@PostMapping("/logincheck")
+	@ResponseBody
+	public Boolean logincheck(String id , String pw) {
+		System.out.println("id :" +id );
+		System.out.println("pw :" + pw );
+		
+		return service.logincheck(id, pw);
+		
+	}
 	
 	@PostMapping("/dup")
 	@ResponseBody
@@ -54,6 +69,16 @@ public class MemberController {
 		Boolean result = null;
 		result =service.idcheck(id);
 		return result;
+	}
+	
+	@PostMapping("/loginProcess")
+	public String process(String id , String pw , Boolean remember, Model model) {
+		System.out.println("remember" + remember);
+		
+		model.addAttribute("remember" ,remember);
+		model.addAttribute("id" ,id);
+		
+		return "redirect:/member/testlogin";
 	}
 
 }

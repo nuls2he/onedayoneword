@@ -12,13 +12,29 @@ public class MemberServiceImpl implements MemberService {
 	MemberMapper mapper;
 	@Override
 	public void login(Member member) {
-		
+		mapper.login(member);
 	}
 
 	@Override
 	public Boolean idcheck(String id) {
+	Boolean result = mapper.idcheck(id) == 0 ? false : true;
+		
+		return result;
+	}
 
-		return null;
+	@Override
+	public Boolean logincheck(String id, String pw) {
+		System.out.println("pw :" + pw);
+		System.out.println("id :" +id);
+		System.out.println("디비테스트 :" + mapper.logincheck(id));
+		
+		if(mapper.logincheck(id) != null) {
+			if(mapper.logincheck(id).equals(pw)) {
+				System.out.println("로그인성공");
+				return true;
+			}
+		}
+		return false;
 	}
 
 }

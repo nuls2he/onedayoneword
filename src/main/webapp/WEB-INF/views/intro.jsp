@@ -46,8 +46,8 @@
     .txt_welcome
     {
         font-family:'Roboto';
-        font-size: 46px;
-        font-weight: 300;
+        font-size: 24px;
+        font-weight: 150px;
         color: #ffffff;
         padding-top: 25px;
         -webkit-animation: animwelcome 1.7s 1 ease-in;
@@ -187,15 +187,31 @@
 
 </style>
 <body>
+
+<script src="/resources/js/index.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+		integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+		crossorigin="anonymous">
+		
+	</script>
     <link href='https://fonts.googleapis.com/css?family=Roboto:100,400,300,500,700' rel='stylesheet' type='text/css'>
     <div align="center" class="fond">
 
         <div class="first_circle"></div>
         <div class="first_div"><div class="second_div"><div class="img_div"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/173024/img_welcome.png"></div></div></div>
-
-        <div class="txt_welcome">WELCOME</div>
-        <div class="txt_user">PRESS F5 TO REPLAY</div>
+		<br>
+        <div><a id="gologin">로그인 하러 가기</a></div> <br>
+        <div><a id="gojoin">회원 가입 하러 가기</a></div>
 
     </div>
+    <script>
+	    $('#gologin').click(function() {
+			location.href = '/member/loginhome';
+			});
+    
+	    $('#gojoin').click(function() {
+			location.href = '/member/login';
+			});
+    </script>
 </body>
 </html>

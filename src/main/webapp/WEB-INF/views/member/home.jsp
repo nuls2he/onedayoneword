@@ -34,6 +34,7 @@
 		</div>
 
 		<a id="gologin" class="txt_welcome">들어가기</a>
+		
 
 	</div>
 

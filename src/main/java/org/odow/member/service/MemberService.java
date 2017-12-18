@@ -7,4 +7,6 @@ public interface MemberService {
 	public void login(Member member);
 	
 	public Boolean idcheck(String id);
+	
+	public Boolean logincheck(String id , String pw);
 }

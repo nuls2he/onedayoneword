@@ -3,124 +3,259 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
 <style>
-
-.wrapper {
-	background-color: white;
-	height: 100%;
+	#loginForm{
+		border: 1px solid black;
+		align : center ;
+		width: 45%;
+	}
+	
+	/* checkbox css */
+	input[type=checkbox]{
+		display: none;
+	}
+	input[type=checkbox]+ label{
+		display: inline-block;
+		cursor:pointer;
+		position: relative;
+		padding-left: 25px;
+		margin-right: 15px;
+		font-size: 13px;
+	}
+	
+	input[type=checkbox]+ label:before{
+		content:"";
+		display: inline-block;
+		width: 20px;
+		height: 20px;
+		margin-right: 10px;
+		position: absolute;
+		left: 0;
+		bottom:1px;
+		background-color: #ccc;
+		border-radius: 2px;
+		box-shadow: inset 0px 1px 1px 0px rgba(0,0,0,3,),0px 1px 0px 0px rgba(255,255,255,.8);
+	}
+	
+	input[type=checkbox]:checked + label:before {
+	content: "\2713";
+	text-shadow: 1px 1px 1px rgba(0,0,0, .2);
+	font-size: 18px;
+	font-weight: 800;
+	color:#fff;
+	background: #2f87c1;
 	text-align: center;
-	margin: 0, auto;
-	align: center;
-}
-div.centerBtn > button{
-	align: center;
+	line-height: 18px;
+} 
+	/* checkbox css */
+	
+	/* select option css  */
+	/* ///  DECORATION CSS ///  */
+     .cont_select_center {
+         position: absolute;
+         left: 50%;
+         top: 50%;
+         margin-top: -30px;
+         margin-left: -150px;
+     }
+
+     .cont_heg_50 {
+         position: absolute;
+         height: 50%;
+         left: 0;
+         top: 0;
+         width: 100%;
+         background-color: #fd7b52;
+     }
+
+     /* ///  END DECORATION CSS  ///  */
+     .icon_select_mate {
+         position: absolute;
+         top: 20px;
+         right: 2%;
+         font-size: 16px;
+         height: 22px;
+         transition: all 275ms;
+     }
+
+     .select_mate {
+         position: relative;
+         float: left;
+         min-width: 150px;
+         width: 130px;
+         min-height: 60px;
+         font-family: 'Roboto';
+         color: #777;
+         font-weight: 300;
+         background-color: #fff;
+         box-shadow: 1px 2px 10px -2px rgba(0, 0, 0, 0.3);
+         border-radius: 3px;
+         transition: all 375ms ease-in-out;
+         /* Oculto el elemento select */
+     }
+     .select_mate select {
+         position: absolute;
+         overflow: hidden;
+         height: 0px;
+         opacity: 0;
+     }
+
+     .cont_list_select_mate {
+         position: relative;
+         float: left;
+         width: 100%;
+     }
+
+     .cont_select_int {
+         position: absolute;
+         left: 0px;
+         top: 0px;
+         z-index: 999;
+         overflow: hidden;
+         height: 0px;
+         width: 100%;
+         background-color: #fff;
+         padding: 0px;
+         margin-bottom: 0px;
+         margin-top: 0px;
+         border-radius: 0px 0px 3px 3px;
+         box-shadow: 1px 4px 10px -2px rgba(0, 0, 0, 0.2);
+         transition: all 375ms ease-in-out;
+     }
+     .cont_select_int li {
+         position: relative;
+         float: left;
+         width: 96%;
+         border-bottom: 1px solid #E0E0E0;
+         background-color: #F5F5F5;
+         list-style-type: none;
+         padding: 10px 2%;
+         margin: 0px;
+         transition: all 275ms ease-in-out;
+         display: block;
+         cursor: pointer;
+     }
+     .cont_select_int li:last-child {
+         border-radius: 3px;
+         border-bottom: 0px;
+     }
+     .cont_select_int li:hover {
+         background-color: #EEEEEE;
+     }
+     .cont_select_int .active {
+         background-color: #EEEEEE;
+     }
+
+     /* etiqueta <p> con la opcion selecionada  */
+     .selecionado_opcion {
+         padding: 20px 2%;
+         width: 96%;
+         display: block;
+         margin: 0px;
+         cursor: pointer;
+     }
+	/* select option css  */
+	
+	.button{
+	   background-color: #4CAF50; /* Green */
+	    border: none;
+	    color: white;
+	    padding: 15px 32px;
+	    text-align: center;
+	    text-decoration: none;
+	    display: inline-block;
+	    font-size: 16px;
+	    margin: 4px 2px;
+	    cursor: pointer;
+	}
+
+.Btn {
+
+    background-color: white;
+    color: black;
+    border: 2px solid #e7e7e7;
 }
 </style>
+<head>
+	
+	<!-- GLOBAL MANDATORY STYLES -->
+        <link href="http://fonts.googleapis.com/css?family=Hind:300,400,500,600,700" rel="stylesheet" type="text/css">
+        <link href="/resources/HTML/vendor/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css"/>
+        <link href="/resources/HTML/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+        <!-- PAGE LEVEL PLUGIN STYLES -->
+        <link href="/resources/HTML/css/animate.css" rel="stylesheet">
+        <link href="/resources/HTML/vendor/swiper/css/swiper.min.css" rel="stylesheet" type="text/css"/>
+
+        <!-- THEME STYLES -->
+        <link href="/resources/HTML/css/layout.min.css" rel="stylesheet" type="text/css"/>
+
+        <!-- Favicon -->
+        <link rel="shortcut icon" href="favicon.ico"/>
+
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta
 	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'
 	name='viewport' />
-<link href="/resources/css/material-kit.css" rel="stylesheet" />
-<link href="/resources/css/demo.css" rel="stylesheet" />
-<link rel="stylesheet" href="/resources/css/style.css">
+
 
 </head>
 <body>
-	<div class="wrapper">
+	
 		<h2 style="text-align: center">회원가입</h2>
 
-		<form method="post" id="loginForm" style="text-align: center">
-			<div class="row">
-				<div>
-					<div class="form-group">
-						아이디 <br> <input type="text" class="form-control" name='id'
-							id="id" />
-						<p>
-						<div id="idDiv"></div>
-						</p>
-					</div>
-				</div>
-				<div>
-					<div class="form-group label-floating">
-						비밀번호<br> <input type="password" name="pw" id="pw"
-							class="form-control">
-					</div>
-				</div>
-
-				<div>
-					<div class="form-group label-floating">
-						비밀번호 확인<br> <input type="password" name="pwCheck"
-							id="pwCheck" class="form-control">
-						<div id="pwcheckDiv"></div>
-					</div>
-				</div>
-
-				<p class="checkbox">
-					<label> <input type="checkbox" name="child" id="child"
-						value="남자"> 남자
-					</label>
-				</p>
-				<p class="checkbox">
-					<label> <input type="checkbox" name="child" id="child"
-						value="여자"> 여자
-					</label>
-				</p>
-				<br>
-			<div style="align:center">
-				<!-- Custom select structure -->
-				<div class="select_mate" align="center" data-mate-select="active"
-					style="text-align: center">
-					<select name="location" onclick="return false;" id="location">
+		<form method="post" id="loginForm">
+			   <div class="sm-margin-b-30" id="bor">
+                   아이디      <input type="text" class="form-control footer-input margin-b-20" placeholder="아이디" required name='id' id="id" >
+                      	<div id="idDiv"></div> <br>
+                   비밀번호     <input type="password" class="form-control footer-input margin-b-20" placeholder="비밀번호" required  name="pw" id="pw"> <br>
+                   
+                   비밀번호 학인  <input type="password" class="form-control footer-input margin-b-20" placeholder="비밀번호 확인" required name="pwCheck"id="pwCheck"> <br>
+                   	   <div id="pwcheckDiv"></div> <br>
+                   	   
+                   <input type="checkbox" name="child" id="m" value="남자"><label for="m">남자</LABEL> 
+                   <input type="checkbox" name="child" id="f" value="여자"><label for="f">여자</LABEL> <br>
+                     
+                     <div class="select_mate" data-mate-select="active" >                 
+                   <select name="location" onclick="return false;" id="location">
 						<option value="강서구">강서구</option>
 						<option value="서초구">서초구</option>
 						<option value="강동구">강동구</option>
 						<option value="강남구">강남구</option>
 					</select>
-					<p class="selecionado_opcion" onclick="open_select(this)"></p>
-					<span onclick="open_select(this)" class="icon_select_mate"><svg
-							fill="#000000" height="24" viewBox="0 0 24 24" width="24"
-							xmlns="http://www.w3.org/2000/svg"> <path
-							d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z" /> <path
-							d="M0-.75h24v24H0z" fill="none" /> </svg></span>
-					<div class="cont_list_select_mate">
-						<ul class="cont_select_int">
-						</ul>
+						<p class="selecionado_opcion"  onclick="open_select(this)" ></p><span onclick="open_select(this)" class="icon_select_mate" ><svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+   						 <path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"/>
+    					 <path d="M0-.75h24v24H0z" fill="none"/></svg></span>
+							<div class="cont_list_select_mate">
+  								<ul class="cont_select_int">  </ul> 
+							</div>					
 					</div>
-				</div>
+					
+					<div class="select_mate" data-mate-select="active" >
+					<select name="time" onclick="return false;" id="time">
+						<option value="6시">6시</option>
+						<option value="9시">9시</option>
+					</select>
+					<p class="selecionado_opcion"  onclick="open_select(this)" ></p><span onclick="open_select(this)" class="icon_select_mate" ><svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+					    <path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"/>
+					    <path d="M0-.75h24v24H0z" fill="none"/></svg></span>
+							<div class="cont_list_select_mate">
+							  <ul class="cont_select_int">  </ul> 
+							</div>				
+					</div>
+					
+				<br><br><br><br>
+				
+                   <button class="button Btn" id="loginBtn">등록</button>
+               </div>
+		</form>
 
-			<div class="select_mate" data-mate-select="active">
-				<select name="time" onclick="return false;" id="time">
-					<option value="6시">6시</option>
-					<option value="9시">9시</option>
-				</select>
-
-				<p class="selecionado_opcion" onclick="open_select(this)"></p>
-				<span onclick="open_select(this)" class="icon_select_mate"><svg
-						fill="#000000" height="24" viewBox="0 0 24 24" width="24"
-						xmlns="http://www.w3.org/2000/svg"> <path
-						d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z" /> <path
-						d="M0-.75h24v24H0z" fill="none" /> </svg></span>
-				<div class="cont_list_select_mate">
-					<ul class="cont_select_int">
-					</ul>
-				</div>
-			</div>
-			</div>
-	<br>
-	<br>
-	<div class="centerBtn">
-		<button class="btn btn-white" id="loginBtn">등록</button>
-	</div>
-	</div>
-</form>
-	<script src="/resources/js/index.js"></script>
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"
 		integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-		crossorigin="anonymous">
-		
-	</script>
-
+		crossorigin="anonymous"></script>
+	
+   <script src="/resources/HTML/js/index.js"></script>
+   
 	<script>
 		var $loginForm = $("#loginForm");
 
@@ -210,26 +345,28 @@ div.centerBtn > button{
 	</script>
 
 
-	</div>
+
+ <!-- Back To Top -->
+        <a href="javascript:void(0);" class="js-back-to-top back-to-top">Top</a>
+
+        <!-- JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+        <!-- CORE PLUGINS -->
+        <script src="/resources/HTML/vendor/jquery.min.js" type="text/javascript"></script>
+        <script src="/resources/HTML/vendor/jquery-migrate.min.js" type="text/javascript"></script>
+        <script src="/resources/HTML/vendor/bootstrap//resources/HTML/js/bootstrap.min.js" type="text/javascript"></script>
+
+        <!-- PAGE LEVEL PLUGINS -->
+        <script src="/resources/HTML/vendor/jquery.easing.js" type="text/javascript"></script>
+        <script src="/resources/HTML/vendor/jquery.back-to-top.js" type="text/javascript"></script>
+        <script src="/resources/HTML/vendor/jquery.smooth-scroll.js" type="text/javascript"></script>
+        <script src="/resources/HTML/vendor/jquery.wow.min.js" type="text/javascript"></script>
+        <script src="/resources/HTML/vendor/jquery.parallax.min.js" type="text/javascript"></script>
+        <script src="/resources/HTML/vendor/swiper//resources/HTML/js/swiper.jquery.min.js" type="text/javascript"></script>
+
+        <!-- PAGE LEVEL SCRIPTS -->
+        <script src="/resources/HTML/js/layout.min.js" type="text/javascript"></script>
+        <script src="/resources/HTML/js/components/swiper.min.js" type="text/javascript"></script>
+        <script src="/resources/HTML/js/components/wow.min.js" type="text/javascript"></script>
 </body>
-
-<script src="/resources/js/index.js"></script>
-
-<!--   Core JS Files   -->
-<script src="/resources/js/jquery.min.js" type="text/javascript"></script>
-<script src="/resources/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="/resources/js/material.min.js"></script>
-
-<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-<script src="/resources/js/nouislider.min.js" type="text/javascript"></script>
-
-<!--  Plugin for the Datepicker, full documentation here: http://www.eyecon.ro/bootstrap-datepicker/ -->
-<script src="/resources/js/bootstrap-datepicker.js"
-	type="text/javascript"></script>
-
-<!-- Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc -->
-<script src="/resources/js/material-kit.js" type="text/javascript"></script>
-
-</script>
 
 </html>
