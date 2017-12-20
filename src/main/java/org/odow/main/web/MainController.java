@@ -29,4 +29,9 @@ public class MainController {
 		model.addAttribute("gList", service.getGirl());
 		model.addAttribute("nList", service.getNaver());
 	}
+	
+	@GetMapping("/boardlist")
+	public void list() {
+		
+	}
 }

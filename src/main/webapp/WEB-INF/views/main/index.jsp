@@ -307,7 +307,10 @@
     	<c:forEach items="${nList}" var="keyword">
     		table[index] = "${keyword.keyword}";
     		index += 5;
-    	</c:forEach> 
+    	</c:forEach>
+    	for(var i = 50; i <= 590; i+=5){
+    		table[i] = "";
+    	}
     	$container.empty();
     	init();
         transform( targets.table, 2000 );

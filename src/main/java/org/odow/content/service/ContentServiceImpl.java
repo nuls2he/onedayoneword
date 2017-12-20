@@ -1,6 +1,7 @@
 package org.odow.content.service;
 
 import java.io.FileInputStream;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.odow.domain.Content;
