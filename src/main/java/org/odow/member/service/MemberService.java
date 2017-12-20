@@ -8,5 +8,5 @@ public interface MemberService {
 	
 	public Boolean idcheck(String id);
 	
-	public Boolean logincheck(String id , String pw);
+	public Boolean logincheck(String id , String pw ,Boolean remember);
 }

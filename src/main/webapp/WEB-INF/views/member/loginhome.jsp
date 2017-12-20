@@ -208,7 +208,7 @@
 	        <input type="password" placeholder="Password" id="pw"/>
 	        <input type="checkbox" id="remember" />
 	        <label for="remember"></label>  <span>로그인 유지</span>
-        	<button id="loginBtn">로그인</button>
+        	<button type="button" id="loginBtn">로그인</button>
         </form>
         
     </div>
@@ -218,9 +218,9 @@
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous">
 </script>
-<script>
 
-	$loginBtn =$("#loginBtn") ;
+<script>
+	$loginForm =$("#loginForm") ;
 	
 	$("#loginBtn").click(function(){
 		
@@ -235,7 +235,7 @@
 		}).done(function(data){
 			if(data){
 				console.log("로그인 성공!");
-				
+				alert("로그인 성공....;;");
 				$loginForm.attr("action","/member/loginProcess").submit();
 				return ;
 			}

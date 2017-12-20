@@ -20,13 +20,14 @@ public class RememberSetInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
-		
+					log.info("라라라");
 				// 사용자가 정상적으로 로그인 했다면  model에 id 존재 
 				Object obj = modelAndView.getModel().get("id");
 				
 				// 로그인 안 된 사람
 				if(obj == null) {
-					response.sendRedirect("/login");
+					log.info("삐꾸각???");
+					response.sendRedirect("/member/loginhome");
 					return;
 				}
 				
@@ -47,8 +48,5 @@ public class RememberSetInterceptor extends HandlerInterceptorAdapter {
 				} catch(Exception e) {
 					
 				}
-		
-		
-	}
-
-}
+			}
+		}

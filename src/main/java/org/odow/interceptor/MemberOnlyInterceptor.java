@@ -16,7 +16,7 @@ public class MemberOnlyInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-
+		System.out.println("진진자라");
 		Object value = request.getSession().getAttribute("login");
 
 		if (value != null) {
@@ -39,7 +39,7 @@ public class MemberOnlyInterceptor extends HandlerInterceptorAdapter {
 		}
 
 		log.info("세션 X 쿠키 X");
-		response.sendRedirect("/login");
+		response.sendRedirect("/member/login");
 		return false;
 
 	}

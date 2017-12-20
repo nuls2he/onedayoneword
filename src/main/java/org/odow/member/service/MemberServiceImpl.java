@@ -23,9 +23,11 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public Boolean logincheck(String id, String pw) {
-		System.out.println("pw :" + pw);
-		System.out.println("id :" +id);
+	public Boolean logincheck(String id, String pw , Boolean remember) {
+		System.out.println("serviceimpl pw :" + pw);
+		System.out.println("serviceimpl id :" +id);
+		System.out.println("serviceimpl remember :" +remember);
+		
 		System.out.println("디비테스트 :" + mapper.logincheck(id));
 		
 		if(mapper.logincheck(id) != null) {

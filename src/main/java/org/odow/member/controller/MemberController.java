@@ -24,12 +24,13 @@ public class MemberController {
 	MemberServiceImpl service;
 	
 	@GetMapping("/testlogin")
-		public void testlog(Model model , HttpSession session) {
-			if(session.getAttribute("login") != null) {
-				System.out.println("들어옴");
-				System.out.println(session.getAttribute("login"));
-			}
+	public void testlog(Model model , HttpSession session) {
+	System.out.println("체크체크");
+		if(session.getAttribute("login") != null) {
+			System.out.println("들어옴");
+			System.out.println(session.getAttribute("login"));
 		}
+	}
 	@GetMapping("/loginhome")
 	public void loginhome() {
 		
@@ -53,11 +54,13 @@ public class MemberController {
 	
 	@PostMapping("/logincheck")
 	@ResponseBody
-	public Boolean logincheck(String id , String pw) {
-		System.out.println("id :" +id );
-		System.out.println("pw :" + pw );
+	public Boolean logincheck(String id , String pw ,Boolean remember) {
+		System.out.println("logincheck id :" +id );
+		System.out.println("logincheck pw :" + pw );
+		System.out.println("logincheck remember :" +remember);
 		
-		return service.logincheck(id, pw);
+		return service.logincheck(id, pw, remember);
+		
 		
 	}
 	
@@ -71,9 +74,13 @@ public class MemberController {
 		return result;
 	}
 	
+	
+	
 	@PostMapping("/loginProcess")
 	public String process(String id , String pw , Boolean remember, Model model) {
-		System.out.println("remember" + remember);
+		System.out.println("loginProcess remember :" + remember);
+		System.out.println("loginProcess id : " +id );
+		System.out.println("loginProcess pw :" + pw );
 		
 		model.addAttribute("remember" ,remember);
 		model.addAttribute("id" ,id);

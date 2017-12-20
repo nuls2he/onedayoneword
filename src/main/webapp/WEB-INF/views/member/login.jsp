@@ -204,38 +204,45 @@
 	
 		<h2 style="text-align: center">회원가입</h2>
 
-		<form method="post" id="loginForm">
+	<!-- <form method="post" id="loginForm"> -->
+	
 			   <div class="sm-margin-b-30" id="bor">
-                   아이디      <input type="text" class="form-control footer-input margin-b-20" placeholder="아이디" required name='id' id="id" >
+                   아이디      <input type="text" class="form-control footer-input margin-b-20"  required name='id' id="id" >
                       	<div id="idDiv"></div> <br>
-                   비밀번호     <input type="password" class="form-control footer-input margin-b-20" placeholder="비밀번호" required  name="pw" id="pw"> <br>
-                   
-                   비밀번호 학인  <input type="password" class="form-control footer-input margin-b-20" placeholder="비밀번호 확인" required name="pwCheck"id="pwCheck"> <br>
-                   	   <div id="pwcheckDiv"></div> <br>
+                   비밀번호     <input type="password" class="form-control footer-input margin-b-20" required  name="pw" id="pw"> <br>
+      
+       <!--             
+                   비밀번호 학인  <input type="password" class="form-control footer-input margin-b-20" required name="pwCheck"id="pwCheck"> <br>
+                   	   <div id="pwcheckDiv"></div> <br> -->
                    	   
                    <input type="checkbox" name="child" id="m" value="남자"><label for="m">남자</LABEL> 
                    <input type="checkbox" name="child" id="f" value="여자"><label for="f">여자</LABEL> <br>
                      
-                     <div class="select_mate" data-mate-select="active" >                 
+<!--                  <div class="select_mate" data-mate-select="active" >                  -->
+
                    <select name="location" onclick="return false;" id="location">
 						<option value="강서구">강서구</option>
 						<option value="서초구">서초구</option>
 						<option value="강동구">강동구</option>
 						<option value="강남구">강남구</option>
 					</select>
-						<p class="selecionado_opcion"  onclick="open_select(this)" ></p><span onclick="open_select(this)" class="icon_select_mate" ><svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+					
+						<!-- <p class="selecionado_opcion"  onclick="open_select(this)" ></p><span onclick="open_select(this)" class="icon_select_mate" ><svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
    						 <path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"/>
     					 <path d="M0-.75h24v24H0z" fill="none"/></svg></span>
 							<div class="cont_list_select_mate">
   								<ul class="cont_select_int">  </ul> 
 							</div>					
 					</div>
-					
-					<div class="select_mate" data-mate-select="active" >
+					 -->
+<!-- 					<div class="select_mate" data-mate-select="active" > -->
+
 					<select name="time" onclick="return false;" id="time">
 						<option value="6시">6시</option>
 						<option value="9시">9시</option>
 					</select>
+					
+					<!-- 
 					<p class="selecionado_opcion"  onclick="open_select(this)" ></p><span onclick="open_select(this)" class="icon_select_mate" ><svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
 					    <path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"/>
 					    <path d="M0-.75h24v24H0z" fill="none"/></svg></span>
@@ -243,12 +250,13 @@
 							  <ul class="cont_select_int">  </ul> 
 							</div>				
 					</div>
-					
-				<br><br><br><br>
+					 -->
+				<br><br>
 				
                    <button class="button Btn" id="loginBtn">등록</button>
                </div>
-		</form>
+	 <!-- 	</form>  -->
+
 
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"
 		integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -256,7 +264,58 @@
 	
    <script src="/resources/HTML/js/index.js"></script>
    
-	<script>
+  
+<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAD_qm6cmfsf6dMmTqXPDYlylDq5yGZLSQ",
+    authDomain: "oneday-1123.firebaseapp.com",
+    databaseURL: "https://oneday-1123.firebaseio.com",
+    projectId: "oneday-1123",
+    storageBucket: "oneday-1123.appspot.com",
+    messagingSenderId: "360329597510"
+  };
+  firebase.initializeApp(config);
+</script>
+
+
+<script>
+
+
+function createData(data, callback) {
+	
+	 var member = data;
+     firebase.database().ref("member/" + member.id).set(member);
+     
+     location.href = "/member/loginhome";
+};
+
+$("#loginBtn").on("click" ,function() {
+	
+    var member = {id:$("#id").val(), pw:$("#pw").val(), m:$("#m").val(), f:$("#f").val() , location : $("#location").val(), time : $("#time").val()};
+	 
+	createData(member);
+	 
+		
+});
+
+
+function readAllData() {
+    var memoList=firebase.database().ref().child('/info');
+    memoList.on("value",function (snapshot) {
+
+        var listData=snapshot.val();
+        for(keyStr in listData){
+            console.log(keyStr);}
+    });
+};
+
+</script>
+
+
+<!-- 
+<script>
 		var $loginForm = $("#loginForm");
 
 		var chkv = "";
@@ -276,7 +335,6 @@
 			var $location = $("#location").val();
 			var $child = chkv;
 			var $time = $("#time").val();
-			;
 
 			if ($id == "") {
 				$("#idDiv").html("아이디를 입력해주세요");
@@ -342,8 +400,8 @@
 				}
 			});
 		});
-	</script>
-
+	</script> 
+ -->
 
 
  <!-- Back To Top -->
@@ -353,7 +411,7 @@
         <!-- CORE PLUGINS -->
         <script src="/resources/HTML/vendor/jquery.min.js" type="text/javascript"></script>
         <script src="/resources/HTML/vendor/jquery-migrate.min.js" type="text/javascript"></script>
-        <script src="/resources/HTML/vendor/bootstrap//resources/HTML/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="/resources/HTML/vendor/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 
         <!-- PAGE LEVEL PLUGINS -->
         <script src="/resources/HTML/vendor/jquery.easing.js" type="text/javascript"></script>
@@ -361,7 +419,7 @@
         <script src="/resources/HTML/vendor/jquery.smooth-scroll.js" type="text/javascript"></script>
         <script src="/resources/HTML/vendor/jquery.wow.min.js" type="text/javascript"></script>
         <script src="/resources/HTML/vendor/jquery.parallax.min.js" type="text/javascript"></script>
-        <script src="/resources/HTML/vendor/swiper//resources/HTML/js/swiper.jquery.min.js" type="text/javascript"></script>
+        <script src="/resources/HTML/vendor/swiper/js/swiper.jquery.min.js" type="text/javascript"></script>
 
         <!-- PAGE LEVEL SCRIPTS -->
         <script src="/resources/HTML/js/layout.min.js" type="text/javascript"></script>
