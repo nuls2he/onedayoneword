@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
@@ -24,7 +24,7 @@
         <!-- Favicon -->
         <link rel="shortcut icon" href="favicon.ico"/>
         
-            <style>
+        <style>
         html, body {
             height: 100%;
         }
@@ -80,8 +80,8 @@
             right: 0px;
             font-size: 50px;
             font-weight: bold;
-            color: rgba(255,255,255,0.75);
-            text-shadow: 0 0 10px rgba(0,255,255,0.95);
+            color: rgba(39, 130, 42, 0.75); /*255,255,255,0.75*/
+            text-shadow: 0 0 10px rgba(57, 224, 117, 0.95);
         }
         .element .symbol:hover{
         	color: rgba(255,255,255,0.25);
@@ -129,7 +129,7 @@
            <!-- Wrapper for slides -->
            <div class="carousel-inner" role="listbox">
                <div class="item active">
-                   <img class="img-responsive" src="/resources/HTML/img/1920x1080/01.jpg" alt="Slider Image">
+                   <img class="img-responsive" src="/resources/HTML/img/1920x1080/001.jpg" alt="Slider Image">
                   		<div id="container">
                    		</div>
                    		

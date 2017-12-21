@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
@@ -114,6 +114,75 @@
         	height:600px; 
         	background-color: #ffffff;
         }
+        
+.responstable {
+  margin: 1em 0;
+  width: 100%;
+  overflow: hidden;
+  background: #FFF;
+  color: #024457;
+  border-radius: 10px;
+  border: 1px solid #167F92;
+}
+.responstable tr {
+  border: 1px solid #D9E4E6;
+}
+.responstable tr:nth-child(odd) {
+  background-color: #EAF3F3;
+}
+.responstable th {
+  display: none;
+  border: 1px solid #FFF;
+  background-color: #167F92;
+  color: #FFF;
+  padding: 1em;
+}
+.responstable th:first-child {
+  display: table-cell;
+  text-align: center;
+}
+.responstable th:nth-child(2) {
+  display: table-cell;
+}
+.responstable th:nth-child(2) span {
+  display: none;
+}
+.responstable th:nth-child(2):after {
+  content: attr(data-th);
+}
+@media (min-width: 480px) {
+  .responstable th:nth-child(2) span {
+    display: block;
+  }
+  .responstable th:nth-child(2):after {
+    display: none;
+  }
+}
+.responstable td {
+  display: block;
+  word-wrap: break-word;
+  max-width: 7em;
+}
+.responstable td:first-child {
+  display: table-cell;
+  text-align: center;
+  border-right: 1px solid #D9E4E6;
+}
+@media (min-width: 480px) {
+  .responstable td {
+    border: 1px solid #D9E4E6;
+  }
+}
+.responstable th, .responstable td {
+  text-align: left;
+  margin: .5em 1em;
+}
+@media (min-width: 480px) {
+  .responstable th, .responstable td {
+    display: table-cell;
+    padding: 1em;
+  }
+}
     </style>
 
 </head>
@@ -141,7 +210,7 @@
 		
 	<c:import url="../includes/header.jsp"></c:import>
 		
-         <div class="parallax-window" data-parallax="scroll" data-image-src="/resources/HTML/img/1920x1080/01.jpg">
+         <div class="parallax-window" data-parallax="scroll" data-image-src="/resources/HTML/img/1920x1080/001.jpg">
             <div class="parallax-content container">
                 <h1 class="carousel-title">BOARD</h1>
                 <p>Lorem ipsum dolor amet consectetur adipiscing dolore magna aliqua <br/> enim minim estudiat veniam siad venumus dolore</p>
@@ -151,26 +220,55 @@
 
         <!-- Service -->
         <div class="listBody">
-        	<div style="padding-left: 80%;">
-        		검색 : <input type="text" id="search"/>
-        		<button id="searchBtn">검색</button>
+        	<br/>
+        	<div style="padding-left: 50%;">
+        		검색 :
+        		<select style="height: 27px;">
+        			<option value="title">제목</option>
+        			<option value="writer">작성자</option>
+        		</select>
+        		<input type="text" id="search"/>
+        		<button class="searchBtn">검색</button>
         	</div>
-   			<table class="table">
+        	<br/>
+   			<table class="responstable" style="width: 60%; margin:0 auto;">
    				<thead>
-   					<th>글번호</th>
-   					<th>제목</th>
-   					<th>글쓴이</th>   					
-   					<th>등록일자</th>   					
+   					<th width="10%;">글번호</th>
+   					<th width="50%;">제목</th>
+   					<th width="20%;">글쓴이</th>   					
+   					<th width="20%;">등록일자</th>   					
    				</thead>
    				<tbody id="tList">
    				</tbody>
    			</table>
-        </div>
+		<div id="reportPage" style="margin-left: 43%;">
+			<ul class="pagination mypage" style="margin: 0 auto;">
+<!-- 				<li class="page-item"><a class="page-link" href="#">Prev</a></li> -->
+				<li class="page-item"><a class="page-link" href="#">1</a></li>
+				<li class="page-item"><a class="page-link" href="#">2</a></li>
+				<li class="page-item"><a class="page-link" href="#">3</a></li>
+<!-- 				<li class="page-item"><a class="page-link" href="#">Next</a></li> -->
+			</ul>
+		</div>
+		</div>
 
+	<script src="/resources/HTML/vendor/jquery.min.js" type="text/javascript"></script>
 <script>
 
 	var html = "";
+	var listCount = 0;
 
+	function readEach(keyStr) {
+		var data = firebase.database().ref("/board/" + keyStr);
+
+		data.on('value', function(snapshot) {
+// 			console.log(snapshot.val());
+			var chk = snapshot.val();
+// 			html += "<li>" + chk.title + " / " + chk.writer + " / " + chk.regdate + "</li>";
+			html += "<tr><td>" + keyStr + "</td><td>" + chk.title + "</td><td>" + chk.writer + "</td><td>" + chk.regdate + "</td></tr>";
+		});
+	}
+	
 	function readAllData() {
 
 		var memoList = firebase.database().ref().child("/board");
@@ -178,38 +276,79 @@
 		memoList.on("value", function(snapshot) {
 
 			var listData = snapshot.val();
-
+			listCount = listData.length - 1;
+			console.log("ㅇㅇ"+listCount);
+			
 			for (keyStr in listData) {
-				console.log("=====" + keyStr);
+// 				console.log("=====" + keyStr);
 				readEach(keyStr);
 			} 
+			
 			$("#tList").html(html);
 		});
+		
+		paging(listCount);
 	}
-
-	function readEach(keyStr) {
-		var data = firebase.database().ref("/board/" + keyStr);
-
-		data.on('value', function(snapshot) {
-
-			console.log(snapshot.val());
-			var chk = snapshot.val();
-// 			html += "<li>" + chk.title + " / " + chk.writer + " / " + chk.regdate + "</li>";
-			html += "<tr><td>" + keyStr + "</td><td>" + chk.title + "</td><td>" + chk.writer + "</td><td>" + chk.regdate + "</td></tr>";
-		});
-
-	}
-
 	readAllData();
+
+	var start = 1;
+	var end = 1;
+	function paging(listCount) {
+		console.log(listCount);
+		var str = "";
+		
+		for(var i = 1; i <= (listCount / 2) + 1; i++){
+			str += "<li class='page-item'><a class='page-link' href='#'>" + i + "</a></li>";
+		} 
+// 		if(pageResult.prev) {
+// 			str += "<li class='page-item'><a class='page-link' href=" + (parseInt(pageResult.first) - 1) + ">Prev</a></li>";
+// 		}
+		
+// 		for(var i = pageResult.first; i <= pageResult.last; i++) {
+// 			str += "<li class='page-item " + (pageResult.page == i ? "active" : "") + "' ><a class='page-link' href=" + i + ">" + i + "</a></li>";
+// 		}
+// 		console.log($(".page-item:active > a"));
+		
+// 		if(pageResult.next) {
+// 			str += "<li class='page-item'><a class='page-link' href=" + (parseInt(pageResult.last) + 1) + ">Next</a></li>";
+// 		}
+		
+		$(".mypage").html(str);
+	};
 	
+// 	검색
+	$(".searchBtn").click(function () {
+		html = "";
+		var boardList = firebase.database().ref().child("/board");
+		var search = $("#search").val();
+		
+		boardList.on("value", function (event){
+			var list = event.val();
+			for(keyStr in list){
+				var results = firebase.database().ref("/board/" + keyStr);
+				results.on("value", function(event){
+					var result = event.val();
+					if(result.title.match(search) != null){
+						readEach(keyStr);
+					}
+				});
+				
+				/* var result = keyStr.match(search);
+				if(result != null){
+					readEach(keyStr);
+				} */
+			}
+		});
+		$("#tList").html(html);
+	});
+
 </script>
 
-<!-- Back To Top -->
 <a href="javascript:void(0);" class="js-back-to-top back-to-top">Top</a>
 
 <!-- JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
 <!-- CORE PLUGINS -->
-<script src="/resources/HTML/vendor/jquery.min.js" type="text/javascript"></script>
+
 <script src="/resources/HTML/vendor/jquery-migrate.min.js" type="text/javascript"></script>
 <script src="/resources/HTML/vendor/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 
