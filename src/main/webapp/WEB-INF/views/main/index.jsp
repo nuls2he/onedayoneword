@@ -361,7 +361,7 @@
         transform( targets.grid, 2000 );
     }, false );
     
-    transform( targets.grid, 2000 );
+    transform( targets.grid, 2000);
     
 </script>
 

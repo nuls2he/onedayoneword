@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <footer class="footer">
+
             <!-- Links -->
             <!-- <div class="footer-seperator">
                 <div class="content-lg container">
