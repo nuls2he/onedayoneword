@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/main/*")
@@ -23,7 +24,6 @@ public class MainController {
 	
 	@GetMapping("/index")
 	public void index(Model model) {
-		System.out.println("dd");
 		model.addAttribute("aList", service.getAll());
 		model.addAttribute("bList", service.getBoy());
 		model.addAttribute("gList", service.getGirl());
@@ -31,7 +31,8 @@ public class MainController {
 	}
 	
 	@GetMapping("/boardlist")
-	public void list() {
-		
+	public void list(@RequestParam(value="page", defaultValue="1") int page, Model model, @RequestParam(value="pageNum", defaultValue="1") int pageNum) {
+		model.addAttribute("page", page);
+		model.addAttribute("pageNum", pageNum);
 	}
 }

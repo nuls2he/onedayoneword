@@ -15,7 +15,6 @@ public class MainServiceImpl implements MainService {
 	
 	@Override
 	public List<Keyword> getAll() {
-		System.out.println("impl");
 		return mapper.getAll();
 	}
 

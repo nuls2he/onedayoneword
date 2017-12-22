@@ -221,7 +221,7 @@
         <!-- Service -->
         <div class="listBody">
         	<br/>
-        	<div style="padding-left: 50%;">
+        	<div style="padding-left: 60%;">
         		검색 :
         		<select style="height: 27px;">
         			<option value="title">제목</option>
@@ -244,9 +244,6 @@
 		<div id="reportPage" style="margin-left: 43%;">
 			<ul class="pagination mypage" style="margin: 0 auto;">
 <!-- 				<li class="page-item"><a class="page-link" href="#">Prev</a></li> -->
-				<li class="page-item"><a class="page-link" href="#">1</a></li>
-				<li class="page-item"><a class="page-link" href="#">2</a></li>
-				<li class="page-item"><a class="page-link" href="#">3</a></li>
 <!-- 				<li class="page-item"><a class="page-link" href="#">Next</a></li> -->
 			</ul>
 		</div>
@@ -254,15 +251,20 @@
 
 	<script src="/resources/HTML/vendor/jquery.min.js" type="text/javascript"></script>
 <script>
-
+	
 	var html = "";
-	var listCount = 0;
-
+	var listCount=0;
+	var page = "${page}";
+	var listEnd = page * 2;
+	var listStart = listEnd - 1;
+	var pageNum = parseInt("${pageNum}");
+	var prev = false;
+	var next = true;
+	
 	function readEach(keyStr) {
 		var data = firebase.database().ref("/board/" + keyStr);
 
 		data.on('value', function(snapshot) {
-// 			console.log(snapshot.val());
 			var chk = snapshot.val();
 // 			html += "<li>" + chk.title + " / " + chk.writer + " / " + chk.regdate + "</li>";
 			html += "<tr><td>" + keyStr + "</td><td>" + chk.title + "</td><td>" + chk.writer + "</td><td>" + chk.regdate + "</td></tr>";
@@ -270,51 +272,68 @@
 	}
 	
 	function readAllData() {
-
 		var memoList = firebase.database().ref().child("/board");
-
+		
 		memoList.on("value", function(snapshot) {
 
 			var listData = snapshot.val();
 			listCount = listData.length - 1;
-			console.log("ㅇㅇ"+listCount);
 			
-			for (keyStr in listData) {
-// 				console.log("=====" + keyStr);
-				readEach(keyStr);
-			} 
+			if(listEnd > listCount){
+				listEnd = listCount;
+			}
+			
+			for (var i = listStart; i <= listEnd; i++){
+				html += "<tr><td>" + listData[i].no + "</td><td>" + listData[i].title + "</td><td>"; 
+				html += listData[i].writer + "</td><td>" + listData[i].regdate + "</td></tr>";
+			}
+			
+// 			for (keyStr in listData) {
+// 				readEach(keyStr);
+// 			} 
 			
 			$("#tList").html(html);
-		});
+			paging(listCount);
+		});	
 		
-		paging(listCount);
 	}
+	
 	readAllData();
-
-	var start = 1;
-	var end = 1;
+	
 	function paging(listCount) {
-		console.log(listCount);
 		var str = "";
+		var pagingEnd = pageNum + 2;
+		var count = (listCount / 2) + 1;
 		
-		for(var i = 1; i <= (listCount / 2) + 1; i++){
-			str += "<li class='page-item'><a class='page-link' href='#'>" + i + "</a></li>";
-		} 
-// 		if(pageResult.prev) {
-// 			str += "<li class='page-item'><a class='page-link' href=" + (parseInt(pageResult.first) - 1) + ">Prev</a></li>";
-// 		}
+		if(pagingEnd > count){
+			pagingEnd = count;
+			next = false;
+		}
 		
-// 		for(var i = pageResult.first; i <= pageResult.last; i++) {
-// 			str += "<li class='page-item " + (pageResult.page == i ? "active" : "") + "' ><a class='page-link' href=" + i + ">" + i + "</a></li>";
-// 		}
-// 		console.log($(".page-item:active > a"));
+		if(pageNum != 1){
+			prev = true;
+		} else {
+			prev = false;
+		}
 		
-// 		if(pageResult.next) {
-// 			str += "<li class='page-item'><a class='page-link' href=" + (parseInt(pageResult.last) + 1) + ">Next</a></li>";
-// 		}
+		if(prev){str += "<li class='page-item' id='prev'><a class='page-link' href='#'>Prev</a></li>"};
+		for(var i = pageNum; i <= pagingEnd; i++){
+			str += "<li class='page-item'><a class='page-link' href='/main/boardlist?page=" + i + "&pageNum=" + pageNum + "'>" + i + "</a></li>";
+		}
+		if(next){str += "<li class='page-item' id='next'><a class='page-link' href='#'>next</a></li>"};
 		
 		$(".mypage").html(str);
 	};
+	
+	$(".mypage").on("click","li[id=prev]",function () {
+		pageNum -= 3;
+		location.href = "/main/boardlist?page=" + (pageNum + 2) +'&pageNum=' + pageNum;
+	});
+	
+	$(".mypage").on("click","li[id=next]",function () {
+		pageNum += 3;
+		location.href = "/main/boardlist?page=" + pageNum + '&pageNum=' + pageNum;
+	});
 	
 // 	검색
 	$(".searchBtn").click(function () {
