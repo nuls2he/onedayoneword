@@ -64,6 +64,18 @@ public class MemberController {
 		
 	}
 	
+	
+	@PostMapping("/index")
+	@ResponseBody
+	public String index1(Model model ,String id , Boolean remember) {
+		System.out.println("remember :" +remember);
+		model.addAttribute("id" ,id);
+		model.addAttribute("remember" ,remember);
+		
+		return "ssss";
+	}
+	
+	
 	@PostMapping("/dup")
 	@ResponseBody
 	public Boolean dupCheck(String id) {

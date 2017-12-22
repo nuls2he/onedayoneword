@@ -23,11 +23,9 @@ public class RememberSetInterceptor extends HandlerInterceptorAdapter {
 		
 			   // 로그인 안 된 사람
 				if(obj == null) {
-					response.sendRedirect("/member/loginhome");
+					response.sendRedirect("/intro");
 					return;
 				}
-				
-				
 				
 				// 정상 로그인 -> HttpSession에 담자
 				log.info("정상적으로 로그인 된 사용자 : " + obj);

@@ -256,12 +256,14 @@ function pwcheck(keyStr){
 	
 		if(pw == pw2.pw){
 			$.ajax({
-				url:"/main/index" ,
+				url:"/member/index" ,
 				type:"POST",
 				data :{
 					"id" : $("#id").val() ,
 					"remember" : $("#remember")[0].checked
 				}
+			}).done(function(){
+				location.href="/main/index";
 			});
 			
 		}else{

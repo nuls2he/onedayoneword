@@ -31,14 +31,7 @@ public class MainController {
 		model.addAttribute("nList", service.getNaver());
 	}
 	
-	@PostMapping("/index")
-	public String index1(Model model ,String id , Boolean remember) {
-		System.out.println("remember :" +remember);
-		model.addAttribute("id" ,id);
-		model.addAttribute("remember" ,remember);
-		
-		return "redirect:/main/index";
-	}
+
 	
 	@GetMapping("/boardlist")
 	public void list(@RequestParam(value="page", defaultValue="1") int page, Model model, @RequestParam(value="pageNum", defaultValue="1") int pageNum) {

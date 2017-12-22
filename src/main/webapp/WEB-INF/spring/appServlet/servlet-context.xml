@@ -35,17 +35,17 @@
 
  	<beans:bean id="requirelogin" class="org.odow.interceptor.MemberOnlyInterceptor"></beans:bean>
 	<beans:bean id="login" class="org.odow.interceptor.RememberSetInterceptor"></beans:bean>
-
+<!-- 
 	<interceptors>
 		<interceptor>
-			<mapping path="/member/testlogin" />
+			 <mapping path="/main/index"/> 
 			<beans:ref bean="requirelogin" />
 		</interceptor>
 		<interceptor>
-			<mapping path="/main/index" />
+			<mapping path="/member/index" />
 			<beans:ref bean="login" />
 		</interceptor>
-	</interceptors>  
+	</interceptors>   -->
 	
 	<context:component-scan base-package="org.odow.web" />
 	<context:component-scan base-package="org.odow.member.controller" />
