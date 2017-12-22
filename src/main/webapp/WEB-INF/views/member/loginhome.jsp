@@ -231,10 +231,10 @@
 
 <script>
 
+
 $("#loginBtn").on("click" ,function () {	
     var member = firebase.database().ref().child("/member");
     var id = $("#id").val();
-    
     
     member.on("value", function (e) {
         var list = e.val();
@@ -255,15 +255,20 @@ function pwcheck(keyStr){
 		var pw = $("#pw").val();
 	
 		if(pw == pw2.pw){
-			console.log("성공");
-			/* location.href='/member/home';   */
+			$.ajax({
+				url:"/main/index" ,
+				type:"POST",
+				data :{
+					"id" : $("#id").val() ,
+					"remember" : $("#remember")[0].checked
+				}
+			});
+			
 		}else{
 			console.log("비밀번호를 다시 입력해 주세요");
 		}
 	});
 }
-
-
 
 </script>
 

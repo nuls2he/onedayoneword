@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -28,6 +29,15 @@ public class MainController {
 		model.addAttribute("bList", service.getBoy());
 		model.addAttribute("gList", service.getGirl());
 		model.addAttribute("nList", service.getNaver());
+	}
+	
+	@PostMapping("/index")
+	public String index1(Model model ,String id , Boolean remember) {
+		System.out.println("remember :" +remember);
+		model.addAttribute("id" ,id);
+		model.addAttribute("remember" ,remember);
+		
+		return "redirect:/main/index";
 	}
 	
 	@GetMapping("/boardlist")
