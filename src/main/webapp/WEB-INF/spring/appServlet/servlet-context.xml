@@ -32,7 +32,7 @@
 		</beans:constructor-arg>
 	</beans:bean>
 	
-	
+	<!-- 
  	<beans:bean id="requirelogin" class="org.odow.interceptor.MemberOnlyInterceptor"></beans:bean>
 	<beans:bean id="login" class="org.odow.interceptor.RememberSetInterceptor"></beans:bean>
 
@@ -45,7 +45,7 @@
 			<mapping path="/member/loginProcess" />
 			<beans:ref bean="login" />
 		</interceptor>
-	</interceptors> 
+	</interceptors>  -->
 	
 	<context:component-scan base-package="org.odow.web" />
 	<context:component-scan base-package="org.odow.member.controller" />

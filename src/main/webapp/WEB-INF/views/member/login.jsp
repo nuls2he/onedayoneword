@@ -1,13 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org"src/main/webapp/resources/dev-tools"/TR/html4/loose.dtd"> -->
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-		
+ <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.orgsrc/main/webapp/resources/dev-tools/TR/html4/loose.dtd"> 
+<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> -->
+<html>	
 <style>
 body{
 	width : 500px;
@@ -175,13 +171,17 @@ body{
 }
 </style>
 <head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">		
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 </head>
 <body>
 	
-	
 <div class="panel regPanel">
+
       아이디: <input type="text"  class="w3-input" id="id"> <button id="checkBtn" class="w3-btn w3-white w3-border w3-round-large">중복체크</button><br/>
     		<div id="idCheck"></div><br>
     비밀번호 : <input type="password"  class="w3-input" id="pw"><br/>
@@ -190,9 +190,8 @@ body{
     <input type="checkbox" name="child" id="m" value="남자"><label for="m">남자</LABEL>
     <input type="checkbox" name="child" id="f" value="여자"><label for="f">여자</LABEL> <br>
 
-<!-- <div class="container"> -->
 	  <span class="select " >
-		    <select name="location" onclick="return false;" >
+		    <select name="location" onclick="return false;" id="location" >
 		        <option value="강서구">강서구</option>
 		        <option value="서초구">서초구</option>
 		        <option value="강동구">강동구</option>
@@ -213,13 +212,14 @@ body{
 </div>
 
 
-<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+
 <script
         src="https://code.jquery.com/jquery-3.2.1.min.js"
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
+        
+<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
 <script>
-
 
     // Initialize Firebase
     var config = {
@@ -231,8 +231,10 @@ body{
         messagingSenderId: "360329597510"
     };
     firebase.initializeApp(config);
+</script>
 
-    
+
+ <script>
     function createData(data, callback){
         var member = data;
         firebase.database().ref("member/" + member.id).set(member);
@@ -249,7 +251,7 @@ body{
 			}
 		}
     	
-        var member = {id:$("#id").val(), pw:$("#pw").val(), child :chkv, location: $("#location").val() , time:$("#time").val()};
+        var member = {id: $("#id").val(), pw:$("#pw").val(), child :chkv, location: $("#location").val() , time:$("#time").val()};
         createData(member);
     });
 
@@ -275,8 +277,7 @@ body{
 		var $pwCheck = $("#pwCheck").val();
 
 		if ($pw != $pwCheck) {
-			console.log($pw);
-			console.log($pwCheck);
+	
 			$("#pwcheckDiv").html("비밀번호와 불일치");
 		} else {
 			$("#pwcheckDiv").html("비밀번호와 일치");
@@ -285,9 +286,6 @@ body{
 			$("#pwcheckDiv").html("");
 		}
 	});
-    
-    
-    
     
     
     
@@ -309,19 +307,12 @@ body{
 
     function readEach(keyStr){
         var data = firebase.database().ref("/memo/" + keyStr);
-
         data.on('value', function(snapshot){
-
             console.log(snapshot.val());
             var chk = snapshot.val();
         });
     }
     readAllData();
-</script>
-
-<script>
-
-  
 </script>
 
 </body>

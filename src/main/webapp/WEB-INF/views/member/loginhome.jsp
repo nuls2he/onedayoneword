@@ -43,7 +43,7 @@
             z-index: -1;
             display: block;
             background-color: gray;
-            background-image: url("http://ultraimg.com/images/Ho6hQWs.jpg");
+            
             width: 100%;
             height: 100%;
             background-size: cover;
@@ -202,54 +202,70 @@
 <body>
 <div class="content">
         <div class="title">로그인</div>
-        
-        <form method="post" id="loginForm">
 	        <input type="text" placeholder="id" id="id"/>
 	        <input type="password" placeholder="Password" id="pw"/>
 	        <input type="checkbox" id="remember" />
 	        <label for="remember"></label>  <span>로그인 유지</span>
-        	<button type="button" id="loginBtn">로그인</button>
-        </form>
-        
+        	<button type ="submit" id="loginBtn">로그인</button>
     </div>
-
 <script
   src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous">
 </script>
-
+       
+<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
 <script>
-	$loginForm =$("#loginForm") ;
-	
-	$("#loginBtn").click(function(){
-		
-		$.ajax({
-			url : "/member/logincheck" ,
-			type :"POST" ,
-			data : {
-				"id" : $("#id").val() ,
-				"pw" : $("#pw").val(),
-				"remember" : $("#remember").val()
-			}
-		}).done(function(data){
-			if(data){
-				console.log("로그인 성공!");
-				alert("로그인 성공....;;");
-				$loginForm.attr("action","/member/loginProcess").submit();
-				return ;
-			}
-			
-			if(!data){
-				alert("로그인 실패....;;");
-			}
-		});
-		
-	});
-	
+
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyAD_qm6cmfsf6dMmTqXPDYlylDq5yGZLSQ",
+        authDomain: "oneday-1123.firebaseapp.com",
+        databaseURL: "https://oneday-1123.firebaseio.com",
+        projectId: "oneday-1123",
+        storageBucket: "oneday-1123.appspot.com",
+        messagingSenderId: "360329597510"
+    };
+    firebase.initializeApp(config);
 </script>
 
+<script>
+
+$("#loginBtn").on("click" ,function () {	
+    var member = firebase.database().ref().child("/member");
+    var id = $("#id").val();
+    
+    
+    member.on("value", function (e) {
+        var list = e.val();
+        for(keyStr in list){
+            if(keyStr == id) {
+            	pwcheck(keyStr);
+            }else{
+            	console.log("아이디가 없거나 잘못 입력하셨습니다.");
+            }
+        }
+    });
+});
+
+function pwcheck(keyStr){
+	var data = firebase.database().ref("/member/" + keyStr);
+	data.on("value", function (e) {
+		var pw2 = e.val();
+		var pw = $("#pw").val();
+	
+		if(pw == pw2.pw){
+			console.log("성공");
+			/* location.href='/member/home';   */
+		}else{
+			console.log("비밀번호를 다시 입력해 주세요");
+		}
+	});
+}
+
+
+
+</script>
 
 </body>
-
 </html>
