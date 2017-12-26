@@ -10,180 +10,207 @@
 	<title>one day one word</title>
 		
 	<!-- GLOBAL MANDATORY STYLES -->
-        <link href="http://fonts.googleapis.com/css?family=Hind:300,400,500,600,700" rel="stylesheet" type="text/css">
-        <link href="/resources/HTML/vendor/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css"/>
-        <link href="/resources/HTML/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-
-        <!-- PAGE LEVEL PLUGIN STYLES -->
-        <link href="/resources/HTML/css/animate.css" rel="stylesheet">
-        <link href="/resources/HTML/vendor/swiper/css/swiper.min.css" rel="stylesheet" type="text/css"/>
-
-        <!-- THEME STYLES -->
-        <link href="/resources/HTML/css/layout.min.css" rel="stylesheet" type="text/css"/>
-
-        <!-- Favicon -->
-        <link rel="shortcut icon" href="favicon.ico"/>
-        
-        <style>
-        html, body {
-            height: 100%;
-        }
-        body {
-            background-color: #ffffff;
-/*             margin: 0; */
-            font-family: Helvetica, sans-serif;;
-            overflow: hidden;
-        }
-        a {
-            color: #ffffff;
-        }
-        #info {
-            position: absolute;
-            width: 100%;
-            color: #ffffff;
-            padding: 5px;
-            font-family: Monospace;
-            font-size: 13px;
-            font-weight: bold;
-            text-align: center;
-            z-index: 1;
-        }
-        #menu {
-            position: absolute;
-            bottom: 20px;
-            width: 100%;
-            text-align: center;
-        }
-        .element {
-            width: 290px; /*120*/
-            height: 0px; /*160*/
-            box-shadow: 0px 0px 12px rgba(0,255,255,0.5);
-/*             border: 1px solid rgba(127,255,255,0.25); */
-            text-align: center;
-            cursor: default;
-        }
-        .element:hover {
-/*             box-shadow: 0px 0px 12px rgba(0,255,255,0.75); */
-/*             border: 1px solid rgba(127,255,255,0.75); */
-        }
-        .element .number {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 0px; /*12*/
-            color: rgba(127,255,255,0.75);
-        }
-        .element .symbol {
-            position: absolute;
-            top: 40px;
-            left: 0px;
-            right: 0px;
-            font-size: 50px;
-            font-weight: bold;
-            color: rgba(255,255,255,0.75);
-            text-shadow: 0 0 10px rgba(0,255,255,0.95);
-        }
-        .element .symbol:hover{
-        	color: rgba(255,255,255,0.25);
-        }
-        .element .details {
-            position: absolute;
-            bottom: 15px;
-            left: 0px;
-            right: 0px;
-            font-size: 12px;
-            color: rgba(127,255,255,0.75);
-        }
-        button {
-            color: rgba(127,255,255,0.75);
-            background: transparent;
-            outline: 1px solid rgba(127,255,255,0.75);
-            border: 0px;
-            padding: 5px 10px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: rgba(0,255,255,0.5);
-        }
-        button:active {
-            color: #000000;
-            background-color: rgba(0,255,255,0.75);
-        }
-        
-        .listBody {
-        	height:600px; 
-        	background-color: #ffffff;
-        }
-        
-.responstable {
-  margin: 1em 0;
-  width: 100%;
-  overflow: hidden;
-  background: #FFF;
-  color: #024457;
-  border-radius: 10px;
-  border: 1px solid #167F92;
-}
-.responstable tr {
-  border: 1px solid #D9E4E6;
-}
-.responstable tr:nth-child(odd) {
-  background-color: #EAF3F3;
-}
-.responstable th {
-  display: none;
-  border: 1px solid #FFF;
-  background-color: #167F92;
-  color: #FFF;
-  padding: 1em;
-}
-.responstable th:first-child {
-  display: table-cell;
-  text-align: center;
-}
-.responstable th:nth-child(2) {
-  display: table-cell;
-}
-.responstable th:nth-child(2) span {
-  display: none;
-}
-.responstable th:nth-child(2):after {
-  content: attr(data-th);
-}
-@media (min-width: 480px) {
-  .responstable th:nth-child(2) span {
-    display: block;
-  }
-  .responstable th:nth-child(2):after {
-    display: none;
-  }
-}
-.responstable td {
-  display: block;
-  word-wrap: break-word;
-  max-width: 7em;
-}
-.responstable td:first-child {
-  display: table-cell;
-  text-align: center;
-  border-right: 1px solid #D9E4E6;
-}
-@media (min-width: 480px) {
-  .responstable td {
-    border: 1px solid #D9E4E6;
-  }
-}
-.responstable th, .responstable td {
-  text-align: left;
-  margin: .5em 1em;
-}
-@media (min-width: 480px) {
-  .responstable th, .responstable td {
-    display: table-cell;
-    padding: 1em;
-  }
-}
-    </style>
+	<link href="http://fonts.googleapis.com/css?family=Hind:300,400,500,600,700" rel="stylesheet" type="text/css">
+	<link href="/resources/HTML/vendor/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css"/>
+	<link href="/resources/HTML/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+	
+	<!-- PAGE LEVEL PLUGIN STYLES -->
+	<link href="/resources/HTML/css/animate.css" rel="stylesheet">
+	<link href="/resources/HTML/vendor/swiper/css/swiper.min.css" rel="stylesheet" type="text/css"/>
+	
+	<!-- THEME STYLES -->
+	<link href="/resources/HTML/css/layout.min.css" rel="stylesheet" type="text/css"/>
+	
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="favicon.ico"/>
+	
+<style>
+	html, body {
+		height: 100%;
+	}
+	
+	body {
+		background-color: #ffffff;
+		/*             margin: 0; */
+		font-family: Helvetica, sans-serif;;
+		overflow: hidden;
+	}
+	
+	a {
+		color: #ffffff;
+	}
+	
+	#info {
+		position: absolute;
+		width: 100%;
+		color: #ffffff;
+		padding: 5px;
+		font-family: Monospace;
+		font-size: 13px;
+		font-weight: bold;
+		text-align: center;
+		z-index: 1;
+	}
+	
+	#menu {
+		position: absolute;
+		bottom: 20px;
+		width: 100%;
+		text-align: center;
+	}
+	
+	.element {
+		width: 290px; /*120*/
+		height: 0px; /*160*/
+		box-shadow: 0px 0px 12px rgba(0, 255, 255, 0.5);
+		/*             border: 1px solid rgba(127,255,255,0.25); */
+		text-align: center;
+		cursor: default;
+	}
+	
+	.element:hover {
+		/*             box-shadow: 0px 0px 12px rgba(0,255,255,0.75); */
+		/*             border: 1px solid rgba(127,255,255,0.75); */
+		
+	}
+	
+	.element .number {
+		position: absolute;
+		top: 20px;
+		right: 20px;
+		font-size: 0px; /*12*/
+		color: rgba(127, 255, 255, 0.75);
+	}
+	
+	.element .symbol {
+		position: absolute;
+		top: 40px;
+		left: 0px;
+		right: 0px;
+		font-size: 50px;
+		font-weight: bold;
+		color: rgba(255, 255, 255, 0.75);
+		text-shadow: 0 0 10px rgba(0, 255, 255, 0.95);
+	}
+	
+	.element .symbol:hover {
+		color: rgba(255, 255, 255, 0.25);
+	}
+	
+	.element .details {
+		position: absolute;
+		bottom: 15px;
+		left: 0px;
+		right: 0px;
+		font-size: 12px;
+		color: rgba(127, 255, 255, 0.75);
+	}
+	
+	button {
+		color: rgba(127, 255, 255, 0.75);
+		background: transparent;
+		outline: 1px solid rgba(127, 255, 255, 0.75);
+		border: 0px;
+		padding: 5px 10px;
+		cursor: pointer;
+	}
+	
+	button:hover {
+		background-color: rgba(0, 255, 255, 0.5);
+	}
+	
+	button:active {
+		color: #000000;
+		background-color: rgba(0, 255, 255, 0.75);
+	}
+	
+	.listBody {
+		height: 600px;
+		background-color: #ffffff;
+	}
+	
+	.responstable {
+		margin: 1em 0;
+		width: 100%;
+		overflow: hidden;
+		background: #FFF;
+		color: #024457;
+		border-radius: 10px;
+		border: 1px solid #167F92;
+	}
+	
+	.responstable tr {
+		border: 1px solid #D9E4E6;
+	}
+	
+	.responstable tr:nth-child(odd) {
+		background-color: #EAF3F3;
+	}
+	
+	.responstable th {
+		display: none;
+		border: 1px solid #FFF;
+		background-color: #167F92;
+		color: #FFF;
+		padding: 1em;
+	}
+	
+	.responstable th:first-child {
+		display: table-cell;
+		text-align: center;
+	}
+	
+	.responstable th:nth-child(2) {
+		display: table-cell;
+	}
+	
+	.responstable th:nth-child(2) span {
+		display: none;
+	}
+	
+	.responstable th:nth-child(2):after {
+		content: attr(data-th);
+	}
+	
+	@media ( min-width : 480px) {
+		.responstable th:nth-child(2) span {
+			display: block;
+		}
+		.responstable th:nth-child(2):after {
+			display: none;
+		}
+	}
+	
+	.responstable td {
+		display: block;
+		word-wrap: break-word;
+		max-width: 7em;
+	}
+	
+	.responstable td:first-child {
+		display: table-cell;
+		text-align: center;
+		border-right: 1px solid #D9E4E6;
+	}
+	
+	@media ( min-width : 480px) {
+		.responstable td {
+			border: 1px solid #D9E4E6;
+		}
+	}
+	
+	.responstable th, .responstable td {
+		text-align: left;
+		margin: .5em 1em;
+	}
+	
+	@media ( min-width : 480px) {
+		.responstable th, .responstable td {
+			display: table-cell;
+			padding: 1em;
+		}
+	}
+</style>
 
 </head>
 
@@ -196,16 +223,16 @@
 
 <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
 <script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyAOt6m87XjCvQIAyEmCwPCFTtzPbucKATI",
-    authDomain: "study-332a5.firebaseapp.com",
-    databaseURL: "https://study-332a5.firebaseio.com",
-    projectId: "study-332a5",
-    storageBucket: "study-332a5.appspot.com",
-    messagingSenderId: "973012229121"
-  };
-  firebase.initializeApp(config);
+	// Initialize Firebase
+	var config = {
+		apiKey : "AIzaSyAOt6m87XjCvQIAyEmCwPCFTtzPbucKATI",
+		authDomain : "study-332a5.firebaseapp.com",
+		databaseURL : "https://study-332a5.firebaseio.com",
+		projectId : "study-332a5",
+		storageBucket : "study-332a5.appspot.com",
+		messagingSenderId : "973012229121"
+	};
+	firebase.initializeApp(config);
 </script>
 		
 	<c:import url="../includes/header.jsp"></c:import>
@@ -221,17 +248,17 @@
         <!-- Service -->
         <div class="listBody">
         	<br/>
-        	<div style="padding-left: 60%;">
+        	<div style="padding-right: 15%; text-align: right;">
         		검색 :
         		<select style="height: 27px;">
         			<option value="title">제목</option>
         			<option value="writer">작성자</option>
         		</select>
-        		<input type="text" id="search"/>
+        		<input type="text" id="searchWord"/>
         		<button class="searchBtn">검색</button>
         	</div>
         	<br/>
-   			<table class="responstable" style="width: 60%; margin:0 auto;">
+   			<table class="responstable" style="width: 70%; margin:0 auto;">
    				<thead>
    					<th width="10%;">글번호</th>
    					<th width="50%;">제목</th>
@@ -241,7 +268,7 @@
    				<tbody id="tList">
    				</tbody>
    			</table>
-		<div id="reportPage" style="margin-left: 43%;">
+		<div id="reportPage" style="text-align: center;">
 			<ul class="pagination mypage" style="margin: 0 auto;">
 <!-- 				<li class="page-item"><a class="page-link" href="#">Prev</a></li> -->
 <!-- 				<li class="page-item"><a class="page-link" href="#">Next</a></li> -->
@@ -252,29 +279,39 @@
 	<script src="/resources/HTML/vendor/jquery.min.js" type="text/javascript"></script>
 <script>
 	
+	// table에 html로 뿌려줄 문자열 변수
 	var html = "";
-	var listCount=0;
+	
+	// 검색관련 변수
+	var searchType = "${searchType}";
+	var searchWord = "${searchWord}";
+	var searchList = [];
+	
+	// 한페이지에 보여지는 글목록 수와 페이징 사이즈 수
+	var listSize = 4;
+	var pageSize = 2;
+	
+	// 페이징 변수
+	var listCount = 0;
 	var page = "${page}";
-	var listEnd = page * 2;
-	var listStart = listEnd - 1;
+	var listEnd = page * listSize;  // var listEnd = page * 2;  페이지에 보여주는 글목록의 시작부터 끝
+	var listStart = listEnd - (listSize - 1); // var listStart = listEnd - 1;
 	var pageNum = parseInt("${pageNum}");
 	var prev = false;
 	var next = true;
 	
-	function readEach(keyStr) {
-		var data = firebase.database().ref("/board/" + keyStr);
-
-		data.on('value', function(snapshot) {
-			var chk = snapshot.val();
-// 			html += "<li>" + chk.title + " / " + chk.writer + " / " + chk.regdate + "</li>";
-			html += "<tr><td>" + keyStr + "</td><td>" + chk.title + "</td><td>" + chk.writer + "</td><td>" + chk.regdate + "</td></tr>";
-		});
+	// 검색이 아니면 전체 조회
+	if(!searchWord){
+		readAllData();
+	} else {
+		searchData();
 	}
 	
+	// 전체 데이터 조회
 	function readAllData() {
-		var memoList = firebase.database().ref().child("/board");
+		var boardList = firebase.database().ref().child("/board");
 		
-		memoList.on("value", function(snapshot) {
+		boardList.on("value", function(snapshot) {
 
 			var listData = snapshot.val();
 			listCount = listData.length - 1;
@@ -288,22 +325,52 @@
 				html += listData[i].writer + "</td><td>" + listData[i].regdate + "</td></tr>";
 			}
 			
-// 			for (keyStr in listData) {
-// 				readEach(keyStr);
-// 			} 
-			
 			$("#tList").html(html);
 			paging(listCount);
 		});	
 		
 	}
 	
-	readAllData();
+	// 검색버튼클릭시  // 검색조건 변경 시 해당 부분 함수에 파라미터와 paging함수 파라미터 수정해야함!!!
+	$(".searchBtn").click(function () {
+		var searchWord = $("#searchWord").val();
+		location.href='/main/boardlist?searchWord=' + searchWord;
+	});
 	
+	// 검색함수
+	function searchData(){
+		html = "";
+		var boardList = firebase.database().ref().child("/board");
+		
+		boardList.on("value", function (snapshot){
+			var listData = snapshot.val();
+			
+			for(var i = 1; i < listData.length; i++){
+				var str = listData[i].title.toString();
+				if(str.match(searchWord)){
+					listCount += 1;
+					searchList.push(listData[i]);
+				}
+			}
+			
+			if(listEnd > listCount){ listEnd = listCount; }
+			
+			for (var i = (listStart - 1); i <= (listEnd - 1); i++){
+				html += "<tr><td>" + searchList[i].no + "</td><td>" + searchList[i].title + "</td><td>"; 
+				html += searchList[i].writer + "</td><td>" + searchList[i].regdate + "</td></tr>";
+			}
+			
+			$("#tList").html(html);
+			paging(listCount);
+		});
+	};
+	
+	// 페이징
 	function paging(listCount) {
 		var str = "";
-		var pagingEnd = pageNum + 2;
-		var count = (listCount / 2) + 1;
+		var pagingEnd = pageNum + (pageSize - 1); // var pagingEnd = pageNum + 2;
+		var count = (listCount / listSize) + 1;  
+		// var count = (listCount / 2) + 1;
 		
 		if(pagingEnd > count){
 			pagingEnd = count;
@@ -316,50 +383,83 @@
 			prev = false;
 		}
 		
+		if(listCount <= (listSize * pageSize)){ next = false; }
+		
 		if(prev){str += "<li class='page-item' id='prev'><a class='page-link' href='#'>Prev</a></li>"};
+		
 		for(var i = pageNum; i <= pagingEnd; i++){
-			str += "<li class='page-item'><a class='page-link' href='/main/boardlist?page=" + i + "&pageNum=" + pageNum + "'>" + i + "</a></li>";
+			if(page != i){
+				str += "<li class='page-item'><a class='page-link' href='/main/boardlist?page=" + i + "&pageNum=" + pageNum + "&searchWord=" + searchWord + "'>" + i + "</a></li>";	
+			} else {
+				str += "<li class='page-item active'><a class='page-link' href='/main/boardlist?page=" + i + "&pageNum=" + pageNum + "&searchWord=" + searchWord + "'>" + i + "</a></li>";
+			}
 		}
+		
 		if(next){str += "<li class='page-item' id='next'><a class='page-link' href='#'>next</a></li>"};
 		
 		$(".mypage").html(str);
 	};
 	
 	$(".mypage").on("click","li[id=prev]",function () {
-		pageNum -= 3;
-		location.href = "/main/boardlist?page=" + (pageNum + 2) +'&pageNum=' + pageNum;
+		pageNum -= pageSize; //pageNum -= 3;
+		location.href = "/main/boardlist?page=" + (pageNum + (pageSize - 1)) +'&pageNum=' + pageNum + '&searchWord=' + searchWord;
 	});
 	
 	$(".mypage").on("click","li[id=next]",function () {
-		pageNum += 3;
-		location.href = "/main/boardlist?page=" + pageNum + '&pageNum=' + pageNum;
+		pageNum += pageSize; //pageNum += 3;
+		location.href = "/main/boardlist?page=" + pageNum + '&pageNum=' + pageNum + '&searchWord=' + searchWord;
 	});
 	
-// 	검색
-	$(".searchBtn").click(function () {
-		html = "";
-		var boardList = firebase.database().ref().child("/board");
-		var search = $("#search").val();
+// 	function searchData(){
+//		html = "";
+	
+//		var boardList = firebase.database().ref().child("/board").orderByChild("title").startAt(searchWord);
+	
+//		boardList.on("value", function (snapshot){
+//			var listData = snapshot.val();
 		
-		boardList.on("value", function (event){
-			var list = event.val();
-			for(keyStr in list){
-				var results = firebase.database().ref("/board/" + keyStr);
-				results.on("value", function(event){
-					var result = event.val();
-					if(result.title.match(search) != null){
-						readEach(keyStr);
-					}
-				});
-				
-				/* var result = keyStr.match(search);
-				if(result != null){
-					readEach(keyStr);
-				} */
-			}
-		});
-		$("#tList").html(html);
-	});
+//			listCount = listData.length - 1;
+//			console.log(listCount);
+		
+//			if(listEnd > listCount){
+//				listEnd = listCount;
+//			}
+		
+//			for (var i = listStart; i <= listEnd; i++){
+//				html += "<tr><td>" + listData[i].no + "</td><td>" + listData[i].title + "</td><td>"; 
+//				html += listData[i].writer + "</td><td>" + listData[i].regdate + "</td></tr>";
+//			}
+//			console.log(html);
+//			$("#tList").html(html);
+//		});
+//		console.log("밖" + listCount);
+//		paging(listCount);
+//	};
+	
+// 	function readEach(keyStr) {
+//		var data = firebase.database().ref("/board/" + keyStr);
+
+//		data.on('value', function(snapshot) {
+//			var chk = snapshot.val();
+//			html += "<tr><td>" + keyStr + "</td><td>" + chk.title + "</td><td>" + chk.writer + "</td><td>" + chk.regdate + "</td></tr>";
+//		});
+//	}
+
+// 	function search() {
+// 		html = "";
+		
+// 		var boardList = firebase.database().ref().child("/board");
+		
+// 		boardList.on("value", function (snapshot) {
+// 			var listData = snapshot.val();
+			
+// 			for(var i = 1; i <= listData.length - 1; i++){
+// 				if(listData.title){
+					
+// 				}
+// 			}
+// 		});
+// 	}; 
 
 </script>
 

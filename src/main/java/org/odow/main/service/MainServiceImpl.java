@@ -3,6 +3,7 @@ package org.odow.main.service;
 import java.util.List;
 
 import org.odow.domain.Keyword;
+import org.odow.domain.Original;
 import org.odow.main.mappers.MainMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,4 +34,9 @@ public class MainServiceImpl implements MainService {
 		return mapper.getNaver();
 	}
 
+	@Override
+	public List<Original> getOriginalData(String keyword) {
+		return mapper.getOriginalData(keyword);
+	}
+	
 }
