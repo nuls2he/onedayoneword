@@ -169,6 +169,9 @@ body{
 .select select::-ms-expand {
   display: none;
 }
+
+/*select css  */
+
 </style>
 <head>
 
@@ -181,11 +184,11 @@ body{
 <body>
 	
 <div class="panel regPanel">
-
-      아이디: <input type="text"  class="w3-input" id="id"> <button id="checkBtn" class="w3-btn w3-white w3-border w3-round-large">중복체크</button><br/>
+	이메일: <input type="text" id="useremail" class="w3-input" required>
+	아이디: <input type="text"  class="w3-input" id="id"> <button id="checkBtn" class="w3-btn w3-white w3-border w3-round-large" required>중복체크</button><br/>
     		<div id="idCheck"></div><br>
-    비밀번호 : <input type="password"  class="w3-input" id="pw"><br/>
-    비밀번호 확인: <input type="password"  class="w3-input" id="pwCheck"><br/>
+    비밀번호 : <input type="password"  class="w3-input" id="pw" required><br/>
+    비밀번호 확인: <input type="password"  class="w3-input" id="pwCheck" required><br/>
     		<div id="pwcheckDiv"></div><br>
     <input type="checkbox" name="child" id="m" value="남자"><label for="m">남자</LABEL>
     <input type="checkbox" name="child" id="f" value="여자"><label for="f">여자</LABEL> <br>
@@ -204,6 +207,7 @@ body{
  			<select name="time" onclick="return false;" id="time">
 	       		 <option value="6">6시</option>
 	       		 <option value="9">9시</option>
+	       		 <option value="-1">알림 허용 안함.</option>
    			 </select> 
    		 </span>
 	
@@ -251,7 +255,7 @@ body{
 			}
 		}
     	
-        var member = {id: $("#id").val(), pw:$("#pw").val(), child :chkv, location: $("#location").val() , time:$("#time").val()};
+        var member = {useremail :$("#useremail").val(), id: $("#id").val(), pw:$("#pw").val(), child :chkv, location: $("#location").val() , time:$("#time").val()};
         createData(member);
     });
 
@@ -290,7 +294,7 @@ body{
     
     
     
-    function readAllData(){
+    /* function readAllData(){
         var memberList = firebase.database().ref().child("/member");
         memberList.on("value", function (snapshot) {
 
@@ -313,7 +317,7 @@ body{
         });
     }
     readAllData();
-    
+    */
     
 </script>
 

@@ -233,6 +233,7 @@
 	        <label for="remember"></label>  <span>로그인 유지</span>
         	<button type ="submit" class="submit Btn" id="loginBtn">로그인</button>
     </div>
+    
 <script
   src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -281,17 +282,16 @@ function pwcheck(keyStr){
 	
 		if(pw == pw2.pw){
 			$.ajax({
-				url:"/member/index" ,
+				url:"/member/index",
 				type:"POST",
 				data :{
-					"id" : $("#id").val() ,
+					"id" :$("#id").val(),
 					"remember" : $("#remember")[0].checked
+				} ,
+				success: function(){
+					location.href="/main/index";
 				}
-			}).done(function(){
-				
-				location.href="/main/index";
 			});
-			
 		}else{
 			console.log("비밀번호를 다시 입력해 주세요");
 		}
