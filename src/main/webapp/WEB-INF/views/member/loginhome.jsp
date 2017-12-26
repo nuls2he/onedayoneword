@@ -16,6 +16,25 @@
             -webkit-box-sizing: border-box;
             box-sizing: border-box;
         }
+        .submit {
+		    background-color: #4CAF50; /* Green */
+		    border: none;
+		    color: white;
+		    padding: 15px 32px;
+		    text-align: center;
+		    text-decoration: none;
+		    display: inline-block;
+		    font-size: 16px;
+		    margin: 4px 2px;
+		    cursor: pointer;
+		}
+        
+        
+        .Btn {
+		    background-color: white;
+		    color: black;
+		    border: 2px solid #e7e7e7;
+		}
 
         html {
             background: white;
@@ -42,7 +61,7 @@
             bottom: 0;
             z-index: -1;
             display: block;
-            background-color: gray;
+            background-color: #fff;
             
             width: 100%;
             height: 100%;
@@ -62,7 +81,7 @@
             right: 0;
             width: 540px;
             height: 540px;
-            background-color: rgba(10, 10, 10, 0.5);
+            background-color: #fff /* rgba(10, 10, 10, 0.5) */;
             margin: auto auto;
             padding: 40px;
             -moz-border-radius: 4px;
@@ -71,6 +90,9 @@
             -moz-box-shadow: 0 0 10px black;
             -webkit-box-shadow: 0 0 10px black;
             box-shadow: 0 0 10px black;
+        }
+        .title{
+        	color :black;
         }
         .content .title {
             text-align: center;
@@ -129,13 +151,16 @@
         .content span {
             font-size: 0.9rem;
         }
+        span{
+        	color:black;
+        }
         .content button {
             width: 100%;
             font-size: 1.1rem;
             padding: 10px;
             margin: 20px 0px;
-            background-color: #66A756;
-            color: White;
+            background-color: #fff;
+            color: black;
             border: none;
             -moz-border-radius: 4px;
             -webkit-border-radius: 4px;
@@ -179,7 +204,7 @@
             padding-right: 7px;
         }
         .content .buttons button.facebook {
-            background-color: #4464B2;
+            background-color: #fff;
         }
         .content .buttons button.twitter {
             background-color: #28A9E0;
@@ -206,7 +231,7 @@
 	        <input type="password" placeholder="Password" id="pw"/>
 	        <input type="checkbox" id="remember" />
 	        <label for="remember"></label>  <span>로그인 유지</span>
-        	<button type ="submit" id="loginBtn">로그인</button>
+        	<button type ="submit" class="submit Btn" id="loginBtn">로그인</button>
     </div>
 <script
   src="https://code.jquery.com/jquery-3.2.1.min.js"
@@ -263,6 +288,7 @@ function pwcheck(keyStr){
 					"remember" : $("#remember")[0].checked
 				}
 			}).done(function(){
+				
 				location.href="/main/index";
 			});
 			
