@@ -149,7 +149,9 @@
         <div class="bg-color-sky-light"></div>
         
         <!--========== END PAGE LAYOUT ==========-->
-	
+
+<script src="/resources/HTML/vendor/jquery.min.js" type="text/javascript"></script>
+
 <script>
     var table = [
         "1", "", "", 1, 1,
@@ -363,6 +365,21 @@
     
     transform( targets.grid, 2000);
     
+    // keyword 클릭시 originaldata 리스트 띄워주기
+	$("#container").on("click", "div[class=symbol]",function () {
+		console.log($(this).text());
+		$.ajax({
+			url: "/main/index",
+			type: "POST",
+			data: {
+				"keyword":$(this).text()
+			}
+		}).done(function (result) {
+			for(var i = 0; i < result.length; i++){
+				console.log(result[i].originaldata);
+			}
+		});
+	});
 </script>
 
 <!-- Back To Top -->
@@ -370,7 +387,7 @@
 
 <!-- JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
 <!-- CORE PLUGINS -->
-<script src="/resources/HTML/vendor/jquery.min.js" type="text/javascript"></script>
+
 <script src="/resources/HTML/vendor/jquery-migrate.min.js" type="text/javascript"></script>
 <script src="/resources/HTML/vendor/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 

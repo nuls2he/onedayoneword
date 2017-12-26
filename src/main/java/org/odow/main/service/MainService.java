@@ -3,6 +3,7 @@
 import java.util.List;
 
 import org.odow.domain.Keyword;
+import org.odow.domain.Original;
 
 public interface MainService {
 	
@@ -10,5 +11,6 @@ public interface MainService {
 	public List<Keyword> getBoy();
 	public List<Keyword> getGirl();
 	public List<String> getNaver();
+	public List<Original> getOriginalData(String keyword);
 	
 }

@@ -35,4 +35,12 @@
 		  from test_naver 
 		 order by rank;
 	</select>
+	
+	<select id="getOriginalData" resultType="Original">
+		select ono, siteno, originaldata
+		  from test_original
+		 where ono in (select ono
+		                 from test_keyword
+		                where keyword = #{keyword})
+	</select>
 </mapper>
