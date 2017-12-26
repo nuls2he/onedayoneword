@@ -39,7 +39,7 @@ public class MemberOnlyInterceptor extends HandlerInterceptorAdapter {
 		}
 
 		log.info("세션 X 쿠키 X");
-		response.sendRedirect("/intro");
+		response.sendRedirect("/oneday/intro");
 		return false;
 
 	}

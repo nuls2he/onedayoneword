@@ -1,6 +1,8 @@
 package org.odow.member.controller;
 
 
+import javax.servlet.http.HttpSession;
+
 import org.odow.domain.Member;
 import org.odow.member.service.MemberServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,14 +22,7 @@ public class MemberController {
 	@Autowired
 	MemberServiceImpl service;
 /*	
-	@GetMapping("/testlogin")
-	public void testlog(Model model , HttpSession session) {
-	System.out.println("체크체크");
-		if(session.getAttribute("login") != null) {
-			System.out.println("들어옴");
-			System.out.println(session.getAttribute("login"));
-		}
-	}
+	
 	
 	@PostMapping("/logincheck")
 	@ResponseBody
@@ -68,6 +63,17 @@ public class MemberController {
 
 	*/
 	
+	@GetMapping("/testlogin")
+	public void testlog(Model model , HttpSession session) {
+	System.out.println("체크체크");
+	
+		if(session.getAttribute("login") != null) {
+			System.out.println("들어옴");
+			System.out.println(session.getAttribute("login"));
+		}else {
+			System.out.println("왜됌...");
+		}
+	}
 	
 	@GetMapping("/loginhome")
 	public void loginhome() {

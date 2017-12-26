@@ -38,12 +38,9 @@
 
 	<interceptors>
 		<interceptor>
-			 <mapping path="/member/index"/> 
-			<!--  <mapping path="/main/index" /> -->
-			 
+			 <mapping path="/main/loginProcess"/> 
 			 <beans:ref bean="login" />
 		</interceptor>
-		
  		 <interceptor> 
 			<mapping path="/main/index" /> 
  			<beans:ref bean="requirelogin" /> 

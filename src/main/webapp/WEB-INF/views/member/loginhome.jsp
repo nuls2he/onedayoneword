@@ -282,7 +282,7 @@ function pwcheck(keyStr){
 	
 		if(pw == pw2.pw){
 			$.ajax({
-				url:"/member/index",
+				url:"/main/loginProcess",
 				type:"POST",
 				data :{
 					"id" :$("#id").val(),

@@ -2,6 +2,8 @@ package org.odow.main.web;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.odow.domain.Original;
 import org.odow.main.service.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +23,7 @@ public class MainController {
 	MainService service;
 	
 	@GetMapping("/index")
-	public void index(Model model) {
+	public void index(Model model , HttpSession session) {
 		model.addAttribute("aList", service.getAll());
 		model.addAttribute("bList", service.getBoy());
 		model.addAttribute("gList", service.getGirl());
@@ -55,4 +57,16 @@ public class MainController {
 		return service.getOriginalData(keyword);
 	}
 	
+	@GetMapping("/admin")
+	public void admin() {
+		
+	}
+	
+	@PostMapping("/loginProcess")
+	public String login(String id, Boolean remember, Model model) {
+		model.addAttribute("remember", remember);
+		model.addAttribute("id", id);
+		
+		return "redirect:/main/index";
+	}
 }
