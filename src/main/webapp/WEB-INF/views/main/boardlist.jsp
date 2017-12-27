@@ -59,71 +59,6 @@
 		text-align: center;
 	}
 	
-	.element {
-		width: 290px; /*120*/
-		height: 0px; /*160*/
-		box-shadow: 0px 0px 12px rgba(0, 255, 255, 0.5);
-		/*             border: 1px solid rgba(127,255,255,0.25); */
-		text-align: center;
-		cursor: default;
-	}
-	
-	.element:hover {
-		/*             box-shadow: 0px 0px 12px rgba(0,255,255,0.75); */
-		/*             border: 1px solid rgba(127,255,255,0.75); */
-		
-	}
-	
-	.element .number {
-		position: absolute;
-		top: 20px;
-		right: 20px;
-		font-size: 0px; /*12*/
-		color: rgba(127, 255, 255, 0.75);
-	}
-	
-	.element .symbol {
-		position: absolute;
-		top: 40px;
-		left: 0px;
-		right: 0px;
-		font-size: 50px;
-		font-weight: bold;
-		color: rgba(255, 255, 255, 0.75);
-		text-shadow: 0 0 10px rgba(0, 255, 255, 0.95);
-	}
-	
-	.element .symbol:hover {
-		color: rgba(255, 255, 255, 0.25);
-	}
-	
-	.element .details {
-		position: absolute;
-		bottom: 15px;
-		left: 0px;
-		right: 0px;
-		font-size: 12px;
-		color: rgba(127, 255, 255, 0.75);
-	}
-	
-	button {
-		color: rgba(127, 255, 255, 0.75);
-		background: transparent;
-		outline: 1px solid rgba(127, 255, 255, 0.75);
-		border: 0px;
-		padding: 5px 10px;
-		cursor: pointer;
-	}
-	
-	button:hover {
-		background-color: rgba(0, 255, 255, 0.5);
-	}
-	
-	button:active {
-		color: #000000;
-		background-color: rgba(0, 255, 255, 0.75);
-	}
-	
 	.listBody {
 		height: 600px;
 		background-color: #ffffff;
@@ -251,19 +186,44 @@
         	<div style="padding-right: 15%; text-align: right;">
         		검색 :
         		<select style="height: 27px;">
-        			<option value="title">제목</option>
-        			<option value="writer">작성자</option>
+        			<option>선택없음</option>
+        			<option>종로구</option>
+        			<option>중구</option>
+        			<option>용산구</option>
+        			<option>성동구</option>
+        			<option>광진구</option>
+        			<option>동대문구</option>
+        			<option>중랑구</option>
+        			<option>성북구</option>
+        			<option>강북구</option>
+        			<option>도봉구</option>
+        			<option>노원구</option>
+        			<option>은평구</option>
+        			<option>서대문구</option>
+        			<option>마포구</option>
+        			<option>양천구</option>
+        			<option>강서구</option>
+        			<option>구로구</option>
+        			<option>금천구</option>
+        			<option>영등포구</option>
+        			<option>동작구</option>
+        			<option>관악구</option>
+        			<option>서초구</option>
+        			<option>강남구</option>
+        			<option>송파구</option>
+        			<option>강동구</option>
         		</select>
         		<input type="text" id="searchWord"/>
-        		<button class="searchBtn">검색</button>
+        		<button class="searchBtn btn btn-primary">검색</button>
         	</div>
         	<br/>
    			<table class="responstable" style="width: 70%; margin:0 auto;">
    				<thead>
    					<th width="10%;">글번호</th>
+   					<th width="10%;" >지역</th>
    					<th width="50%;">제목</th>
-   					<th width="20%;">글쓴이</th>   					
-   					<th width="20%;">등록일자</th>   					
+   					<th width="15%;">글쓴이</th>   					
+   					<th width="15%;">등록일자</th>   					
    				</thead>
    				<tbody id="tList">
    				</tbody>
@@ -321,8 +281,8 @@
 			}
 			
 			for (var i = listStart; i <= listEnd; i++){
-				html += "<tr><td>" + listData[i].no + "</td><td>" + listData[i].title + "</td><td>"; 
-				html += listData[i].writer + "</td><td>" + listData[i].regdate + "</td></tr>";
+				html += "<tr><td>" + listData[i].no + "</td><td>" + listData[i].zone + "</td><td>"; 
+				html += listData[i].title + "</td><td>" + listData[i].writer + "</td><td>" + listData[i].regdate + "</td></tr>";
 			}
 			
 			$("#tList").html(html);
@@ -356,8 +316,8 @@
 			if(listEnd > listCount){ listEnd = listCount; }
 			
 			for (var i = (listStart - 1); i <= (listEnd - 1); i++){
-				html += "<tr><td>" + searchList[i].no + "</td><td>" + searchList[i].title + "</td><td>"; 
-				html += searchList[i].writer + "</td><td>" + searchList[i].regdate + "</td></tr>";
+				html += "<tr><td>" + searchList[i].no + "</td><td>" + searchList[i].zone + "</td><td>"; 
+				html += searchList[i].title + "</td><td>" + searchList[i].writer + "</td><td>" + searchList[i].regdate + "</td></tr>";
 			}
 			
 			$("#tList").html(html);

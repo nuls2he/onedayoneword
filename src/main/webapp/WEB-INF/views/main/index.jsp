@@ -128,7 +128,7 @@
 
            <!-- Wrapper for slides -->
            <div class="carousel-inner" role="listbox">
-               <div class="item active">
+               <div class="item active"> <!-- /resources/HTML/img/1920x1080/004.jpg -->
                    <img class="img-responsive" src="/resources/HTML/img/1920x1080/001.jpg" alt="Slider Image">
                   		<div id="container">
                    		</div>
@@ -365,21 +365,11 @@
     
     transform( targets.grid, 2000);
     
-    // keyword 클릭시 originaldata 리스트 띄워주기
-	$("#container").on("click", "div[class=symbol]",function () {
-		console.log($(this).text());
-		$.ajax({
-			url: "/main/index",
-			type: "POST",
-			data: {
-				"keyword":$(this).text()
-			}
-		}).done(function (result) {
-			for(var i = 0; i < result.length; i++){
-				console.log(result[i].originaldata);
-			}
-		});
-	});
+    $("#container").on("click", "div[class=symbol]",function () {
+    	var keyword = $(this).text();
+    	window.open("popup?keyword=" + keyword,"popup","width=500, height=550");
+    });
+    
 </script>
 
 <!-- Back To Top -->
