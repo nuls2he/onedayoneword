@@ -184,7 +184,6 @@ body{
 <body>
 	
 <div class="panel regPanel">
-	이메일: <input type="text" id="useremail" class="w3-input" required>
 	아이디: <input type="text"  class="w3-input" id="id"> <button id="checkBtn" class="w3-btn w3-white w3-border w3-round-large" required>중복체크</button><br/>
     		<div id="idCheck"></div><br>
     비밀번호 : <input type="password"  class="w3-input" id="pw" required><br/>
@@ -255,7 +254,7 @@ body{
 			}
 		}
     	
-        var member = {useremail :$("#useremail").val(), id: $("#id").val(), pw:$("#pw").val(), child :chkv, location: $("#location").val() , time:$("#time").val()};
+        var member = {id: $("#id").val(), pw:$("#pw").val(), child :chkv, location: $("#location").val() , time:$("#time").val()};
         createData(member);
     });
 

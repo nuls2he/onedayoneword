@@ -9,231 +9,292 @@
 
 
     <style>
-        @import url(https://fonts.googleapis.com/css?family=Dosis:300|Lato:300,400,600,700|Roboto+Condensed:300,700|Open+Sans+Condensed:300,600|Open+Sans:400,300,600,700|Maven+Pro:400,700);
-        @import url("https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
+  @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700');
+
         * {
-            -moz-box-sizing: border-box;
-            -webkit-box-sizing: border-box;
             box-sizing: border-box;
         }
-        .submit {
-		    background-color: #4CAF50; /* Green */
-		    border: none;
-		    color: white;
-		    padding: 15px 32px;
-		    text-align: center;
-		    text-decoration: none;
-		    display: inline-block;
-		    font-size: 16px;
-		    margin: 4px 2px;
-		    cursor: pointer;
-		}
-        
-        
-        .Btn {
-		    background-color: white;
-		    color: black;
-		    border: 2px solid #e7e7e7;
-		}
 
-        html {
-            background: white;
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
         }
 
         body {
-            font-family: "Open Sans";
+            font-family: 'Lato', sans-serif;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            -ms-flex-align: center;
+            align-items: center;
+    /*         background: linear-gradient(243.87deg, #F28FE5 30.6%, #371933 130.6%); */
+            overflow: hidden;
+        }
+
+        input {
+            font-family: inherit;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            border: 0;
+            border-bottom: 1px solid #AAAAAA;
             font-size: 16px;
-            color: White;
-            font-smoothing: antialiased;
-            font-weight: 600;
+            color: #000;
+            border-radius: 0;
         }
 
-        a {
-            color: #BBB;
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            height: 40px;
         }
 
-        .content:before {
-            content: "";
-            position: fixed;
-            left: 0;
-            right: 0;
+        button,
+        input:focus {
+            outline: 0;
+        }
+
+        ::-webkit-input-placeholder {
+            font-size: 16px;
+            font-weight: 300;
+            letter-spacing: -0.00933333em;
+        }
+
+        .form-group {
+            position: relative;
+            padding-top: 15px;
+            margin-top: 10px;
+        }
+
+        label {
+            position: absolute;
             top: 0;
-            bottom: 0;
-            z-index: -1;
-            display: block;
+            opacity: 1;
+            -webkit-transform: translateY(5px);
+            transform: translateY(5px);
+            color: #aaa;
+            font-weight: 300;
+            font-size: 13px;
+            letter-spacing: -0.00933333em;
+            transition: all 0.2s ease-out;
+        }
+
+        input:placeholder-shown  + label {
+            opacity: 0;
+            -webkit-transform: translateY(15px);
+            transform: translateY(15px);
+        }
+
+        .h1 {
+            color: #fff;
+            opacity: 0.8;
+            font-size: 20px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.2405em;
+            transition: all 770ms cubic-bezier(0.51, 0.04, 0.12, 0.99);
+            text-align: center;
+            cursor: pointer;
+            position: absolute;
+        }
+
+        .open .h1 {
+            -webkit-transform: translateX(200px) translateZ(0);
+            transform: translateX(200px) translateZ(0);
+        }
+
+        .h2 {
+            color: #000;
+            font-size: 20px;
+            letter-spacing: -0.00933333em;
+            font-weight: 600;
+            padding-bottom: 15px;
+        }
+
+        .login-wrapper {
+            width: 800px;
+            height: 440px;
             background-color: #fff;
-            
+            box-shadow: 0px 2px 50px rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .login-left {
             width: 100%;
             height: 100%;
-            background-size: cover;
-            -webkit-filter: blur(2px);
-            -moz-filter: blur(2px);
-            -o-filter: blur(2px);
-            -ms-filter: blur(2px);
-            filter: blur(2px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 770ms cubic-bezier(0.51, 0.04, 0.12, 0.99);
+            overflow: hidden;
         }
 
-        .content {
+        .login-left img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            display: block;
+            transition: all 770ms cubic-bezier(0.51, 0.04, 0.12, 0.99);
+            object-position: left;
+        }
+
+        .open .login-left img {
+            -webkit-transform: translateX(280px) translateZ(0);
+            transform: translateX(280px) translateZ(0);
+        }
+
+        .open .login-left {
+            -webkit-transform: translateX(-400px) translateZ(0);
+            transform: translateX(-400px) translateZ(0);
+        }
+
+        .login-right {
+            padding: 40px;
             position: absolute;
             top: 0;
-            bottom: 0;
-            left: 0;
             right: 0;
-            width: 540px;
-            height: 540px;
-            background-color: #fff /* rgba(10, 10, 10, 0.5) */;
-            margin: auto auto;
-            padding: 40px;
-            -moz-border-radius: 4px;
-            -webkit-border-radius: 4px;
-            border-radius: 4px;
-            -moz-box-shadow: 0 0 10px black;
-            -webkit-box-shadow: 0 0 10px black;
-            box-shadow: 0 0 10px black;
+            width: 400px;
+            -webkit-transform: translateX(400px) translateZ(0);
+            transform: translateX(400px) translateZ(0);
+            transition: all 770ms cubic-bezier(0.51, 0.04, 0.12, 0.99);
         }
-        .title{
-        	color :black;
+
+        .open .login-right {
+            -webkit-transform: translateX(0px) translateZ(0);
+            transform: translateX(0px) translateZ(0);
         }
-        .content .title {
-            text-align: center;
-            font-size: 2.0rem;
-            font-weight: 600;
-            padding-bottom: 30px;
+
+        .checkbox-container {
+            display: flex;
+            margin-top: 35px;
         }
-        .content input {
-            width: 100%;
-            font-size: 1.2rem;
-            font-family: "Open Sans";
-            margin: 10px 0px;
-            border: none;
-            padding: 10px;
-            -moz-border-radius: 4px;
-            -webkit-border-radius: 4px;
-            border-radius: 4px;
+
+        .text-checkbox {
+            color: #aaa;
+            font-size: 16px;
+            letter-spacing: -0.00933333em;
+            font-weight: 300;
+            margin-left: 15px;
         }
-        .content input[type=checkbox] {
-            display: none;
-        }
-        .content label {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
+
+        input[type="checkbox"] {
             cursor: pointer;
+            margin: 0;
+            height: 22px;
             position: relative;
-            margin-left: 5px;
-            margin-right: 10px;
-            top: 5px;
+            width: 22px;
+            -webkit-appearance: none;
+            transition: all 180ms linear;
         }
-        .content label:before {
-            content: "";
-            display: inline-block;
+
+        input[type="checkbox"]:before {
+            border: 1px solid #aaa;
+            background-color: #fff;
+            content: '';
             width: 20px;
             height: 20px;
-            -moz-border-radius: 3px;
-            -webkit-border-radius: 3px;
-            border-radius: 3px;
-            position: absolute;
-            left: 0;
-            bottom: 1px;
-            background-color: #aaa;
-            -moz-box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, 0.3), 0px 1px 0px 0px rgba(255, 255, 255, 0.8);
-            -webkit-box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, 0.3), 0px 1px 0px 0px rgba(255, 255, 255, 0.8);
-            box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, 0.3), 0px 1px 0px 0px rgba(255, 255, 255, 0.8);
+            display: block;
+            border-radius: 2px;
+            transition: all 180ms linear;
         }
-        .content input[type=checkbox]:checked + label:before {
-            content: "\2713";
-            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
-            font-size: 20px;
-            color: Black;
-            text-align: center;
-            line-height: 20px;
+
+        input[type="checkbox"]:checked:before {
+            background: linear-gradient(198.08deg, #B4458C 45.34%, #E281E7 224.21%);
+            border: 1px solid #C359AA;
         }
-        .content span {
-            font-size: 0.9rem;
-        }
-        span{
-        	color:black;
-        }
-        .content button {
-            width: 100%;
-            font-size: 1.1rem;
-            padding: 10px;
-            margin: 20px 0px;
-            background-color: #fff;
-            color: black;
-            border: none;
-            -moz-border-radius: 4px;
-            -webkit-border-radius: 4px;
-            border-radius: 4px;
-        }
-        .content .social {
-            width: 100%;
-            position: relative;
-            overflow: hidden;
-            text-align: center;
-        }
-        .content .social span {
-            display: inline-block;
-            vertical-align: baseline;
-            padding: 0 20px;
-        }
-        .content .social span:before, .content .social span:after {
+
+        input[type="checkbox"]:after {
             content: '';
+            border: 2px solid #fff;
+            border-right: 0;
+            border-top: 0;
             display: block;
-            width: 500px;
+            height: 4px;
+            left: 4px;
+            opacity: 0;
             position: absolute;
-            top: 0.9em;
-            border-top: 1px solid White;
+            top: 6px;
+            -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+            width: 12px;
+            transition: all 180ms linear;
         }
-        .content .social span:before {
-            right: 75%;
+
+        input[type="checkbox"]:checked:after {
+            opacity: 1;
         }
-        .content .social span:after {
-            left: 75%;
+
+        .button-area {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
         }
-        .content .buttons {
-            width: 100%;
-            margin: 30px 0px;
+
+        .btn {
+            font-family: inherit;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-color: transparent;
+            border: none;
+            border-radius: 2px;
+            height: 40px;
+            display: flex;
+            padding: 0 35px;
+            cursor: pointer;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: -0.00933333em;
         }
-        .content .buttons button {
-            float: left;
-            width: 30%;
-            margin: 0px 1.5%;
+
+        .btn-primary {
+            color: #fff;
+            background: linear-gradient(198.08deg, #B4458C 45.34%, #E281E7 224.21%);
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
         }
-        .content .buttons button i {
-            padding-right: 7px;
-        }
-        .content .buttons button.facebook {
-            background-color: #fff;
-        }
-        .content .buttons button.twitter {
-            background-color: #28A9E0;
-        }
-        .content .buttons button.google {
-            background-color: #DA4735;
-        }
-        .content .buttons:after {
-            content: "";
-            display: block;
-            clear: both;
-        }
-        .content .already {
-            text-align: center;
-            font-size: 0.9rem;
+
+        .btn-secondary {
+            color: #C359AA;
         }
     </style>
 </head>
 
 <body>
-<div class="content">
-        <div class="title">로그인</div>
-	        <input type="text" placeholder="id" id="id"/>
-	        <input type="password" placeholder="Password" id="pw"/>
-	        <input type="checkbox" id="remember" />
-	        <label for="remember"></label>  <span>로그인 유지</span>
-        	<button type ="submit" class="submit Btn" id="loginBtn">로그인</button>
+<div class="login-wrapper">
+    <div class="login-left">
+        <img src="http://res.cloudinary.com/dzqowkhxu/image/upload/v1513679279/bg-login_bxxfkf.png">
+        <div class="h1">Enter the Nebula</div>
     </div>
-    
+    <div class="login-right">
+        <div class="h2">로그인</div>
+
+        <div class="form-group">
+            <input type="text" id="id" placeholder="Email">
+            <label for="id">Email</label>
+        </div>
+        <div class="form-group">
+            <input type="password" id="pw" placeholder="Password">
+            <label for="pw">Password</label>
+        </div>
+        <div class="checkbox-container">
+            <input type="checkbox" id="remember">
+            <div class="text-checkbox">자동 로그인</div>
+        </div>
+        <div class="button-area">
+            <button class="btn btn-secondary">비밀번호 찾기</button>
+            <button class="btn btn-primary" id="loginBtn">로그인</button>
+        </div>
+    </div>
+</div>
 <script
   src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -253,6 +314,18 @@
         messagingSenderId: "360329597510"
     };
     firebase.initializeApp(config);
+</script>
+
+
+<script>
+
+    var openLoginRight = document.querySelector('.h1');
+    var loginWrapper = document.querySelector('.login-wrapper');
+
+    openLoginRight.addEventListener('click', function(){
+        loginWrapper.classList.toggle('open');
+    });
+
 </script>
 
 <script>
