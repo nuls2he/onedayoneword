@@ -52,4 +52,14 @@ public class HomeController {
 		
 	}
 	
+	@GetMapping("/tokenPassing")
+	public void innerIframe() {
+		
+	}
+	
+	@GetMapping("/fcmtest")
+	public void fcmtest() {
+		
+	}
+	
 }
