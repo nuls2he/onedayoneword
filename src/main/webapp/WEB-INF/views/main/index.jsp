@@ -367,7 +367,7 @@
     
     $("#container").on("click", "div[class=symbol]",function () {
     	var keyword = $(this).text();
-    	window.open("popup?keyword=" + keyword,"popup","width=500, height=550");
+    	window.open("popup?keyword=" + keyword,"popup","width=1100, height=500");
     });
     
 </script>

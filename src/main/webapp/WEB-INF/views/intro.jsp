@@ -38,7 +38,7 @@ body {
 	-webkit-box-flex: 1;
 	-ms-flex: 1;
 	flex: 1;
-	padding: 0 20px;
+/* 	padding: 0 20px; */
 }
 </style>
 <body>
