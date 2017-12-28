@@ -4,7 +4,7 @@
  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.orgsrc/main/webapp/resources/dev-tools/TR/html4/loose.dtd"> 
 <!-- <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> -->
 <html>	
-    <meta charset="UTF-8">
+  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Sign Up Page - Material Kit by Creative Tim</title>
 
     <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Alfa+Slab+One|Indie+Flower|Lobster|Pacifico|Pangolin|Roboto:900i" rel="stylesheet">
@@ -128,13 +128,9 @@
             -webkit-align-items: center;
             -ms-flex-align: center;
             align-items: center;
-            /*              background: linear-gradient(243.87deg, #F28FE5 30.6%, #371933 130.6%);  */
             overflow: hidden;
-
             background: url('../resources/HTML/img/login.gif');
-            /*             -webkit-background-size: cover; */
-            /* 		    -moz-background-size: cover; */
-            /* -o-background-size: cover; */
+            background-color:#464646;
             background-size: cover;
         }
 
@@ -383,7 +379,7 @@
 
 <body>
 
-<div class="login-wrapper">
+<div class="login-wrapper open">
     <div class="login-left">
         <!--         <img src="http://res.cloudinary.com/dzqowkhxu/image/upload/v1513679279/bg-login_bxxfkf.png"> -->
         <img src="../resources/HTML/img/dot.png">
@@ -393,8 +389,8 @@
         <div class="h2">회원가입 </div>
 
         <div class="form-group">
-            <input type="text" id="id" placeholder="Id">
-            <label for="id">Id</label>
+            <input type="text" id="id" placeholder="Id" required>
+            <label for="id">Id</label><!-- <button id="checkid">중복체크</button> -->
         </div>
             <div class="idCheck" id="idCheck"></div>
 
@@ -433,7 +429,7 @@
 	   			 </select>
 	   		 </span>
         <div class="button-area">
-            <button class="btn btn-primary" id="saveBtn">LOG IN</button>
+            <button class="btn btn-primary" id="saveBtn">등록</button>
         </div>
     </div>
 </div>
@@ -488,7 +484,7 @@
             }
         }
 
-        var member = {id: $("#id").val(), pw:$("#pw").val(), child :chkv, location: $("#location").val() , time:$("#time").val()};
+        var member = {id:$("#id").val(), pw:$("#pw").val(), child :chkv, location: $("#location").val() , time:$("#time").val()};
         createData(member);
     });
 
@@ -502,9 +498,10 @@
             for(keyStr in list){
                 if(keyStr == id) {
                     $("#idCheck").html("이미 존재하는 아이디 입니다.");
+                	$("div[id=idCheck]").attr("style" ,"color:red");
                 }else{
                     $("#idCheck").html("사용 가능한 아이디 입니다.");
-
+                	$("div[id=idCheck]").attr("style" ,"color:green");
                 }
             }
         });
