@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Sign Up Page - Material Kit by Creative Tim</title>
 
+  <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Alfa+Slab+One|Indie+Flower|Lobster|Pacifico|Pangolin|Roboto:900i" rel="stylesheet">
 
     <style>
   @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700');
@@ -36,9 +37,15 @@
             -webkit-align-items: center;
             -ms-flex-align: center;
             align-items: center;
-    /*         background: linear-gradient(243.87deg, #F28FE5 30.6%, #371933 130.6%); */
+/*              background: linear-gradient(243.87deg, #F28FE5 30.6%, #371933 130.6%);  */
             overflow: hidden;
-        }
+            
+            background: url('/resources/HTML/img/login.gif');
+/*             -webkit-background-size: cover; */
+/* 		    -moz-background-size: cover; */
+		    /* -o-background-size: cover; */
+		    background-size: cover;
+}
 
         input {
             font-family: inherit;
@@ -94,7 +101,7 @@
         }
 
         .h1 {
-            color: #fff;
+            color: #000;
             opacity: 0.8;
             font-size: 20px;
             font-weight: 400;
@@ -104,6 +111,7 @@
             text-align: center;
             cursor: pointer;
             position: absolute;
+           font-family: 'Alfa Slab One', cursive;
         }
 
         .open .h1 {
@@ -120,13 +128,14 @@
         }
 
         .login-wrapper {
-            width: 800px;
-            height: 440px;
+            width: 730px;
+            height: 380px;
             background-color: #fff;
             box-shadow: 0px 2px 50px rgba(0, 0, 0, 0.2);
             border-radius: 4px;
             overflow: hidden;
             position: relative;
+            border-radius: 10px;
         }
 
         .login-left {
@@ -248,12 +257,14 @@
             border: none;
             border-radius: 2px;
             height: 40px;
+            width :100px;
             display: flex;
-            padding: 0 35px;
+             padding: 0 23px; 
             cursor: pointer;
             font-size: 16px;
             text-transform: uppercase;
             letter-spacing: -0.00933333em;
+            text-align: center;
         }
 
         .btn-primary {
@@ -269,17 +280,19 @@
 </head>
 
 <body>
+
 <div class="login-wrapper">
     <div class="login-left">
-        <img src="http://res.cloudinary.com/dzqowkhxu/image/upload/v1513679279/bg-login_bxxfkf.png">
-        <div class="h1">Enter the Nebula</div>
+<!--         <img src="http://res.cloudinary.com/dzqowkhxu/image/upload/v1513679279/bg-login_bxxfkf.png"> -->
+				<img src="/resources/HTML/img/dot.png">
+        <div class="h1">ONE DAY-ONE WORD</div> <br>
     </div>
     <div class="login-right">
-        <div class="h2">로그인</div>
+        <div class="h2">LOG IN</div>
 
         <div class="form-group">
-            <input type="text" id="id" placeholder="Email">
-            <label for="id">Email</label>
+            <input type="text" id="id" placeholder="Id">
+            <label for="id">Id</label>
         </div>
         <div class="form-group">
             <input type="password" id="pw" placeholder="Password">
@@ -287,11 +300,13 @@
         </div>
         <div class="checkbox-container">
             <input type="checkbox" id="remember">
-            <div class="text-checkbox">자동 로그인</div>
+            <div class="text-checkbox">remember me</div>
         </div>
         <div class="button-area">
-            <button class="btn btn-secondary">비밀번호 찾기</button>
-            <button class="btn btn-primary" id="loginBtn">로그인</button>
+            <button class="btn btn-secondary" id="gologin">JOIN
+            <button class="btn btn-secondary">FIND</button></button>
+            
+            <button class="btn btn-primary" id="loginBtn">LOG IN</button>
         </div>
     </div>
 </div>
@@ -330,7 +345,10 @@
 
 <script>
 
-
+$('#gologin').click(function() {
+	location.href = '/member/login';
+	});
+	
 $("#loginBtn").on("click" ,function () {	
     var member = firebase.database().ref().child("/member");
     var id = $("#id").val();
@@ -370,7 +388,6 @@ function pwcheck(keyStr){
 		}
 	});
 }
-
 </script>
 
 </body>

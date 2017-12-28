@@ -61,6 +61,16 @@ public class MemberController {
 		return "redirect:/member/testlogin";
 	}
 
+	@PostMapping("/login")
+	public String login(Member member) {
+		System.out.println(member);
+		
+		log.info(""+ member);
+		service.login(member);
+
+		return "redirect:/member/loginhome";
+
+	}
 	*/
 	
 	@GetMapping("/testlogin")
@@ -85,16 +95,7 @@ public class MemberController {
 		
 	}
 	
-	@PostMapping("/login")
-	public String login(Member member) {
-		System.out.println(member);
-		
-		log.info(""+ member);
-		service.login(member);
 
-		return "redirect:/member/loginhome";
-
-	}
 
 	@PostMapping("/index")
 	@ResponseBody
@@ -105,6 +106,11 @@ public class MemberController {
 		model.addAttribute("remember" ,remember);
 		
 		return model;
+	}
+	
+	@GetMapping("/mypage")
+	public void mypage() {
+		
 	}
 
 }
