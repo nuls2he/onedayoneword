@@ -9,7 +9,7 @@
 		  from test_keyword
 		 group by keyword
 		 order by count desc
-		 limit 1, 118
+		 limit 1, 125
 	</select>
 	
 	<select id="getBoy" resultType="keyword">
@@ -18,7 +18,7 @@
 		 where siteno = 2
 		 group by keyword
 		 order by count desc
-		 limit 1, 118
+		 limit 1, 125
 	</select>
 	
 	<select id="getGirl" resultType="keyword">
@@ -27,7 +27,7 @@
 		 where siteno = 1
 		 group by keyword
 		 order by count desc
-		 limit 1, 118
+		 limit 1, 125
 	</select>
 	
 	<select id="getNaver" resultType="keyword">

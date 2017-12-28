@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -30,11 +31,11 @@ public class MainController {
 		model.addAttribute("nList", service.getNaver());
 	}
 	
-	@PostMapping("/index")
+/*	@PostMapping("/index")
 	@ResponseBody
 	public List<Original> postIndex(String keyword) {
 		return service.getOriginalData(keyword);
-	}
+	}*/
 	
 	@GetMapping("/boardlist")
 	public void boardList(@RequestParam(value="page", defaultValue="1") int page, 
@@ -48,11 +49,12 @@ public class MainController {
 	}
 	
 	@GetMapping("/popup")
-	public void popup() {
-		
+	public void popup(String keyword, Model model) {
+		model.addAttribute("keyword", keyword);
 	}
 	
 	@PostMapping("/popup")
+	@ResponseBody
 	public List<Original> postPopup(String keyword){
 		return service.getOriginalData(keyword);
 	}
@@ -68,5 +70,10 @@ public class MainController {
 		model.addAttribute("id", id);
 		
 		return "redirect:/main/index";
+	}
+	
+	@GetMapping("/chart")
+	public void chart() {
+		
 	}
 }

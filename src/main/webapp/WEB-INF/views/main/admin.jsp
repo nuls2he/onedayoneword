@@ -237,7 +237,7 @@
 		
 	<c:import url="../includes/header.jsp"></c:import>
 		
-         <div class="parallax-window" data-parallax="scroll" data-image-src="/resources/HTML/img/1920x1080/001.jpg">
+         <div class="parallax-window" data-parallax="scroll" data-image-src="/resources/HTML/img/1920x1080/006.jpg">
             <div class="parallax-content container">
                 <h1 class="carousel-title">ADMIN</h1>
                 <p>Lorem ipsum dolor amet consectetur adipiscing dolore magna aliqua <br/> enim minim estudiat veniam siad venumus dolore</p>

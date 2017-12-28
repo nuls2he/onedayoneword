@@ -85,7 +85,7 @@
 	.responstable th {
 		display: none;
 		border: 1px solid #FFF;
-		background-color: #167F92;
+		background-color: #001459;
 		color: #FFF;
 		padding: 1em;
 	}
@@ -172,7 +172,7 @@
 		
 	<c:import url="../includes/header.jsp"></c:import>
 		
-         <div class="parallax-window" data-parallax="scroll" data-image-src="/resources/HTML/img/1920x1080/001.jpg">
+         <div class="parallax-window" data-parallax="scroll" data-image-src="/resources/HTML/img/1920x1080/006.jpg">
             <div class="parallax-content container">
                 <h1 class="carousel-title">BOARD</h1>
                 <p>Lorem ipsum dolor amet consectetur adipiscing dolore magna aliqua <br/> enim minim estudiat veniam siad venumus dolore</p>
@@ -184,8 +184,7 @@
         <div class="listBody">
         	<br/>
         	<div style="padding-right: 15%; text-align: right;">
-        		검색 :
-        		<select style="height: 27px;">
+        		<select style="height: 27px;" id="zoneSelect">
         			<option>선택없음</option>
         			<option>종로구</option>
         			<option>중구</option>
@@ -214,7 +213,7 @@
         			<option>강동구</option>
         		</select>
         		<input type="text" id="searchWord"/>
-        		<button class="searchBtn btn btn-primary">검색</button>
+        		<button class="searchBtn btn btn-primary" style="background-color: #011456; border-color: #01155a;">검색</button>
         	</div>
         	<br/>
    			<table class="responstable" style="width: 70%; margin:0 auto;">

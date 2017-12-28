@@ -80,8 +80,8 @@
             right: 0px;
             font-size: 50px;
             font-weight: bold;
-            color: rgba(39, 130, 42, 0.75); /*255,255,255,0.75*/
-            text-shadow: 0 0 10px rgba(57, 224, 117, 0.95);
+            color: rgba(255, 249, 0, 0.75); /*255,255,255,0.75*/
+            text-shadow: 0 0 10px rgba(255, 252, 0, 0.95);
         }
         .element .symbol:hover{
         	color: rgba(255,255,255,0.25);
@@ -128,8 +128,8 @@
 
            <!-- Wrapper for slides -->
            <div class="carousel-inner" role="listbox">
-               <div class="item active"> <!-- /resources/HTML/img/1920x1080/004.jpg -->
-                   <img class="img-responsive" src="/resources/HTML/img/1920x1080/001.jpg" alt="Slider Image">
+               <div class="item active">
+                   <img class="img-responsive" src="/resources/HTML/img/1920x1080/006.jpg" alt="Slider Image">
                   		<div id="container">
                    		</div>
                    		
@@ -310,7 +310,7 @@
     		table[index] = "${keyword.keyword}";
     		index += 5;
     	</c:forEach>
-    	for(var i = 50; i <= 590; i+=5){
+    	for(var i = 50; i <= table.length; i+=5){
     		table[i] = "";
     	}
     	$container.empty();
