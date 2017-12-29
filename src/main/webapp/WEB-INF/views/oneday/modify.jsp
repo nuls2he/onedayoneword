@@ -123,52 +123,6 @@
 .select select::-ms-expand {
   display: none;
 }
-
-/* Popup */
-#wrap {
-	position: absolute;
-	top: 0; left: 0; right: 0; bottom: 0;
-	background-color: #333;
-	overflow: hidden;
-}
-
-#popup {
-	position: absolute;
-	width: 300px;
-	height: auto;
-	top: 50%; left: 50%;
-	margin-left: -150px; margin-top: 100px; 
-
-	-webkit-perspective: 800px;
-  	-webkit-perspective-origin: 50% 50px;
-   perspective: 800px;
-   perspective-origin: 50% 50px;  	
-}
-
-.piece {
-	background: rgba(95,144,222,0.5);
-	float: left;
-}
-
-#popup h1 {
-	position: absolute;
-	text-align: center;
-	width: 100%;
-	height: 40px;
-	top: 50%; margin-top: -20px;	
-	font-family: 'Noto Sans', sans-serif;
-	color: #ccc;
-}
-
-.reverse {
-	position: absolute;
-	top: 30px;
-	left: 50%;
-	margin-left: -30px;
-	font-family: 'Noto Sans', sans-serif;
-	color: #ccc;
-	cursor: pointer;
-}
 </style>
 </head>
 
@@ -188,24 +142,18 @@
         <div class="bg-color-sky-light">
         	<div class="content-lg container">
        			<div class="row">
-				
-				<div>
-					<div id="popup"  style="z-index: 2">
-						<h1>제목 입력해라</h1>
-					</div>
-					<div class="col-sm-5 sm-margin-b-30">
+               		<div class="col-sm-5 sm-margin-b-30">
                		<h2 class="color-white">Send Us A Note</h2>
                			
-                        <form id="actionForm" action="/main/boardlist" method="post">
+                        <form id="actionForm" action="/main/boardlist" method="get">
                         	<span class="select" >
-								    <select name="location" onclick="return false;" id="location" >
-								    	<option value="선택">-선택-</option>
-								        <option value="강서구">강서구</option>
-								        <option value="서초구">서초구</option>
-								        <option value="강동구">강동구</option>
-								        <option value="강남구">강남구</option>
-								    </select>
-						    </span> 
+							    <select name="location" onclick="return false;" id="location" >
+							        <option value="강서구">강서구</option>
+							        <option value="서초구">서초구</option>
+							        <option value="강동구">강동구</option>
+							        <option value="강남구">강남구</option>
+							    </select>
+					    	</span> 
                             <input type="text" class="form-control footer-input margin-b-20" name="title" placeholder="title" required>
                             <!-- <input type="text" class="form-control footer-input margin-b-20" name="writer" placeholder="writer" required> -->
                             <textarea class="form-control footer-input margin-b-30" rows="6" name="content" placeholder="content" required></textarea>
@@ -222,13 +170,15 @@
 							<div class="uploadedList"></div>
 						</div>
                   	</div>
-				</div>
-				
               	</div>     		
 			</div>
         </div>
 
 	<c:import url="../includes/footer.jsp"></c:import>
+	
+	<form action="/oneday/detail" method=get id="testForm">
+		<input type="hidden" name="no">
+	</form>
 
 	<!-- Back To Top -->
 	<a href="javascript:void(0);" class="js-back-to-top back-to-top">Top</a>
@@ -251,31 +201,88 @@
 	<script src="/resources/HTML/js/layout.min.js" type="text/javascript"></script>
 	<script src="/resources/HTML/js/components/swiper.min.js"	type="text/javascript"></script>
 	<script src="/resources/HTML/js/components/wow.min.js" type="text/javascript"></script>
-	
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/plugins/CSSPlugin.min.js"></script>
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/easing/EasePack.min.js"></script>
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenLite.min.js"></script>
 
 	<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
 
 	<script>
+	
+	var writeNo;
+	var dateArr = [];
+	var fileNameArr = [];
 
-		// ------------Initialize Firebase---------------
-		
-		var config = {
-			apiKey : "AIzaSyCHAm0uDpjUGUPNPptNtoFStgFX3yWsrqs",
-			authDomain : "likethis-35671.firebaseapp.com",
-			databaseURL : "https://likethis-35671.firebaseio.com",
-			projectId : "likethis-35671",
-			storageBucket : "likethis-35671.appspot.com",
-			messagingSenderId : "637146865404"
-		};
-		firebase.initializeApp(config);
-		
-		// ------------Initialize Firebase---------------
+		(function(){
+			
+			// ------------Initialize Firebase---------------
+			writeNo = ${no};
+			
+			var config = {
+				apiKey : "AIzaSyCHAm0uDpjUGUPNPptNtoFStgFX3yWsrqs",
+				authDomain : "likethis-35671.firebaseapp.com",
+				databaseURL : "https://likethis-35671.firebaseio.com",
+				projectId : "likethis-35671",
+				storageBucket : "likethis-35671.appspot.com",
+				messagingSenderId : "637146865404"
+			};
+			firebase.initializeApp(config);
+			
+			// ------------Initialize Firebase---------------
+			String.prototype.replaceAt=function(index, character) {
+			    return this.substr(0, index) + character + this.substr(index + 1);
+			}
+			
+			firebase.database().ref('/Board/' + writeNo).once('value', function(snapshot){
+				if(snapshot.val() != null){
+					$("#location").val(snapshot.val().location).attr("selected", "selected");
+					$("input[name='title']").val(snapshot.val().title);
+					$("textarea[name='content']").val(snapshot.val().content);
+				}	
+			});
 
-		var dateArr = [];
-		var fileNameArr = [];
+			firebase.database().ref('/Board/' + writeNo + '/path').once('value', function(snapshot){
+				if(snapshot.val() != null) {
+					var str;
+
+					if(Array.isArray(snapshot.val())) {
+						
+						for(var i = 0; i < snapshot.val().length; i++){
+							console.log(snapshot.val()[i].lastIndexOf("/"));
+							console.log(snapshot.val()[i].replaceAt(snapshot.val()[i].lastIndexOf("/"), "/s_"));
+							
+							
+							
+							str ="";
+							str = "<span>"
+								+ "<img style= 'margin :5px' src='displayFile?fileName="
+								+ snapshot.val()[i].replaceAt(snapshot.val()[i].lastIndexOf("/"), "/s_")
+								+ "'/>"
+								+ "<small data-src="+snapshot.val()[i].replaceAt(snapshot.val()[i].lastIndexOf("/"), "/s_")+">X</small></span>";
+					
+							$(".uploadedList").append(str);
+							
+							dateArr.push(snapshot.val()[i].substring(0, snapshot.val()[i].indexOf("s")))
+							fileNameArr.push(snapshot.val()[i]	.substring(snapshot.val()[i].indexOf("s") + 2));
+						}
+						
+					}
+					else{
+
+						str ="";
+						str = "<span>"
+							+ "<img style= 'margin :5px' src='displayFile?fileName="
+							+ snapshot.val().replaceAt(snapshot.val().lastIndexOf("/"), "/s_")
+							+ "'/>"
+							+ "<small data-src="+snapshot.val().replaceAt(snapshot.val().lastIndexOf("/"), "/s_")+">X</small></span>";
+				
+						$(".uploadedList").append(str);	
+						
+						dateArr.push(snapshot.val().substring(0, snapshot.val().indexOf("s")))
+						fileNameArr.push(snapshot.val()	.substring(snapshot.val().indexOf("s") + 2));
+					}
+				}
+
+			});
+		}());	
+
 		
 		$(".fileDrop").on("dragenter dragover", function(event) {
 			event.preventDefault();
@@ -364,6 +371,8 @@
 							 dateArr.splice(i, 1);
 							 fileNameArr.splice(i, 1);
 						 }
+						 console.log(dateArr[i]);
+						 console.log(fileNameArr[i]);
 					 }
 
 					$.ajax({
@@ -388,6 +397,7 @@
 		
 		var $btn = $("#submit");
 		var actionForm = $("#actionForm");
+		var submitForm = $("#testForm");
 		
 		var number;
 		
@@ -395,45 +405,15 @@
 			
 			e.preventDefault();
 			
-			console.log($("#location").val());
-			if($("#location option").index($("#location option:selected")) == 0){
-				console.log("선택하라!");
-				return;
-			}
-			
-			if($("input[name='title']").val() == ""){
-				console.log("하하하하");
-				return;
-			}
-			if($("textarea[name='content']").val() == ""){
-				console.log("호호호호");
-				return;
-			}
-				
-			
-            firebase.database().ref('/no').once('value', function(snapshot){
-				//console.log(snapshot);
-        		snapshot.val() == null ? number = 1 : number = snapshot.val().no;
-        		
-        		var numData = {
-                		no : number	
-                	};	
-        		
-        		console.log("number : " + numData.no);
-        		
-        		firebase.database().ref('/no').set(numData);
-        		
-        		//console.log(actionForm.find("textarea[name='content']").val());
-        		
-	            writeNewPost(number, 
-	            		actionForm.find("input[name='title']").val(), 
-	            		actionForm.find("textarea[name='content']").val(), 
-	            		fileNameArr.length > 0 ? true : false);
-	            
-	            console.log("넘어오라!");
-        		number ++;
-	            location.href = "/main/boardlist";
-			});
+			console.log(writeNo);
+            writeNewPost(writeNo, 
+            		actionForm.find("input[name='title']").val(), 
+            		actionForm.find("textarea[name='content']").val(), 
+            		fileNameArr.length > 0 ? true : false);
+
+            submitForm.find("input[name='no']").val(writeNo);
+            
+            submitForm.submit();
         });
 		// 아이디도 있어야함 
 		// 필요한거는 글번호 글제목 글쓴이 글내용이 필요함
@@ -468,95 +448,7 @@
 		}
 
 		// ------------FirebaseDB Test----------------
-		
-		
-		// ------------Popup-------------
-		
-
-		var pieces = 70, speed = 1, pieceW = 30, pieceH = 30;
-
-		for (var i = pieces - 1; i >= 0; i--) {
-			$('#popup')
-					.prepend(
-							'<div class="piece" style="width:'+pieceW+'px; height:'+pieceH+'px"></div>');
-		};
-
-		function breakGlass(from) {
-			if (from === "reverse") {
-				$('.piece').each(function() {
-					TweenLite.to($(this), speed, {
-						x : 0,
-						y : 0,
-						rotationX : 0,
-						rotationY : 0,
-						opacity : 1,
-						z : 0
-					});
-					TweenLite.to($('#popup h1'), 0.2, {
-						opacity : 1,
-						delay : speed
-					});
-				});
-				return;
-			}
-
-			if (!from) {
-				TweenLite.to($('#popup h1'), 0.2, {
-					opacity : 0
-				});
-			} else {
-				TweenLite.from($('#popup h1'), 0.5, {
-					opacity : 0,
-					delay : speed
-				});
-			}
-
-			$('.piece')
-					.each(
-							function() {
-								var distX = getRandomArbitrary(-250, 250), distY = getRandomArbitrary(
-										-250, 250), rotY = getRandomArbitrary(
-										-720, 720), rotX = getRandomArbitrary(
-										-720, 720), z = getRandomArbitrary(
-										-500, 500);
-
-								if (!from) {
-									TweenLite.to($(this), speed, {
-										x : distX,
-										y : distY,
-										rotationX : rotX,
-										rotationY : rotY,
-										opacity : 0,
-										z : z
-									});
-								} else {
-									TweenLite.from($(this), speed, {
-										x : distX,
-										y : distY,
-										rotationX : rotX,
-										rotationY : rotY,
-										opacity : 0,
-										z : z
-									});
-								}
-							});
-		}
-
-		function getRandomArbitrary(min, max) {
-			return Math.random() * (max - min) + min;
-		}
-
-		$('.piece, h1').click(function() {
-			breakGlass();
-		});
-		$('.reverse').click(function() {
-			breakGlass('reverse');
-		});
-
-		breakGlass(true);
-		
-		// ------------Popup-------------
-</script>
+	</script>
 
 
 </body>

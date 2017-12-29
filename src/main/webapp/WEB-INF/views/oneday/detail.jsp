@@ -27,13 +27,113 @@
         
 <style>
 .testClass{
-	border: 1px solid blue
+  background: linear-gradient(to bottom, #68d8d6, #ffffff);
+  color: #454749;
+  display: flex;
+  align-items: center;
 }
 .bg-reply-color{
 	background:#888888
 }
 .test-margin{
 	margin:auto
+}
+
+/* test */
+h2 {
+  font: 33px sans-serif;
+  margin-top: 30px;
+  text-align: center;
+  text-transform: uppercase;
+}
+h2.background {
+  position: relative;
+  z-index: 1;
+}
+h2.background:before {
+  border-top: 2px solid #dfdfdf;
+  content: "";
+  margin: 0 auto;
+  /* this centers the line to the full width specified */
+  position: absolute;
+  /* positioning must be absolute here, and relative positioning must be applied to the parent */
+  top: 50%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 95%;
+  z-index: -1;
+}
+h2.background span {
+  /* to hide the lines from behind the text, you have to set the background color the same as the container */
+  background: #fff;
+  padding: 0 15px;
+}
+h2.double:before {
+  /* this is just to undo the :before styling from above */
+  border-top: none;
+}
+h2.double:after {
+  border-bottom: 1px solid blue;
+  -webkit-box-shadow: 0 1px 0 0 red;
+  -moz-box-shadow: 0 1px 0 0 red;
+  box-shadow: 0 1px 0 0 red;
+  content: "";
+  margin: 0 auto;
+  /* this centers the line to the full width specified */
+  position: absolute;
+  top: 45%;
+  left: 0;
+  right: 0;
+  width: 95%;
+  z-index: -1;
+}
+h2.no-background {
+  position: relative;
+  overflow: hidden;
+}
+h2.no-background span {
+  display: inline-block;
+  vertical-align: baseline;
+  zoom: 1;
+  *display: inline;
+  *vertical-align: auto;
+  position: relative;
+  padding: 0 20px;
+}
+h2.no-background span:before,
+h2.no-background span:after {
+  content: '';
+  display: block;
+  width: 1000px;
+  position: absolute;
+  top: 0.73em;
+  border-top: 1px solid red;
+}
+h2.no-background span:before {
+  right: 100%;
+}
+h2.no-background span:after {
+  left: 100%;
+}
+h2.no-span {
+  display: table;
+  white-space: nowrap;
+}
+h2.no-span:before,
+h2.no-span:after {
+  border-top: 1px solid green;
+  content: '';
+  display: table-cell;
+  position: relative;
+  top: 0.5em;
+  width: 45%;
+}
+h2.no-span:before {
+  right: 1.5%;
+}
+h2.no-span:after {
+  left: 1.5%;
 }
 </style>
 <title>Insert title here</title>
@@ -43,34 +143,40 @@
 	<c:import url="../includes/header.jsp"></c:import>
 	
 	<!--========== PARALLAX ==========-->
-        <div class="parallax-window" data-parallax="scroll" data-image-src="/resources/HTML/img/1920x1080/01.jpg">
+        <div class="parallax-window" data-parallax="scroll" data-image-src="/resources/HTML/img/1920x1080/yellow.png">
             <div class="parallax-content container">
-                <h1 class="carousel-title">글제목</h1>
+                <h1 class="carousel-title">BOARD</h1>
             </div>
         </div>
         
-        <div class="bg-color-sky-light">
+        <div class="color-white">
         	<div class="content-lg container">
        			<div class="row">
-       				<h2 class="color-white">Send Us A Note</h2>
-               		<button id="fuck">하하하하</button>
+       				<h2 class="color-sky-blue">Send Us A Note</h2>
+       				<h2 class="background"></h2>
+
+					<hr>
        				<div class="col-sm-3 sm-margin-b-30">
        				</div>
-               		<div id="mark" class="col-sm-5 sm-margin-b-30">
+               		<div id="mark" class="col-sm-5" style="margin-left:10%;margin-right:10%">
 	               		
 	               		<c:forEach var="data" items="">
 	               			
 	               		</c:forEach>
 	               		<img class="test-margin" width="300px" height="300px" src="">
 	               		<img class="test-margin" width="300px" height="300px" src="">
+	               		<div class="uploadedList"></div>
                   	</div>
                   	<div class="col-sm-3 sm-margin-b-30">
        				</div>
               	</div>     	
+              	<div class="row">
+              		<p align="center" id="contentData"></p>
+              	</div>
               	<div id="testDiv">
-	           		<button style="float: right">목록</button>
-	         		<button style="float: right">수정</button>
-	         		<button style="float: right">삭제</button>
+	           		<button id="list" style="float: right">목록</button>
+	         		<button id="modify" style="float: right">수정</button>
+	         		<button id="remove" style="float: right">삭제</button>
 	          	</div>
 			</div>
 			
@@ -93,6 +199,10 @@
         </div>
 
 	<c:import url="../includes/footer.jsp"></c:import>
+	
+	<form action="/oneday/modify" method=get id="testForm">
+		<input type="hidden" name="no">
+	</form>
 
 	<!-- Back To Top -->
 	<a href="javascript:void(0);" class="js-back-to-top back-to-top">Top</a>
@@ -119,41 +229,68 @@
 	<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
 
 	<script>
-		
-		// ------------Initialize Firebase---------------
-		
-		var config = {
-			apiKey : "AIzaSyCHAm0uDpjUGUPNPptNtoFStgFX3yWsrqs",
-			authDomain : "likethis-35671.firebaseapp.com",
-			databaseURL : "https://likethis-35671.firebaseio.com",
-			projectId : "likethis-35671",
-			storageBucket : "likethis-35671.appspot.com",
-			messagingSenderId : "637146865404"
-		};
-		firebase.initializeApp(config);
-		
-		// ------------Initialize Firebase---------------
-		
-		//---------------------------------------------
+
+		var testForm = $("#testForm");
+	
+		$("#modify").on("click", function(){
+			testForm.find("input[name='no']").val(41);
+			testForm.submit();
+		});
 		
 		var testStr = "";
 		var arr = [];
 		
 		(function(){
-			console.log("즉시 실행!!!")
-			firebase.database().ref('/List/39/path').once('value', function(snapshot){
-				if(snapshot != null){
+			
+			// ------------Initialize Firebase---------------
+			
+			var config = {
+				apiKey : "AIzaSyCHAm0uDpjUGUPNPptNtoFStgFX3yWsrqs",
+				authDomain : "likethis-35671.firebaseapp.com",
+				databaseURL : "https://likethis-35671.firebaseio.com",
+				projectId : "likethis-35671",
+				storageBucket : "likethis-35671.appspot.com",
+				messagingSenderId : "637146865404"
+			};
+			firebase.initializeApp(config);
+			
+			// ------------Initialize Firebase---------------
+			
+			$("#remove").on("click", function(){
+				firebase.database().ref('/List/38').remove();
+			});
+			$("#modify").on("click", function(){
+				//firebase.database().ref('/List/39').remove();
+			});
+			
+			//---------------------------------------------
+
+			firebase.database().ref('/Board/1/path').once('value', function(snapshot){
+				if(snapshot.val() != null){
 					// 사진이 있다는 거니 사진 띄우라 알았니?
-					arr = snapshot.val();
-					/* console.log(arr);
 					console.log(snapshot.val());
-					console.log(arr.length); */
 					
-					for(var i = 0; i < arr.length; i++){
-						testStr += "<img src='displayFile?fileName=";
-						testStr += arr[i];
-						testStr += "'/><br>";
+					if(Array.isArray(snapshot.val())) {
+						
+						for(var i = 0; i < snapshot.val().length; i++){
+							console.log(snapshot.val()[i]);
+
+							testStr += "<img src='displayFile?fileName=";
+							testStr += snapshot.val()[i];
+							testStr += "' width='300px' height='300px'/><br>";
+
+						}
 						$("#mark").html(testStr);
+						
+					}
+					else{
+						
+						testStr += "<img src='displayFile?fileName=";
+						testStr += snapshot.val();
+						testStr += "' width='300px' height='300px'/><br>";
+						
+						$("#mark").html(testStr);
+						
 					}
 				}
 			});
@@ -161,12 +298,10 @@
 			var testStr2 = "";
 			
 			// 이제 글을 띄우면 됨
-			firebase.database().ref('/List/39/content').once('value', function(snapshot){
+			firebase.database().ref('/Board/1/content').once('value', function(snapshot){
 				console.log("들어오나?");
-				if(snapshot != null){
-					// 사진이 있다는 거니 사진 띄우라 알았니?
-					console.log(snapshot.val());
-					//$("#testDiv").text(snapshot.val());
+				if(snapshot.val() != null){
+					$("#contentData").text(snapshot.val());
 				}
 			});
 		}());

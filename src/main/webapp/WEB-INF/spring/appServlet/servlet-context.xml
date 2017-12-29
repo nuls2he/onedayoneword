@@ -50,6 +50,6 @@
 	<context:component-scan base-package="org.odow.web" />
 	<context:component-scan base-package="org.odow.member.controller" />
 	<context:component-scan base-package="org.odow.main.web" />
-	
+	<context:component-scan base-package="org.odow.content.web"/>
 	
 </beans:beans>

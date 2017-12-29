@@ -8,7 +8,6 @@ import javax.annotation.Resource;
 
 import org.apache.commons.io.IOUtils;
 import org.odow.content.service.ContentService;
-import org.odow.domain.Content;
 import org.odow.util.MediaUtils;
 import org.odow.util.UploadFileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +16,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.extern.java.Log;
@@ -36,15 +36,23 @@ public class OneDayController {
 	private ContentService service;
 	
 	@RequestMapping("/insert")
-	public void insertData(Content content) {
-		log.info("title : " + content.getTitle());
-		log.info("writer : " + content.getWriter());
-		log.info("content : " + content.getContent());
+	public void insertData() {
+
 	}
 	
-	@RequestMapping("/detail")
-	public void detail() {
+	@GetMapping("/detail")
+	public void detail(@RequestParam("no")int no, Model model) {
+		model.addAttribute("no", no);
+	}
+	
+	@PostMapping("/detail")
+	public void detailPost() {
 		
+	}
+	
+	@GetMapping("/modify")
+	public void modify(@RequestParam("no")int no, Model model) {
+		model.addAttribute("no", no);
 	}
 	
 	@Resource(name = "uploadPath")
