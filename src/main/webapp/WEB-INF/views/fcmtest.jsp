@@ -10,23 +10,20 @@
 	<label for="noti">하루 한 번 키워드 알림 받기</label> <input type="checkbox" id="noti">
 	<h6>여기에는 키워드 알림 받기 위해서 어떻게 해야하는지 설명하는 캡쳐 이미지 같은 걸 넣어놓으면 좋을 듯 하다 (알림 허용 버튼 누르라고 안내....)</h6>
 	
-	<h2 id="token"></h2>
-	
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"
 	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
 	crossorigin="anonymous"></script>
 	<script>
+	
 		$("#noti").on("change", function() {
 			
 			if(this.checked) {
-				window.open("https://prac-94bd2.firebaseapp.com", "", "width=286,height=100");
+				//  authDomain  : oneday-1123.firebaseapp.com
+				//  databaseURL: "https://oneday-1123.firebaseio.com",
+				window.open("https://oneday-1123.firebaseapp.com", "", "width=286,height=100");
 			}
 		});
 		
-		
-		function getToken(token) {
-			$("#token").text(token);
-		}
 	</script>
 </body>
 </html>

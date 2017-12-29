@@ -284,7 +284,7 @@
 <div class="login-wrapper">
     <div class="login-left">
 <!--         <img src="http://res.cloudinary.com/dzqowkhxu/image/upload/v1513679279/bg-login_bxxfkf.png"> -->
-				<img src="/resources/HTML/img/dot.png">
+			<!-- 	<img src="/resources/HTML/img/dot.png"> -->
         <div class="h1">ONE DAY-ONE WORD</div> <br>
     </div>
     <div class="login-right">
