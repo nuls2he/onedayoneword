@@ -43,4 +43,11 @@
 		                 from test_keyword
 		                where keyword = #{keyword})
 	</select>
+	<select id="getChartCount">
+		select count(*) as count
+		  from test_keyword
+		 where keyword = #{keyword} and date_foramt(regdate, '%Y-%m-%d') = #{date}
+		 group by 'date', siteno
+		 order by siteno
+	</select>
 </mapper>

@@ -38,5 +38,10 @@ public class MainServiceImpl implements MainService {
 	public List<Original> getOriginalData(String keyword) {
 		return mapper.getOriginalData(keyword);
 	}
+
+	@Override
+	public int getChartCount(String keyword, String date) {
+		return mapper.getChartCount(keyword, date);
+	}
 	
 }

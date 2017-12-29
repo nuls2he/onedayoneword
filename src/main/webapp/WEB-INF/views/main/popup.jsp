@@ -216,7 +216,7 @@
 <body>
 
 <nav>
-    <header><button id="naver" style="background-color:rgba(0,0,0,0);"><img src="/resources/HTML/img/naverlogo.png"></button></header>
+    <header><button id="naver" style="background-color:rgba(0,0,0,0); width: 100%;"><img src="/resources/HTML/img/naverlogo.png" style="width: 100%;"></button></header>
     <section>
         <ul>
             <li class="red">전체</li>
@@ -248,11 +248,10 @@
 </article>
 
 <script>
-
-	var keyword = "김연아";
 	
 	$("#naver").click(function () {
-	    window.open("https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=1&ie=utf8&query=" + keyword, "_blank");
+// 	    window.open("https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=1&ie=utf8&query=" + keyword, "_blank");
+		location.href="https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=1&ie=utf8&query=" + keyword;
 	});
 	
 	var keyword = "${keyword}";
@@ -276,29 +275,48 @@
 		});
 	});
 	
+	var date = new Date();
+	var dd = date.getDate();
+	var mm = date.getMonth()+1;
+	var yyyy = date.getFullYear();
+	
+	var arr = [];
+	
+	for(var i = 6; i >= 0; i--){
+		
+		date = yyyy + "-" + mm + "-" + dd;
+		arr[i] = date;
+		dd -= 1;
+		
+	}
+	
+	var arrAll = [];
+	var arrBoy = [];
+	var arrGirl = [];
+	
     var data1 = {
-        labels : ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+        labels : arr, // 그래프
         datasets : [
             {
                 fillColor : "rgba(56,175,91,.1)",
                 strokeColor : "rgba(56,175,91,1)",
                 pointColor : "rgba(56,175,91,1)",
                 pointStrokeColor : "rgba(0,0,0,0.6)",
-                data : [50,50,50,50,50,50,50]
+                data : [100,70,20,40,80,40,100]
             },
             {
                 fillColor : "rgba(234,142,57,.1)",
                 strokeColor : "rgba(234,142,57,1)",
                 pointColor : "rgba(234,142,57,1)",
                 pointStrokeColor : "rgba(0,0,0,0.6)",
-                data : [100, 100, 100, 100, 100, 100, 100]
+                data : [50, 130, 80, 160, 20, 110, 80]
             },
             {
                 fillColor : "rgba(236,72,127,.1)",
                 strokeColor : "rgba(236,72,127,1)",
                 pointColor : "rgba(236,72,127,1)",
                 pointStrokeColor : "rgba(0,0,0,0.6)",
-                data : [150,150,150,150,150,150,150]
+                data : [150,200,100,200,100,150,180]
             }
         ]
     }

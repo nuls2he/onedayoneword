@@ -80,11 +80,11 @@
             right: 0px;
             font-size: 50px;
             font-weight: bold;
-            color: rgba(255, 249, 0, 0.75); /*255,255,255,0.75*/
-            text-shadow: 0 0 10px rgba(255, 252, 0, 0.95);
+            color: rgba(255, 255, 255, 0.75); /*255,255,255,0.75*/
+            text-shadow: 0 0 25px rgba(255, 255, 255, 1);
         }
         .element .symbol:hover{
-        	color: rgba(255,255,255,0.25);
+        	color: rgba(237,255,0,0.5);
         }
         .element .details {
             position: absolute;
@@ -95,19 +95,19 @@
             color: rgba(127,255,255,0.75);
         }
         button {
-            color: rgba(127,255,255,0.75);
+            color: rgb(237, 255, 0);
             background: transparent;
-            outline: 1px solid rgba(127,255,255,0.75);
+            outline: 1px solid rgb(237, 255, 0);
             border: 0px;
             padding: 5px 10px;
             cursor: pointer;
         }
         button:hover {
-            background-color: rgba(0,255,255,0.5);
+            background-color: rgba(237,255,0,0.5);
         }
         button:active {
-            color: #000000;
-            background-color: rgba(0,255,255,0.75);
+            color: #ffffff;
+            background-color: rgba(237,255,0,0.75);
         }
     </style>
 

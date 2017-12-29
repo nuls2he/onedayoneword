@@ -12,5 +12,6 @@ public interface MainService {
 	public List<Keyword> getGirl();
 	public List<String> getNaver();
 	public List<Original> getOriginalData(String keyword);
+	public int getChartCount(String keyword, String date);
 	
 }

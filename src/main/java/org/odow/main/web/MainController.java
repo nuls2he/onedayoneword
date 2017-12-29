@@ -72,6 +72,11 @@ public class MainController {
 		return "redirect:/main/index";
 	}
 	
+	@PostMapping("/chartCount")
+	public int chartCount(String keyword, String date) {
+		return service.getChartCount(keyword, date);
+	}
+	
 	@GetMapping("/chart")
 	public void chart() {
 		
