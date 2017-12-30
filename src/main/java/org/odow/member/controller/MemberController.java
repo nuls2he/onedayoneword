@@ -70,13 +70,10 @@ public class MemberController {
 
 		return "redirect:/member/loginhome";
 
-	}
-	*/
-	
 	@GetMapping("/testlogin")
 	public void testlog(Model model , HttpSession session) {
-	System.out.println("체크체크");
-	
+		System.out.println("체크체크");
+		
 		if(session.getAttribute("login") != null) {
 			System.out.println("들어옴");
 			System.out.println(session.getAttribute("login"));
@@ -84,6 +81,9 @@ public class MemberController {
 			System.out.println("왜됌...");
 		}
 	}
+	
+	}
+	*/
 	
 	@GetMapping("/loginhome")
 	public void loginhome() {
@@ -109,8 +109,13 @@ public class MemberController {
 	}
 	
 	@GetMapping("/mypage")
-	public void mypage() {
-		
+	public void mypage(Model model , HttpSession session) {
+		if(session.getAttribute("login") != null) {
+			System.out.println("들어옴");
+			System.out.println(session.getAttribute("login"));
+		}else {
+			System.out.println("왜됌...");
+		}
 	}
 
 }

@@ -486,7 +486,6 @@ input[type="checkbox"]:checked:after {
 			var token = firebase.database().ref("/temp/token");
 			token.on("value", function(e){
 				temp = e.val();
-				alert(temp);
 				
 				var chk = document.getElementsByName("child");
 				for (var i = 0; i < chk.length; i++) {
@@ -497,15 +496,21 @@ input[type="checkbox"]:checked:after {
 						}
 					}
 				}
+				
 				var member = {
 					id : $("#id").val(),
 					pw : $("#pw").val(),
 					m : m,
 					f : f,
 					zone : $("#zone").val(),
-					time : $("#time").val(),
+					time : $("#time").val() ,
 					token : temp
-				     };
+				};
+				
+			if (!$("#call").checked) {
+				delete member.token;
+				delete member.time;
+			}
 				createData(member);
 			});
 		});
@@ -518,8 +523,6 @@ input[type="checkbox"]:checked:after {
 				var list = e.val();
 				console.log(list);
 				for (keyStr in list) {
-						console.log("아이디있는거 : " + keyStr);
-						console.log("아이디넣은거 : " + id);
 					if (keyStr == id) {
 						$("#idCheck").html("이미 존재하는 아이디 입니다.");
 						$("div[id=idCheck]").attr("style", "color:red");
@@ -549,7 +552,7 @@ input[type="checkbox"]:checked:after {
 		});
 
 		$("#call").on(
-				"change",
+				"click",
 				function() {
 					if (this.checked) {
 						window.open("https://oneday-1123.firebaseapp.com", "",
@@ -562,9 +565,11 @@ input[type="checkbox"]:checked:after {
 		function openMe() { //셀렉트 박스 활성 함수
 			$("select[name=time]").removeAttr("disabled");
 		}
+	
 
 		function notopen() { //셀렉트 박스 활성 함수
 			$("select[name=time]").attr("disabled", "disabled");
+			
 		}
 
 		/*  function readAllData(){

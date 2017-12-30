@@ -29,11 +29,10 @@
                         <div class="menu-container">
                             <ul class="navbar-nav navbar-nav-right">
                                 <li class="nav-item"><a class="nav-item-child nav-item-hover" href="/main/index">Home</a></li>
-                                <li class="nav-item"><a class="nav-item-child nav-item-hover" href="pricing.html">Pricing</a></li>
-                                <li class="nav-item"><a class="nav-item-child nav-item-hover active" href="about.html">About</a></li>
-                                <li class="nav-item"><a class="nav-item-child nav-item-hover" href="products.html">Products</a></li>
-                                <li class="nav-item"><a class="nav-item-child nav-item-hover" href="faq.html">FAQ</a></li>
-                                <li class="nav-item"><a class="nav-item-child nav-item-hover" href="contact.html">Contact</a></li>
+                                <li class="nav-item"><a class="nav-item-child nav-item-hover" href="pricing.html">채팅</a></li>
+                                <li class="nav-item"><a class="nav-item-child nav-item-hover" href="/main/boardlist">게시판</a></li>
+                                 <li class="nav-item"><a class="nav-item-child nav-item-hover" href="/../member/mypage">My Page</a></li>
+                                <li class="nav-item"><a class="nav-item-child nav-item-hover" href="/logout">Log out</a></li>
                             </ul>
                         </div>
                     </div>
