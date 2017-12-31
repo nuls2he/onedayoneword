@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.odow.domain.ChartCount;
+import org.odow.domain.Keyword;
 import org.odow.domain.Original;
 import org.odow.main.service.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -60,8 +61,12 @@ public class MainController {
 	}
 	
 	@GetMapping("/admin")
-	public void admin() {
+	public void admin(Model model) {
 		
+		model.addAttribute("todayKeyword", service.todayKeyword());
+		model.addAttribute("allKeyword", service.allKeyword());
+		model.addAttribute("newDic", service.newDic());
+		model.addAttribute("excDic", service.excDic());
 	}
 	
 	@PostMapping("/loginProcess")
@@ -73,8 +78,9 @@ public class MainController {
 	}
 	
 	@PostMapping("/chartCount")
-	public int chartCount(String keyword, String date) {
-		return service.getChartCount(keyword, date);
+	@ResponseBody
+	public List<Integer> chartCount(ChartCount chartCount) {
+		return service.getChartCount(chartCount);
 	}
 	
 	@GetMapping("/chart")

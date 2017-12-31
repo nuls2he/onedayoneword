@@ -268,7 +268,7 @@
 			}
 		}).done(function (result) {
 			for(var i = 0; i < result.length; i++){
-				console.log(result[i].originaldata);
+// 				console.log(result[i].originaldata);
 				str += "<tr><td>" + result[i].originaldata + "</td><td>" + result[i].siteno + "</td></tr>";
 			}
 			$("#tResult").html(str);
@@ -282,17 +282,39 @@
 	
 	var arr = [];
 	
+	var arrAll = [];
+	var arrBoy = [];
+	var arrGirl = [];
+	
+	$.ajax({
+		url: "/main/chartCount",
+		type: "POST",
+		data: {
+			"keyword":keyword,
+			"date":"2017-12-29"
+		}
+	}).done(function (result) {
+		var list = result;
+		arrAll[0] = list[0] + list[1];
+		arrGirl[0] = list[0];
+		arrBoy[0] = list[1];
+	});
+	
 	for(var i = 6; i >= 0; i--){
 		
 		date = yyyy + "-" + mm + "-" + dd;
 		arr[i] = date;
 		dd -= 1;
 		
+		console.log(keyword);
+		console.log(date);
 	}
 	
-	var arrAll = [];
-	var arrBoy = [];
-	var arrGirl = [];
+
+	
+	console.dir(arrAll);
+	console.dir(arrGirl);
+	console.dir(arrBoy);
 	
     var data1 = {
         labels : arr, // 그래프

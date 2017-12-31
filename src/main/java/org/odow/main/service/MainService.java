@@ -2,6 +2,7 @@
 
 import java.util.List;
 
+import org.odow.domain.ChartCount;
 import org.odow.domain.Keyword;
 import org.odow.domain.Original;
 
@@ -12,6 +13,10 @@ public interface MainService {
 	public List<Keyword> getGirl();
 	public List<String> getNaver();
 	public List<Original> getOriginalData(String keyword);
-	public int getChartCount(String keyword, String date);
+	public List<Integer> getChartCount(ChartCount chartCount);
+	public List<String> todayKeyword();
+	public List<String> allKeyword();
+	public List<String> newDic();
+	public List<String> excDic();
 	
 }

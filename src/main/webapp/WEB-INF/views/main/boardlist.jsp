@@ -85,7 +85,7 @@
 	.responstable th {
 		display: none;
 		border: 1px solid #FFF;
-		background-color: #001459;
+		background-color: #568e94;
 		color: #FFF;
 		padding: 1em;
 	}
@@ -172,10 +172,10 @@
 		
 	<c:import url="../includes/header.jsp"></c:import>
 		
-         <div class="parallax-window" data-parallax="scroll" data-image-src="/resources/HTML/img/1920x1080/006.jpg">
+         <div class="parallax-window" data-parallax="scroll" data-image-src="/resources/HTML/img/gogogogo.gif">
             <div class="parallax-content container">
                 <h1 class="carousel-title">BOARD</h1>
-                <p>Lorem ipsum dolor amet consectetur adipiscing dolore magna aliqua <br/> enim minim estudiat veniam siad venumus dolore</p>
+<!--                 <p>한 달여 동안 조 이름을 네 번 바꿨지만 우리는 아직도 마음에 들지 안항서 새로 지은 조 이름은 <br/> 와사비</p> -->
             </div>
         </div>
         <!--========== PARALLAX ==========-->
@@ -213,7 +213,7 @@
         			<option>강동구</option>
         		</select>
         		<input type="text" id="searchWord"/>
-        		<button class="searchBtn btn btn-primary" style="background-color: #011456; border-color: #01155a;">검색</button>
+        		<button class="searchBtn btn btn-primary" style="background-color: #568e94; border-color: #568e94;">검색</button>
         	</div>
         	<br/>
    			<table class="responstable" style="width: 70%; margin:0 auto;">
@@ -247,8 +247,8 @@
 	var searchList = [];
 	
 	// 한페이지에 보여지는 글목록 수와 페이징 사이즈 수
-	var listSize = 4;
-	var pageSize = 2;
+	var listSize = 10;
+	var pageSize = 5;
 	
 	// 페이징 변수
 	var listCount = 0;
@@ -443,7 +443,7 @@
 <script src="/resources/HTML/js/components/swiper.min.js" type="text/javascript"></script>
 <script src="/resources/HTML/js/components/wow.min.js" type="text/javascript"></script>
 
-<c:import url="../includes/footer.jsp"></c:import>
+<%-- <c:import url="../includes/footer.jsp"></c:import> --%>
 </body>
 	
 </html>

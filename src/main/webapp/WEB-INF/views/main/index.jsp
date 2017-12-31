@@ -95,20 +95,25 @@
             color: rgba(127,255,255,0.75);
         }
         button {
-            color: rgb(237, 255, 0);
+            color: rgb(255, 255, 255);
             background: transparent;
-            outline: 1px solid rgb(237, 255, 0);
+            outline: 1px auto rgb(255, 255, 255);
             border: 0px;
             padding: 5px 10px;
             cursor: pointer;
         }
         button:hover {
-            background-color: rgba(237,255,0,0.5);
+            background-color: rgba(255,255,255,0.5);
         }
         button:active {
             color: #ffffff;
-            background-color: rgba(237,255,0,0.75);
+            background-color: rgba(255,255,255,0.75);
         }
+        
+        .header:hover{
+        	background-color: rgba(0,0,0,0.5);
+        }
+        
     </style>
 
 </head>
@@ -394,7 +399,7 @@
 <script src="/resources/HTML/js/components/swiper.min.js" type="text/javascript"></script>
 <script src="/resources/HTML/js/components/wow.min.js" type="text/javascript"></script>
 
-<c:import url="../includes/footer.jsp"></c:import>
+<%-- <c:import url="../includes/footer.jsp"></c:import> --%>
 </body>
 	
 </html>
