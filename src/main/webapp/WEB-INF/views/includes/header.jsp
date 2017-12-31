@@ -5,7 +5,7 @@
         <header class="header navbar-fixed-top">
             <!-- Navbar -->
             <nav class="navbar" role="navigation">
-                <div class="container">
+                <div class="container" style="margin: 0;">
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="menu-container">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
@@ -16,8 +16,7 @@
                         <!-- Logo -->
                         <div class="logo">
                             <a class="logo-wrap" href="index.html">
-                                <img class="logo-img logo-img-main" src="/resources/HTML/img/logo.png" alt="Asentus Logo">
-                                <img class="logo-img logo-img-active" src="/resources/HTML/img/logo-dark.png" alt="Asentus Logo">
+                                <img class="logo-img logo-img-main" src="/resources/HTML/img/mainlogo.png" alt="Asentus Logo">
                             </a>
                         </div>
                         <!-- End Logo -->
