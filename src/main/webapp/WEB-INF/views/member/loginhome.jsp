@@ -100,7 +100,7 @@
             transform: translateY(15px);
         }
 
-        .h1 {
+        #memberlogo {
             color: #000;
             opacity: 0.8;
             font-size: 20px;
@@ -114,7 +114,7 @@
            font-family: 'Alfa Slab One', cursive;
         }
 
-        .open .h1 {
+        .open  #memberlogo {
             -webkit-transform: translateX(200px) translateZ(0);
             transform: translateX(200px) translateZ(0);
         }
@@ -145,12 +145,11 @@
             justify-content: center;
             align-items: center;
             transition: all 770ms cubic-bezier(0.51, 0.04, 0.12, 0.99);
-            overflow: hidden;
         }
 
         .login-left img {
             object-fit: cover;
-            width: 100%;
+            width: 500px;
             height: 100%;
             display: block;
             transition: all 770ms cubic-bezier(0.51, 0.04, 0.12, 0.99);
@@ -159,7 +158,7 @@
 
         .open .login-left img {
             -webkit-transform: translateX(280px) translateZ(0);
-            transform: translateX(280px) translateZ(0);
+            transform: translateX(200px) translateZ(0);
         }
 
         .open .login-left {
@@ -285,7 +284,7 @@
     <div class="login-left">
 <!--         <img src="http://res.cloudinary.com/dzqowkhxu/image/upload/v1513679279/bg-login_bxxfkf.png"> -->
 			<!-- 	<img src="/resources/HTML/img/dot.png"> -->
-        <div class="h1">ONE DAY-ONE WORD</div> <br>
+        <div> <img id="memberlog" src="/resources/HTML/img/memlogo.gif"></div>  <br>
     </div>
     <div class="login-right">
         <div class="h2">LOG IN</div>
@@ -334,7 +333,7 @@
 
 <script>
 
-    var openLoginRight = document.querySelector('.h1');
+    var openLoginRight = document.querySelector('#memberlog');
     var loginWrapper = document.querySelector('.login-wrapper');
 
     openLoginRight.addEventListener('click', function(){

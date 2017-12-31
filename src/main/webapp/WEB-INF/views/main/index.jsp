@@ -129,7 +129,7 @@
            <!-- Wrapper for slides -->
            <div class="carousel-inner" role="listbox">
                <div class="item active">
-                   <img class="img-responsive" src="/resources/HTML/img/1920x1080/006.jpg" alt="Slider Image">
+                   <img class="img-responsive" src="/resources/HTML/img/gogogogo.gif" alt="Slider Image">
                   		<div id="container">
                    		</div>
                    		
