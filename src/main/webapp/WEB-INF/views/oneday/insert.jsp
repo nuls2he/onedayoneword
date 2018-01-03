@@ -26,6 +26,8 @@
         <link rel="shortcut icon" href="favicon.ico"/>
         
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        
+        <link rel="stylesheet" type="text/css" href="/resources/HTML/css/sweetalert2.min.css">
 <style>
 .fileDrop{
 	width: 100%;
@@ -190,9 +192,6 @@
        			<div class="row">
 				
 				<div>
-					<div id="popup"  style="z-index: 2">
-						<h1>제목 입력해라</h1>
-					</div>
 					<div class="col-sm-5 sm-margin-b-30">
                		<h2 class="color-white">Send Us A Note</h2>
                			
@@ -257,9 +256,10 @@
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenLite.min.js"></script>
 
 	<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+	
+	<script src="/resources/HTML/js/sweetalert2.min.js"></script>
 
 	<script>
-
 		// ------------Initialize Firebase---------------
 		
 		var config = {
@@ -397,16 +397,28 @@
 			
 			console.log($("#location").val());
 			if($("#location option").index($("#location option:selected")) == 0){
-				console.log("선택하라!");
+				swal(
+						  '선택은 하셔야죠...',
+						  '알아서 올려주지 않습니다.',
+						  'error'
+						);	
 				return;
 			}
 			
 			if($("input[name='title']").val() == ""){
-				console.log("하하하하");
+				swal(
+						  '제목은 쓰셔야죠...',
+						  '제목을 지어드리진 않습니다.',
+						  'error'
+						);	
 				return;
 			}
 			if($("textarea[name='content']").val() == ""){
-				console.log("호호호호");
+				swal(
+						  '내용은 쓰셔야죠...',
+						  '내용을 머리 밖으로...',
+						  'error'
+						);	
 				return;
 			}
 				
@@ -468,94 +480,6 @@
 		}
 
 		// ------------FirebaseDB Test----------------
-		
-		
-		// ------------Popup-------------
-		
-
-		var pieces = 70, speed = 1, pieceW = 30, pieceH = 30;
-
-		for (var i = pieces - 1; i >= 0; i--) {
-			$('#popup')
-					.prepend(
-							'<div class="piece" style="width:'+pieceW+'px; height:'+pieceH+'px"></div>');
-		};
-
-		function breakGlass(from) {
-			if (from === "reverse") {
-				$('.piece').each(function() {
-					TweenLite.to($(this), speed, {
-						x : 0,
-						y : 0,
-						rotationX : 0,
-						rotationY : 0,
-						opacity : 1,
-						z : 0
-					});
-					TweenLite.to($('#popup h1'), 0.2, {
-						opacity : 1,
-						delay : speed
-					});
-				});
-				return;
-			}
-
-			if (!from) {
-				TweenLite.to($('#popup h1'), 0.2, {
-					opacity : 0
-				});
-			} else {
-				TweenLite.from($('#popup h1'), 0.5, {
-					opacity : 0,
-					delay : speed
-				});
-			}
-
-			$('.piece')
-					.each(
-							function() {
-								var distX = getRandomArbitrary(-250, 250), distY = getRandomArbitrary(
-										-250, 250), rotY = getRandomArbitrary(
-										-720, 720), rotX = getRandomArbitrary(
-										-720, 720), z = getRandomArbitrary(
-										-500, 500);
-
-								if (!from) {
-									TweenLite.to($(this), speed, {
-										x : distX,
-										y : distY,
-										rotationX : rotX,
-										rotationY : rotY,
-										opacity : 0,
-										z : z
-									});
-								} else {
-									TweenLite.from($(this), speed, {
-										x : distX,
-										y : distY,
-										rotationX : rotX,
-										rotationY : rotY,
-										opacity : 0,
-										z : z
-									});
-								}
-							});
-		}
-
-		function getRandomArbitrary(min, max) {
-			return Math.random() * (max - min) + min;
-		}
-
-		$('.piece, h1').click(function() {
-			breakGlass();
-		});
-		$('.reverse').click(function() {
-			breakGlass('reverse');
-		});
-
-		breakGlass(true);
-		
-		// ------------Popup-------------
 </script>
 
 
