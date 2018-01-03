@@ -127,16 +127,16 @@ body {
 	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-pack: center;
-	-webkit-justify-content: center;
+	/* 	-webkit-justify-content: center; */
 	-ms-flex-pack: center;
-	justify-content: center;
+	/* justify-content: center;
 	-webkit-box-align: center;
-	-webkit-align-items: center;
+	-webkit-align-items: center; */
 	-ms-flex-align: center;
 	align-items: center;
 	overflow: hidden;
-	background: url('../resources/HTML/img/login.gif');
-	background-color: #464646;
+	/* 	background: url('../resources/HTML/img/login.gif'); */
+	background-color: #fff;
 	background-size: cover;
 }
 
@@ -166,11 +166,10 @@ button, input:focus {
 	letter-spacing: -0.00933333em;
 }
 
-/* .form-group {
-	position: relative;
-	padding-top: 15px;
-	margin-top: 5px;
-} */
+.open .login-right {
+	-webkit-transform: translateX(0px) translateZ(0);
+	transform: translateX(0px) translateZ(0);
+}
 
 label {
 	position: absolute;
@@ -191,6 +190,80 @@ input:placeholder-shown+label {
 	transform: translateY(15px);
 }
 
+.open {
+	-webkit-transform: translateX(200px) translateZ(0);
+	transform: translateX(200px) translateZ(0);
+}
+
+.login-wrapper {
+	padding-top: 100px;
+	width: 600px;
+	height: 500px;
+	background-color: #fff;
+	box-shadow: 0px 2px 50px rgba(0, 0, 0, 0.2);
+	border-radius: 4px;
+	overflow: hidden;
+	position: relative;
+	border-radius: 10px;
+}
+
+.open .login-left {
+	-webkit-transform: translateX(-400px) translateZ(0);
+	transform: translateX(-400px) translateZ(0);
+}
+
+.login-right {
+	/* position: absolute; */
+	padding: 40px;
+	margin: 0 auto;
+	top: 0;
+	right: 0;
+	width: 400px;
+	-webkit-transform: translateX(400px) translateZ(0);
+	transform: translateX(400px) translateZ(0);
+	transition: all 770ms cubic-bezier(0.51, 0.04, 0.12, 0.99);
+}
+
+.button-area {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 30px;
+}
+
+.btn {
+	font-family: inherit;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	background-color: transparent;
+	border: none;
+	border-radius: 2px;
+	height: 40px;
+	width: 100%;
+	display: flex;
+	padding: 0 130px;
+	cursor: pointer;
+	font-size: 16px;
+	text-transform: uppercase;
+	letter-spacing: -0.00933333em;
+	text-align: center;
+}
+
+.btn-primary {
+	color: #fff;
+	background: linear-gradient(198.08deg, #B4458C 45.34%, #E281E7 224.21%);
+	box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn-secondary {
+	color: #C359AA;
+}
+
+.form-group {
+	position: relative;
+	padding-top: 15px;
+	margin-top: 5px;
+}
+
 .h1 {
 	color: #000;
 	opacity: 0.8;
@@ -205,29 +278,6 @@ input:placeholder-shown+label {
 	font-family: 'Alfa Slab One', cursive;
 }
 
-.open .h1 {
-	-webkit-transform: translateX(200px) translateZ(0);
-	transform: translateX(200px) translateZ(0);
-}
-
-.h2 {
-	color: #000;
-	letter-spacing: -0.00933333em;
-	font-weight: 600;
-	padding-bottom: 15px;
-}
-
-.login-wrapper {
-	width: 750px;
-	height: 600px;
-	background-color: #fff;
-	box-shadow: 0px 2px 50px rgba(0, 0, 0, 0.2);
-	border-radius: 4px;
-	overflow: hidden;
-	position: relative;
-	border-radius: 10px;
-}
-
 .login-left {
 	width: 100%;
 	height: 100%;
@@ -240,7 +290,7 @@ input:placeholder-shown+label {
 
 .login-left img {
 	object-fit: cover;
-	width: 500px ;
+	width: 500px;
 	height: 100%;
 	display: block;
 	transition: all 770ms cubic-bezier(0.51, 0.04, 0.12, 0.99);
@@ -250,27 +300,6 @@ input:placeholder-shown+label {
 .open .login-left img {
 	-webkit-transform: translateX(280px) translateZ(0);
 	transform: translateX(200px) translateZ(0);
-}
-
-.open .login-left {
-	-webkit-transform: translateX(-400px) translateZ(0);
-	transform: translateX(-400px) translateZ(0);
-}
-
-.login-right {
-	padding: 40px;
-	position: absolute;
-	top: 0;
-	right: 0;
-	width: 400px;
-	-webkit-transform: translateX(400px) translateZ(0);
-	transform: translateX(400px) translateZ(0);
-	transition: all 770ms cubic-bezier(0.51, 0.04, 0.12, 0.99);
-}
-
-.open .login-right {
-	-webkit-transform: translateX(0px) translateZ(0);
-	transform: translateX(0px) translateZ(0);
 }
 
 .checkbox-container {
@@ -333,138 +362,41 @@ input[type="checkbox"]:after {
 
 input[type="checkbox"]:checked:after {
 	opacity: 1;
-}
-
-.button-area {
-	display: flex;
-	justify-content: space-between;
-	margin-top: 30px;
-}
-
-.btn {
-	font-family: inherit;
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	background-color: transparent;
-	border: none;
-	border-radius: 2px;
-	height: 40px;
-	width: 100%;
-	display: flex;
-	padding: 0 130px;
-	cursor: pointer;
-	font-size: 16px;
-	text-transform: uppercase;
-	letter-spacing: -0.00933333em;
-	text-align: center;
-}
-
-.btn-primary {
-	color: #fff;
-	background: linear-gradient(198.08deg, #B4458C 45.34%, #E281E7 224.21%);
-	box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.btn-secondary {
-	color: #C359AA;
-}
-
-.idCheck {
-	margin-top: 10px;
-	font-size: 12px;
-}
-
-.pwCheck {
-	margin-top: 10px;
-	margin-bottom: 10px;
-	font-size: 12px;
+	body
 }
 </style>
 </head>
-
 <body>
-
 	<div class="login-wrapper open">
-		<div class="login-left">
-			<!--         <img src="http://res.cloudinary.com/dzqowkhxu/image/upload/v1513679279/bg-login_bxxfkf.png"> -->
-			<!--         <img src="../resources/HTML/img/dot.png"> -->
-		  <div> <img id="memberlog" src="/resources/HTML/img/memlogo.gif"></div>  <br>
-			<br>
-		</div>
 		<div class="login-right">
-			<div class="h2">회원가입</div>
-
 			<div class="form-group">
-				<input type="text" id="id" placeholder="Id" required> <label
-					for="id">Id</label>
-				<!-- <button id="checkid">중복체크</button> -->
-			</div>
-			<div class="idCheck" id="idCheck"></div>
-
-			<div class="form-group">
-				<input type="password" id="pw" placeholder="Password"> <label
-					for="pw">Password</label>
-			</div>
-			<div class="form-group">
-				<input type="password" id="pwCheck" placeholder="Password check">
-				<label for="pw">Password check</label>
-			</div>
-			<div class="pwCheck" id="pwcheckDiv"></div>
-			
-		<!-- 	<div class="checkbox-container">
-				<input type="checkbox" name="child" id="m" value="남자">
-				<div class="text-checkbox">남자</div>
-				<input type="checkbox" name="child" id="f" value="여자">
-				<div class="text-checkbox">여자</div>
-			</div> -->
-			
-
-			<span class="select "> <select name="age"
-				onclick="return false;" id="age">
-					<option value="10">10대</option>
-        			<option value="20">20대</option>
-        			<option value="30">30대</option>
-        			<option value="40">40대</option>
-        	
-			</select>
-			</span>
-
-			<div class="checkbox-container">
-				<input type="checkbox" name="call" id="call">
-				<div class="text-checkbox">알림 허용</div>
+				<input type="text" id="id" placeholder="아이디를 입력해 주세요" required>
+				<label for="id">Id</label>
 			</div>
 
-			<span class="select"> <select name="time"
-				onclick="return false;" id="time" disabled>
-					<option value="12">12시</option>
-					<option value="3">3시</option>
-					<option value="6">6시</option>
-			</select>
-			</span>
 			<span class="select "> <select name="pwfind"
 				onclick="return false;" id="pwfind">
 					<option>좋아하는 색은 무엇입니까?</option>
-        			<option>좋아하는 음식은 무엇입니까?</option>
-        			<option>제일 기억에 남는 순간은 ?</option>
+					<option>좋아하는 음식은 무엇입니까?</option>
+					<option>제일 기억에 남는 순간은 ?</option>
 			</select>
 			</span>
-			
-			
+
 			<div>
 				<input type="text" id="answer" placeholder="답변 해주세요"> <label
 					for="answer"></label>
 			</div>
-			
 			<div class="button-area">
-				<button class="btn btn-primary" id="saveBtn">등록</button>
+				<button class="btn btn-primary" id="findBtn">확인</button>
 			</div>
 		</div>
 	</div>
+
+
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"
 		integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-		crossorigin="anonymous">
-		
-	</script>
+		crossorigin="anonymous"></script>
+	<script src="/resources/HTML/js/chart.js"></script>
 
 	<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
 	<script>
@@ -480,127 +412,67 @@ input[type="checkbox"]:checked:after {
 		firebase.initializeApp(config);
 	</script>
 
-
 	<script>
-		var openLoginRight = document.querySelector('#memberlog');
-		var loginWrapper = document.querySelector('.login-wrapper');
+	
 
-		openLoginRight.addEventListener('click', function() {
-			loginWrapper.classList.toggle('open');
-		});
-	</script>
+    $("#findBtn").on("click", function(){
+        var find = firebase.database().ref("/member");
+        var id= $("#id").val();
 
+        find.on("value",function(e){
+            var list = e.val();
+            for(key in list){
+                if(key == id ){
+                    checkpw(key);
+                    break;
+                }else {
+                    alert("아이디를 다시 입력해 주세요");
+                    break;
+                }
+            }
+        });
+    });
 
-	<script>
-		function createData(data, callback) {
-			var member = data;
-			firebase.database().ref("member/" + member.id).set(member);
-			location.href = '/member/loginhome';
-		}
-		var temp = '';
-		
-		$("#saveBtn").on("click", function() {
-			var token = firebase.database().ref("/temp/token");
-			token.on("value", function(e){
-				temp = e.val();
-				
-				var member = {
-					id : $("#id").val(),
-					pw : $("#pw").val(),
-					age : $("#age").val(),
-					time : $("#time").val(),
-					pwfind : $("#pwfind").val(),
-					answer : $("#answer").val(),
-					token : temp
-				};
-				
-			if (!$("#call").prop("checked")) {
-				delete member.token;
-				delete member.time;
-			}
-				createData(member);
-			});
-		});
+function checkpw(key){
+        var data = firebase.database().ref("/member/"+key);
+        var pwfind = $("#pwfind").val();
+          data.on("value", function(e){
+            var pwfind2 =e.val();
+            pwfind2 = pwfind2.pwfind;
+                if(pwfind2 == pwfind){
+                    checkan(key)
+                }else{
+                    alert("질문을 다시 체크해주세요");
+                }
 
-		$("#id").on("keyup", function() {
-			var member = firebase.database().ref().child("/member");
-			var id = $("#id").val();
+        });
+    }
 
-			member.on("value", function(e) {
-				var list = e.val();
-				console.log(list);
-				for (keyStr in list) {
-					if (keyStr == id) {
-						$("#idCheck").html("이미 존재하는 아이디 입니다.");
-						$("div[id=idCheck]").attr("style", "color:red");
-						break;
-					} else {
-						$("#idCheck").html("사용 가능한 아이디 입니다.");
-						$("div[id=idCheck]").attr("style", "color:green");
-						
-					}
-				}
-			});
-		});
+function checkan(key){
+        var data2 = firebase.database().ref("/member/" + key);
+        var answer = $("#answer").val();
 
-		$("#pwCheck").on("keyup", function() {
-			var $pw = $("#pw").val();
-			var $pwCheck = $("#pwCheck").val();
-
-			if ($pw != $pwCheck) {
-
-				$("#pwcheckDiv").html("비밀번호와 불일치");
-			} else {
-				$("#pwcheckDiv").html("비밀번호와 일치");
-			}
-			if ($pwCheck == "") {
-				$("#pwcheckDiv").html("");
-			}
-		});
-
-		$("#call").on(
-				"click",
-				function() {
-					if (this.checked) {
-						window.open("https://oneday-1123.firebaseapp.com", "",
-								"width=286,height=100");
-						openMe()
-					} else {
-						close()
-					}
-				});
-		
-		function openMe() { //셀렉트 박스 활성 함수
-			$("select[name=time]").removeAttr("disabled");
-		}
-		function close() { //셀렉트 박스 활성 함수
-			$("select[name=time]").attr("disabled", "disabled");
-		}
-		
-		/*  function readAllData(){
-		     var memberList = firebase.database().ref().child("/member");
-		     memberList.on("value", function (snapshot) {
-
-		         var listData = snapshot.val();
-
-		         var html ="";
-		         for (keyStr in listData) {
-		             //console.log("=====" + keyStr);
-		             //console.log(readEach(keyStr));
-		         }
-		         $(".listUL").html(html);
-		     });
-		 }
-
-		 function readEach(keyStr){
-		     var data = firebase.database().ref("/memo/" + keyStr);
-		     data.on('value', function(snapshot){
-		         console.log(snapshot.val());
-		         var chk = snapshot.val();
-		     });
-		 }
-		 readAllData(); */
-	</script>
-
+        data2.on("value", function(e){
+            var answer2 =e.val();
+            answer2 = answer2.answer ;
+            console.log(answer2);
+            if(answer2 == answer){
+            	$.ajax({
+    				url:"/member/update",
+    				type:"POST",
+    				data :{
+    					"id" :$("#id").val(),
+    				} ,
+    				success: function(data){
+    					alert(data);
+    					location.href = "/member/update";
+    				}
+    			});
+            }else{
+                alert("답변 다시작성해 주세요");
+            }
+        });
+    }
+</script>
 </body>
 </html>

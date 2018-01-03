@@ -8,12 +8,9 @@
 </head>
 <body>
 	
-	<button id="btn">클릭</button><br>
-
 아이디 :<span id="id"></span> <br>
-지역 :<span id="zone"></span><br>
+세대:<span id="age"></span><br>
 알림받을 시간 :<span id="time"></span><br>
-자녀 : <span id="child"></span>
 	
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"
 		integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -37,32 +34,17 @@
 	
 	<script> 
 	 var html ="";
-
-	    $("#btn").on("click" , function(){
-	        var userData = firebase.database().ref("/member").once("value" ,function(e){
-	            e.forEach(function(r){
-	                var id = r.val();
-	                console.log(id);
-	                    html += $("#id").html(id.id);
-	                    html += $("#time").html(id.time);
-	                    html += $("#zone").html(id.zone);
-	                    if(id.m == true){
-	                        id.m ="남자";
-	                        html +=   $("#child").html(idm);
-	                    }else{
-	                        m="" ;
-	                        html +=  $("#child").html(id.m);
-	                    }
-	                    if(id.f ==true){
-	                        f ="여자";
-	                        html +=  $("#child").html(id.f);
-	                    }else{
-	                        f="";
-	                        html += $("#child").html(id.f);
-	                    }
-	            });
-	        });
-	    });
+	    	(function(){
+		        var userData = firebase.database().ref("/member").once("value" ,function(e){
+		            e.forEach(function(r){
+		                var id = r.val();
+		                console.log(id);
+		                    html += $("#id").html(id.id);
+		                    html += $("#time").html(id.time);
+		                    html += $("#age").html(id.age);
+		            });
+		        });
+	    	}());
 	</script>
 </body>
 </html>

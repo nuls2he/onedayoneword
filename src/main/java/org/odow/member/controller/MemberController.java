@@ -117,5 +117,26 @@ public class MemberController {
 			System.out.println("왜됌...");
 		}
 	}
-
+	
+	
+		@GetMapping("/passwordfind")
+		public void passwordfind() {
+			
+		}
+		
+		@GetMapping("/update")
+		public void update2(/*String id ,Model model*/) {
+			/*model.addAttribute("data" ,id);
+			log.info("id : " + id);*/
+		}
+	
+		@PostMapping("/update")
+		@ResponseBody
+		public String update(String id ,Model model) {
+			model.addAttribute("data" ,id);
+			log.info("id : " + id);
+			return id;
+		
+		}
+	
 }

@@ -303,7 +303,7 @@
         </div>
         <div class="button-area">
             <button class="btn btn-secondary" id="gologin">JOIN
-            <button class="btn btn-secondary">FIND</button></button>
+            <button class="btn btn-secondary" id="find">FIND</button></button>
             
             <button class="btn btn-primary" id="loginBtn">LOG IN</button>
         </div>
@@ -344,8 +344,14 @@
 
 <script>
 
+// 회워가입 으로 이동
 $('#gologin').click(function() {
 	location.href = '/member/login';
+	});
+
+// 비밀번호 찾기로 이동
+$('#find').click(function() {
+	window.open("/member/passwordfind","","width=1100,height=650");
 	});
 	
 $("#loginBtn").on("click" ,function () {	
@@ -387,6 +393,8 @@ function pwcheck(keyStr){
 		}
 	});
 }
+
+
 </script>
 
 </body>
