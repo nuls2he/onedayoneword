@@ -354,7 +354,10 @@
 </head>
 
 <body class="index-page page-on-scroll" style="margin-top:120px;">
-
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
 	<c:import url="../includes/header.jsp"></c:import>
 		
 		<div class="container card-list">
@@ -396,7 +399,8 @@
 				<header class="projects-header">
 					<div class="title">Keyword List</div>
 					<div class="count listName">|</div>
-					<span class="glyphicon glyphicon-download-alt"></span>
+					<input type="text" id="insertInput" style="float: right; color: black;"/>
+					<span class="glyphicon glyphicon-download-alt insertBtn">등록　</span>
 				</header>
 				<table class="projects-table">
 					<thead>
@@ -413,7 +417,7 @@
 	<script src="/resources/HTML/vendor/jquery.min.js" type="text/javascript"></script>
 	
 <script>
-
+	
 	var todayKeyword = [];
 	var allKeyword = [];
 	var newDic = [];
@@ -462,24 +466,157 @@
 	});
 	
 	$("#newBtn").on("click", function() {
-		$(".listName").html("| 신조어 사전");
-		html = "";
-		for (var i = 0; i < newDic.length; i+=4) {
-			html += "<tr><td>" + newDic[i] + "</td><td>" + newDic[i+1] + "</td><td>";
-			html += newDic[i+2] + "</td><td>" + newDic[i+3] + "</td></tr>";
-		}
-		$("#listResult").html(html);
+		newFunction();
 	});
 	
 	$("#excBtn").on("click", function() {
-		$(".listName").html("| 예외 사전");
-		html = "";
-		for (var i = 0; i < excDic.length; i+=4) {
-			html += "<tr><td>" + excDic[i] + "</td><td>" + excDic[i+1] + "</td><td>";
-			html += excDic[i+2] + "</td><td>" + excDic[i+3] + "</td></tr>";
-		}
-		$("#listResult").html(html);
+		excFunction();
 	});
+	
+	$(".insertBtn").click(function () {
+		var listName = $(".listName").text();
+		var insertInput = $("#insertInput").val();
+		switch(listName){
+		case "| 예외 사전":
+			$.ajax({
+				url: "/main/excDicInsert",
+				type: "POST",
+				data: {
+					"word":insertInput
+				},
+				success:function (){
+					excFunction();
+					$("#insertInput").val("");
+				}
+			});
+			break;
+		case "| 신조어 사전":
+			$.ajax({
+				url: "/main/newDicInsert",
+				type: "POST",
+				data: {
+					"word":insertInput
+				},
+				success:function (){
+					newFunction();
+					$("#insertInput").val("");
+				}
+			});
+			break;
+		default:
+			alert("신조어나 예외 사전만 등록가능");
+		}
+	});
+	
+	// 예외 사전 리스트 td 클릭시
+	$("#listResult").on("click", "td[id=exc]", function () {
+		var chk = confirm($(this).text() + "를(을) 삭제 하시겠습니까?");
+		if (chk == true) {
+			$.ajax({
+				url: "/main/excDicDelete",
+				type: "POST",
+				data: {
+					"word":$(this).text()
+				},
+				async:false,
+				success:function (){
+					excFunction();
+				}
+			});
+			console.log("삭제완료");
+		} else {
+			console.log("삭제취소");
+		}
+	});
+	
+	// 신조어 사전 리스트 td 클릭시
+	$("#listResult").on("click", "td[id=new]", function () {
+		var chk = confirm($(this).text() + "를(을) 삭제 하시겠습니까?");
+		if (chk == true) {
+			$.ajax({
+				url: "/main/newDicDelete",
+				type: "POST",
+				data: {
+					"word":$(this).text()
+				},
+				async:false,
+				success:function (){
+					newFunction();
+				}
+			});
+			console.log("삭제완료");
+		} else {
+			console.log("삭제취소");
+		}
+	});
+	
+	// 예외 사전 ajax로 리스트 가져오고 띄워주는 함수
+	function excFunction () { 
+		$.ajax({
+			url: "/main/admin",
+			type: "POST",
+			data: {
+				"type":"4"
+			}
+		}).done(function (result) {
+			var data = result;
+			excDic = [];
+			for(var i = 0; i < data.length; i++){
+				excDic[i] = data[i];
+			}
+			$(".listName").html("| 예외 사전");
+			html = "";
+			for (var i = 0; i < excDic.length; i+=4) {
+				if(i <= excDic.length - 4){
+					html += "<tr><td id='exc'>" + excDic[i] + "</td><td id='exc'>" + excDic[i+1] + "</td><td id='exc'>";
+					html += excDic[i+2] + "</td><td id='exc'>" + excDic[i+3] + "</td></tr>";
+				} else {
+					html += "<tr>";
+					for(var j = i; j < excDic.length; j++){
+						html+= "<td>" + excDic[j] + "</td>";
+					}
+					html += "</tr>";
+					break;
+				}
+			}
+			$("#listResult").html(html);
+		});
+	}
+	
+	// 신조어 사전 ajax로 리스트 가져오고 띄워주는 함수
+	function newFunction () { 
+		$.ajax({
+			url: "/main/admin",
+			type: "POST",
+			data: {
+				"type":"3"
+			}
+		}).done(function (result) {
+			var data = result;
+			newDic = [];
+			for(var i = 0; i < data.length; i++){
+				newDic[i] = data[i];
+			}
+			$(".listName").html("| 신조어 사전");
+			html = "";
+			for (var i = 0; i < newDic.length; i+=4) {
+				if(i <= newDic.length - 4){
+					html += "<tr><td id='new'>" + newDic[i] + "</td><td id='new'>" + newDic[i+1] + "</td><td id='new'>";
+					html += newDic[i+2] + "</td><td id='new'>" + newDic[i+3] + "</td></tr>";
+				} else {
+					html += "<tr>";
+					for(var j = i; j < newDic.length; j++){
+						html+= "<td>" + newDic[j] + "</td>";
+					}
+					html += "</tr>";
+					break;
+				}
+			}
+			$("#listResult").html(html);
+		});
+	}
+	
+	
 </script>
 
 <a href="javascript:void(0);" class="js-back-to-top back-to-top">Top</a>
@@ -502,7 +639,6 @@
 <script src="/resources/HTML/js/layout.min.js" type="text/javascript"></script>
 <script src="/resources/HTML/js/components/swiper.min.js" type="text/javascript"></script>
 <script src="/resources/HTML/js/components/wow.min.js" type="text/javascript"></script>
-
 
 </body>
 	

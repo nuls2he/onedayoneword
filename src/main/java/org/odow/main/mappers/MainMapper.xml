@@ -43,12 +43,16 @@
 		                 from test_keyword
 		                where keyword = #{keyword})
 	</select>
-	<select id="getChartCount">
+	<select id="getChartCountGirl" resultType="int">
 		select count(*) as count
 		  from test_keyword
-		 where keyword = #{keyword} and date_format(regdate, '%Y-%m-%d') = #{date}
-		 group by 'date', siteno
-		 order by siteno
+		 where keyword = #{keyword} and date_format(regdate, '%Y-%m-%d') = #{date} and siteno = 1
+	</select>
+	
+	<select id="getChartCountBoy" resultType="int">
+		select count(*) as count
+		  from test_keyword
+		 where keyword = #{keyword} and date_format(regdate, '%Y-%m-%d') = #{date} and siteno = 2
 	</select>
 </mapper>
 

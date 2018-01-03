@@ -41,8 +41,13 @@ public class MainServiceImpl implements MainService {
 	}
 
 	@Override
-	public List<Integer> getChartCount(ChartCount chartCount) {
-		return mapper.getChartCount(chartCount);
+	public int getChartCountGirl(ChartCount chartCount) {
+		return mapper.getChartCountGirl(chartCount);
+	}
+	
+	@Override
+	public int getChartCountBoy(ChartCount chartCount) {
+		return mapper.getChartCountBoy(chartCount);
 	}
 
 	@Override
@@ -64,6 +69,25 @@ public class MainServiceImpl implements MainService {
 	public List<String> excDic() {
 		return mapper.excDic();
 	}
+
 	
+	@Override
+	public void excDicDelete(String word) {
+		mapper.excDicDelete(word);
+	}
+	@Override
+	public void newDicDelete(String word) {
+		mapper.newDicDelete(word);
+	}
+
+	
+	@Override
+	public void excDicInsert(String word) {
+		mapper.excDicInsert(word);
+	}
+	@Override
+	public void newDicInsert(String word) {
+		mapper.newDicInsert(word);
+	}
 	
 }

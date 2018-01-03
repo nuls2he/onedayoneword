@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -286,35 +287,33 @@
 	var arrBoy = [];
 	var arrGirl = [];
 	
-	$.ajax({
-		url: "/main/chartCount",
-		type: "POST",
-		data: {
-			"keyword":keyword,
-			"date":"2017-12-29"
-		}
-	}).done(function (result) {
-		var list = result;
-		arrAll[0] = list[0] + list[1];
-		arrGirl[0] = list[0];
-		arrBoy[0] = list[1];
-	});
-	
-	for(var i = 6; i >= 0; i--){
+	var arrCount = 6;
+	<c:forEach items="${dayList}" var="day">
+		arr[arrCount] = "${day}";
 		
-		date = yyyy + "-" + mm + "-" + dd;
-		arr[i] = date;
-		dd -= 1;
+		$.ajax({
+			url: "/main/chartCount",
+			type: "POST",
+			data: {
+				"keyword":keyword,
+				"date":arr[arrCount]
+			},
+			async:false
+		}).done(function (result) {
+			var list = result;
+			console.dir(list);
+			console.log(typeof(list[0]));
+			arrAll[arrCount] = list[0] + list[1];
+			arrGirl[arrCount] = list[0];
+			arrBoy[arrCount] = list[1];
+		});
 		
-		console.log(keyword);
-		console.log(date);
-	}
+		arrCount -= 1;
+	</c:forEach>
 	
-
-	
-	console.dir(arrAll);
-	console.dir(arrGirl);
-	console.dir(arrBoy);
+// 	console.dir(arrAll);
+// 	console.dir(arrGirl);
+// 	console.dir(arrBoy);
 	
     var data1 = {
         labels : arr, // 그래프
@@ -324,21 +323,21 @@
                 strokeColor : "rgba(56,175,91,1)",
                 pointColor : "rgba(56,175,91,1)",
                 pointStrokeColor : "rgba(0,0,0,0.6)",
-                data : [100,70,20,40,80,40,100]
+                data : arrGirl //[100,70,20,40,80,40,100]
             },
             {
                 fillColor : "rgba(234,142,57,.1)",
                 strokeColor : "rgba(234,142,57,1)",
                 pointColor : "rgba(234,142,57,1)",
                 pointStrokeColor : "rgba(0,0,0,0.6)",
-                data : [50, 130, 80, 160, 20, 110, 80]
+                data : arrBoy //[50, 130, 80, 160, 20, 110, 80]
             },
             {
                 fillColor : "rgba(236,72,127,.1)",
                 strokeColor : "rgba(236,72,127,1)",
                 pointColor : "rgba(236,72,127,1)",
                 pointStrokeColor : "rgba(0,0,0,0.6)",
-                data : [150,200,100,200,100,150,180]
+                data : arrAll //[150,200,100,200,100,150,180]
             }
         ]
     }

@@ -183,37 +183,42 @@
         <!-- Service -->
         <div class="listBody">
         	<br/>
-        	<div style="padding-right: 15%; text-align: right;">
-        		<select style="height: 27px;" id="zoneSelect">
-        			<option>선택없음</option>
-        			<option>종로구</option>
-        			<option>중구</option>
-        			<option>용산구</option>
-        			<option>성동구</option>
-        			<option>광진구</option>
-        			<option>동대문구</option>
-        			<option>중랑구</option>
-        			<option>성북구</option>
-        			<option>강북구</option>
-        			<option>도봉구</option>
-        			<option>노원구</option>
-        			<option>은평구</option>
-        			<option>서대문구</option>
-        			<option>마포구</option>
-        			<option>양천구</option>
-        			<option>강서구</option>
-        			<option>구로구</option>
-        			<option>금천구</option>
-        			<option>영등포구</option>
-        			<option>동작구</option>
-        			<option>관악구</option>
-        			<option>서초구</option>
-        			<option>강남구</option>
-        			<option>송파구</option>
-        			<option>강동구</option>
-        		</select>
-        		<input type="text" id="searchWord"/>
-        		<button class="searchBtn btn btn-primary" style="background-color: #568e94; border-color: #568e94;">검색</button>
+        	<div style="width: 70%; margin:0 auto;">
+        		<div style="float: left; width:50%;">
+        			<button class="searchBtn btn btn-primary" id="insertBtn" style="background-color: #568e94; border-color: #568e94;">글등록</button>
+        		</div>
+        		<div style="float: left; width:50%; text-align: right;">
+	        		<select style="height: 27px;" id="zoneSelect">
+	        			<option>선택없음</option>
+	        			<option>종로구</option>
+	        			<option>중구</option>
+	        			<option>용산구</option>
+	        			<option>성동구</option>
+	        			<option>광진구</option>
+	        			<option>동대문구</option>
+	        			<option>중랑구</option>
+	        			<option>성북구</option>
+	        			<option>강북구</option>
+	        			<option>도봉구</option>
+	        			<option>노원구</option>
+	        			<option>은평구</option>
+	        			<option>서대문구</option>
+	        			<option>마포구</option>
+	        			<option>양천구</option>
+	        			<option>강서구</option>
+	        			<option>구로구</option>
+	        			<option>금천구</option>
+	        			<option>영등포구</option>
+	        			<option>동작구</option>
+	        			<option>관악구</option>
+	        			<option>서초구</option>
+	        			<option>강남구</option>
+	        			<option>송파구</option>
+	        			<option>강동구</option>
+	        		</select>
+	        		<input type="text" id="searchWord"/>
+	        		<button class="searchBtn btn btn-primary" style="background-color: #568e94; border-color: #568e94;">검색</button>
+        		</div>
         	</div>
         	<br/>
    			<table class="responstable" style="width: 70%; margin:0 auto;">
@@ -367,6 +372,10 @@
 	$(".mypage").on("click","li[id=next]",function () {
 		pageNum += pageSize; //pageNum += 3;
 		location.href = "/main/boardlist?page=" + pageNum + '&pageNum=' + pageNum + '&searchWord=' + searchWord;
+	});
+	
+	$("#insertBtn").on("click",function () {
+		location.href='';
 	});
 	
 // 	function searchData(){
