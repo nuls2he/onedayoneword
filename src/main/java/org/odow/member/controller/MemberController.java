@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.extern.java.Log;
@@ -125,18 +126,8 @@ public class MemberController {
 		}
 		
 		@GetMapping("/update")
-		public void update2(/*String id ,Model model*/) {
-			/*model.addAttribute("data" ,id);
-			log.info("id : " + id);*/
-		}
-	
-		@PostMapping("/update")
-		@ResponseBody
-		public String update(String id ,Model model) {
-			model.addAttribute("data" ,id);
-			log.info("id : " + id);
-			return id;
-		
+		public void update(@RequestParam("id")String id ,Model model) {
+			model.addAttribute("id" ,id);
 		}
 	
 }

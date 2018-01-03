@@ -368,7 +368,6 @@ input[type="checkbox"]:checked:after {
 </head>
 <body>
 
-<div>${data}</div>
 
 <div class="login-wrapper open">
     <div class="login-right">
@@ -383,7 +382,7 @@ input[type="checkbox"]:checked:after {
     <div id="pwcheckDiv"></div>
 
         <div class="button-area">
-            <button class="btn btn-primary" id="findBtn">확인</button>
+            <button class="btn btn-primary" id="updateBtn">확인</button>
         </div>
     </div>
 </div>
@@ -407,8 +406,19 @@ input[type="checkbox"]:checked:after {
 		};
 		firebase.initializeApp(config);
 	</script>
+	
 
 <script>
+var id = "${id}";
+
+$("#updateBtn").on("click",function(){
+	var data = firebase.database().ref("/member/"+id);
+	
+			data.update({
+				pw : $("#pw").val()
+			});
+			alert("비밀번호 변경이 완료되었습니다.");
+		});
 
 $("#pwCheck").on("keyup", function() {
     var $pw = $("#pw").val();

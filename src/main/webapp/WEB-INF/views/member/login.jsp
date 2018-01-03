@@ -183,7 +183,7 @@ label {
 	font-size: 13px;
 	letter-spacing: -0.00933333em;
 	transition: all 0.2s ease-out;
-}
+} 
 
 input:placeholder-shown+label {
 	opacity: 0;
@@ -395,19 +395,17 @@ input[type="checkbox"]:checked:after {
 			<div class="h2">회원가입</div>
 
 			<div class="form-group">
-				<input type="text" id="id" placeholder="Id" required> <label
-					for="id">Id</label>
-				<!-- <button id="checkid">중복체크</button> -->
+				<input type="text" id="id" placeholder="Id" required> 
+		
 			</div>
 			<div class="idCheck" id="idCheck"></div>
 
 			<div class="form-group">
-				<input type="password" id="pw" placeholder="Password"> <label
-					for="pw">Password</label>
+				<input type="password" id="pw" placeholder="Password"> 
 			</div>
 			<div class="form-group">
 				<input type="password" id="pwCheck" placeholder="Password check">
-				<label for="pw">Password check</label>
+				
 			</div>
 			<div class="pwCheck" id="pwcheckDiv"></div>
 			
@@ -451,8 +449,7 @@ input[type="checkbox"]:checked:after {
 			
 			
 			<div>
-				<input type="text" id="answer" placeholder="답변 해주세요"> <label
-					for="answer"></label>
+				<input type="text" id="answer" placeholder="답변 해주세요"> 
 			</div>
 			
 			<div class="button-area">
@@ -537,7 +534,6 @@ input[type="checkbox"]:checked:after {
 					} else {
 						$("#idCheck").html("사용 가능한 아이디 입니다.");
 						$("div[id=idCheck]").attr("style", "color:green");
-						
 					}
 				}
 			});

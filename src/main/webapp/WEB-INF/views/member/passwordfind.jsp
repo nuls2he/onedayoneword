@@ -370,7 +370,7 @@ input[type="checkbox"]:checked:after {
 	<div class="login-wrapper open">
 		<div class="login-right">
 			<div class="form-group">
-				<input type="text" id="id" placeholder="아이디를 입력해 주세요" required>
+				<input type="text" id="id" placeholder="아이디를 입력해 주세요">
 				<label for="id">Id</label>
 			</div>
 
@@ -383,15 +383,19 @@ input[type="checkbox"]:checked:after {
 			</span>
 
 			<div>
-				<input type="text" id="answer" placeholder="답변 해주세요"> <label
+				<input name="id" type="text" id="answer" placeholder="답변 해주세요"> <label
 					for="answer"></label>
 			</div>
+			
 			<div class="button-area">
 				<button class="btn btn-primary" id="findBtn">확인</button>
 			</div>
 		</div>
 	</div>
-
+	
+		<form id="actionForm" method="get" action="/member/update">
+			<input type="hidden" name="id">
+		</form>
 
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"
 		integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -413,43 +417,39 @@ input[type="checkbox"]:checked:after {
 	</script>
 
 	<script>
-	
-
     $("#findBtn").on("click", function(){
         var find = firebase.database().ref("/member");
         var id= $("#id").val();
 
         find.on("value",function(e){
             var list = e.val();
-            for(key in list){
-                if(key == id ){
-                    checkpw(key);
-                    break;
+			var key = list[id];
+				if(key.id == id ){
+					var serch = id;
+                    checkpw(serch);
                 }else {
                     alert("아이디를 다시 입력해 주세요");
-                    break;
                 }
-            }
-        });
+    	});
     });
 
-function checkpw(key){
-        var data = firebase.database().ref("/member/"+key);
+function checkpw(serch){
+        var data = firebase.database().ref("/member/"+serch);
         var pwfind = $("#pwfind").val();
           data.on("value", function(e){
             var pwfind2 =e.val();
             pwfind2 = pwfind2.pwfind;
+	        console.log(pwfind2);
                 if(pwfind2 == pwfind){
-                    checkan(key)
+                    checkan(serch)
                 }else{
                     alert("질문을 다시 체크해주세요");
                 }
-
         });
     }
 
-function checkan(key){
-        var data2 = firebase.database().ref("/member/" + key);
+function checkan(serch){
+        var data2 = firebase.database().ref("/member/" + serch);
         var answer = $("#answer").val();
 
         data2.on("value", function(e){
@@ -457,17 +457,10 @@ function checkan(key){
             answer2 = answer2.answer ;
             console.log(answer2);
             if(answer2 == answer){
-            	$.ajax({
-    				url:"/member/update",
-    				type:"POST",
-    				data :{
-    					"id" :$("#id").val(),
-    				} ,
-    				success: function(data){
-    					alert(data);
-    					location.href = "/member/update";
-    				}
-    			});
+            	var actionForm = $("#actionForm") ;
+            	actionForm.find("input[name='id']").val($("#id").val());
+            	actionForm.submit(); 
+            	
             }else{
                 alert("답변 다시작성해 주세요");
             }
