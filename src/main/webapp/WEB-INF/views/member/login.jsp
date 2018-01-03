@@ -408,41 +408,22 @@ input[type="checkbox"]:checked:after {
 				<label for="pw">Password check</label>
 			</div>
 			<div class="pwCheck" id="pwcheckDiv"></div>
-			<div class="checkbox-container">
+			
+		<!-- 	<div class="checkbox-container">
 				<input type="checkbox" name="child" id="m" value="남자">
 				<div class="text-checkbox">남자</div>
 				<input type="checkbox" name="child" id="f" value="여자">
 				<div class="text-checkbox">여자</div>
-			</div>
+			</div> -->
 
 
-			<span class="select "> <select name="location"
-				onclick="return false;" id="zone">
-					<option value="종로구">종로구</option>
-        			<option value="중구">중구</option>
-        			<option value="용산구">용산구</option>
-        			<option value="성동구">성동구</option>
-        			<option value="광진구">광진구</option>
-        			<option value="동대문구">동대문구</option>
-        			<option value="중랑구">중랑구</option>
-        			<option value="성북구">성북구</option>
-        			<option value="강북구">강북구</option>
-        			<option value="도봉구">도봉구</option>
-        			<option value="노원구">노원구</option>
-        			<option value="은평구">은평구</option>
-        			<option value="서대문구">서대문구</option>
-        			<option value="마포구">마포구</option>
-        			<option value="양천구">양천구</option>
-        			<option value="강서구">강서구</option>
-        			<option value="구로구">구로구</option>
-        			<option value="금천구">금천구</option>
-        			<option value="영등포구">영등포구</option>
-        			<option value="동작구">동작구</option>
-        			<option value="관악구">관악구</option>
-        			<option value="서초구">서초구</option>
-        			<option value="강남구">강남구</option>
-        			<option value="송파구">송파구</option>
-        			<option value="강동구">강동구</option>
+			<span class="select "> <select name="age"
+				onclick="return false;" id="age">
+					<option value="10">10대</option>
+        			<option value="20">20대</option>
+        			<option value="30">30대</option>
+        			<option value="40">40대</option>
+        	
 			</select>
 			</span>
 
@@ -453,8 +434,9 @@ input[type="checkbox"]:checked:after {
 
 			<span class="select"> <select name="time"
 				onclick="return false;" id="time" disabled>
+					<option value="12">12시</option>
+					<option value="3">3시</option>
 					<option value="6">6시</option>
-					<option value="9">9시</option>
 			</select>
 			</span>
 			<div class="button-area">
@@ -484,7 +466,7 @@ input[type="checkbox"]:checked:after {
 
 
 	<script>
-		var openLoginRight = document.querySelector('.h1');
+		var openLoginRight = document.querySelector('#memberlog');
 		var loginWrapper = document.querySelector('.login-wrapper');
 
 		openLoginRight.addEventListener('click', function() {
@@ -499,36 +481,23 @@ input[type="checkbox"]:checked:after {
 			firebase.database().ref("member/" + member.id).set(member);
 			location.href = '/member/loginhome';
 		}
-
-		var m = "false";
-		var f = "false";
 		var temp = '';
+		
 		$("#saveBtn").on("click", function() {
 			var token = firebase.database().ref("/temp/token");
 			token.on("value", function(e){
 				temp = e.val();
-				
-				var chk = document.getElementsByName("child");
-				for (var i = 0; i < chk.length; i++) {
-					if (chk[i].checked == true) {
-						switch (chk[i].value) {
-							case "남자": m = "true"; 	break;
-							case "여자": f = "true"; break;
-						}
-					}
-				}
+				alert(temp);
 				
 				var member = {
 					id : $("#id").val(),
 					pw : $("#pw").val(),
-					m : m,
-					f : f,
-					zone : $("#zone").val(),
-					time : $("#time").val() ,
+					age : $("#age").val(),
+					time : $("#time").val(),
 					token : temp
 				};
 				
-			if (!$("#call").checked) {
+			if (!$("#call").prop("checked")) {
 				delete member.token;
 				delete member.time;
 			}
@@ -580,19 +549,19 @@ input[type="checkbox"]:checked:after {
 								"width=286,height=100");
 						openMe()
 					} else {
-						notopen()
+						close()
 					}
 				});
+		
 		function openMe() { //셀렉트 박스 활성 함수
 			$("select[name=time]").removeAttr("disabled");
 		}
-	
-
-		function notopen() { //셀렉트 박스 활성 함수
+		function close() { //셀렉트 박스 활성 함수
 			$("select[name=time]").attr("disabled", "disabled");
-			
 		}
 
+		
+		
 		/*  function readAllData(){
 		     var memberList = firebase.database().ref().child("/member");
 		     memberList.on("value", function (snapshot) {
