@@ -7,17 +7,17 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<div id="id"></div><br>
+	<div id="pw"></div><br>
+	<div id="pw"></div><br>
+	<div id="pw"></div><br>
 	
-아이디 :<span id="id"></span> <br>
-세대:<span id="age"></span><br>
-알림받을 시간 :<span id="time"></span><br>
-	
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"
 		integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-		crossorigin="anonymous">
-		
-	</script>
-	<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-app.js"></script>
+		crossorigin="anonymous"></script>
+	<script src="/resources/HTML/js/chart.js"></script>
+
 	<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
 	<script>
 		// Initialize Firebase
@@ -33,7 +33,16 @@
 	</script>
 	
 	<script> 
-	 var html ="";
+	var loginid = "321" /* "${login}" */ ;
+	var html ="";
+	(function(){
+		var userData = firebase.database().ref("/member/"+loginid);
+		userData.on("value",function(e){
+			var user = e.val();
+				html = $("#ttt").html(user[id]);
+		});
+	}());
+	
 	    	(function(){
 		        var userData = firebase.database().ref("/member").once("value" ,function(e){
 		            e.forEach(function(r){
@@ -44,7 +53,7 @@
 		                    html += $("#age").html(id.age);
 		            });
 		        });
-	    	}());
+	    	}()); 
 	</script>
 </body>
 </html>
