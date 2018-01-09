@@ -305,6 +305,12 @@
         renderer.render( scene, camera );
     }
     
+//    	$("#table").on("click", function () {
+//     	$(".element").css("width", "700px");
+//     	$(".symbol").css("color", "blue");
+//    	});
+    
+    // 네이버 리스트
     var button = document.getElementById( 'table' );
     button.addEventListener( 'click', function ( event ) {
     	var $container = $("#container");
@@ -323,6 +329,7 @@
         transform( targets.table, 2000 );
     }, false );
     
+    // 남자 리스트
     var button = document.getElementById( 'sphere' );
     button.addEventListener( 'click', function ( event ) {
     	var $container = $("#container");
@@ -338,6 +345,7 @@
         transform( targets.sphere, 2000 );
     }, false );
     
+    // 여자 리스트
     var button = document.getElementById( 'helix' );
     button.addEventListener( 'click', function ( event ) {
     	var $container = $("#container");
@@ -353,6 +361,7 @@
         transform( targets.helix, 2000 );
     }, false );
     
+    // 전체 리스트
     var button = document.getElementById( 'grid' );
     button.addEventListener( 'click', function ( event ) {
     	var $container = $("#container");

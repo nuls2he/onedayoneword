@@ -185,14 +185,14 @@
         	<br/>
         	<div style="width: 70%; margin:0 auto;">
         		<div style="float: left; width:50%;">
-        			<button class="btn btn-primary" id="insertBtn" style="background-color: #568e94; border-color: #568e94;">글등록</button>
-        			<button class="btn btn-primary" id="allListBtn" style="background-color: #568e94; border-color: #568e94;">전체목록</button>
+        			<button class="searchBtn btn btn-primary" id="insertBtn" style="background-color: #568e94; border-color: #568e94;">글등록</button>
         		</div>
-        		<div style="float: left; width:50%; text-align: right;" id="searchDiv">
+        		<div style="float: left; width:50%; text-align: right;">
 	        		<select style="height: 27px;" id="zoneSelect">
 	        			<option>선택없음</option>
 	        			<option>제목</option>
 	        			<option>글쓴이</option>
+	        			<option>연령별</option>
 	        		</select>
 	        		<input type="text" id="searchWord"/>
 	        		<button class="searchBtn btn btn-primary" style="background-color: #568e94; border-color: #568e94;">검색</button>
@@ -202,7 +202,7 @@
    			<table class="responstable" style="width: 70%; margin:0 auto;">
    				<thead>
    					<th width="10%;">글번호</th>
-   					<th width="10%;" >연령대</th>
+   					<th width="10%;" >지역</th>
    					<th width="50%;">제목</th>
    					<th width="15%;">글쓴이</th>   					
    					<th width="15%;">등록일자</th>   					
@@ -243,7 +243,7 @@
 	var next = true;
 	
 	// 검색이 아니면 전체 조회
-	if(!searchType){
+	if(!searchWord){
 		readAllData();
 	} else {
 		searchData();
@@ -263,7 +263,7 @@
 			}
 			
 			for (var i = listStart; i <= listEnd; i++){
-				html += "<tr><td>" + listData[i].no + "</td><td>" + listData[i].age + "대" + "</td><td id='detail" + listData[i].no + "'>"; 
+				html += "<tr><td>" + listData[i].no + "</td><td>" + listData[i].zone + "</td><td id='detail" + listData[i].no + "'>"; 
 				html += listData[i].title + "</td><td>" + listData[i].writer + "</td><td>" + listData[i].regdate + "</td></tr>";
 			}
 			
@@ -286,25 +286,21 @@
 			return ;
 			break;
 		case 1:
-// 			alert("1");
-// 			console.log(selectVal);
+			alert("1");
+			console.log(selectVal);
 			if(searchWord == ""){
 				alert("검색어를 입력해주세요");
 				return ;
-			} else {
-				location.href='/main/boardlist?searchType=' + index + '&searchWord=' + searchWord;
 			}
 			return ;
 			break;
 		case 2:
-			if(searchWord == ""){
-				alert("검색어를 입력해주세요");
-				return ;
-			} else {
-				location.href='/main/boardlist?searchType=' + index + '&searchWord=' + searchWord;
-			}
 			break;
-		}
+		case 3:
+			break;
+		} 
+		
+		location.href='/main/boardlist?searchWord=' + searchWord;
 	});
 	
 	// 검색함수
@@ -315,31 +311,18 @@
 		boardList.on("value", function (snapshot){
 			var listData = snapshot.val();
 			
-			switch(searchType){
-			case "1":
-				for(var i = 1; i < listData.length; i++){
-					var str = listData[i].title.toString();
-					if(str.match(searchWord)){
-						listCount += 1;
-						searchList.push(listData[i]);
-					}
+			for(var i = 1; i < listData.length; i++){
+				var str = listData[i].title.toString();
+				if(str.match(searchWord)){
+					listCount += 1;
+					searchList.push(listData[i]);
 				}
-				break;
-			case "2":
-				for(var i = 1; i < listData.length; i++){
-					var str = listData[i].writer.toString();
-					if(str.match(searchWord)){
-						listCount += 1;
-						searchList.push(listData[i]);
-					}
-				}
-				break;
 			}
 			
 			if(listEnd > listCount){ listEnd = listCount; }
 			
 			for (var i = (listStart - 1); i <= (listEnd - 1); i++){
-				html += "<tr><td>" + searchList[i].no + "</td><td>" + searchList[i].age + "대" + "</td><td id='detail" + searchList[i].no +"'>"; 
+				html += "<tr><td>" + searchList[i].no + "</td><td>" + searchList[i].zone + "</td><td id='detail" + searchList[i].no +"'>"; 
 				html += searchList[i].title + "</td><td>" + searchList[i].writer + "</td><td>" + searchList[i].regdate + "</td></tr>";
 			}
 			
@@ -411,10 +394,6 @@
 	$("#tList").on("mouseout", "td[id^=detail]", function () {
 		$(this).css("background-color", "").
 		css("cursor", "");
-	});
-	
-	$("#allListBtn").click(function () {
-		location.href='/main/boardlist';
 	});
 	
 	

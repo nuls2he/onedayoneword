@@ -125,7 +125,7 @@
         padding: 20px;
     }
     article > header {
-        height: 60px;
+        height: 90px;  /*60*/
         border-bottom: 1px solid #2a3843;
     }
     article > header .title {
@@ -207,6 +207,11 @@
         text-transform: uppercase;
         color: #D3D3D3;
     }
+    #naver:hover {
+    	background-color:rgba(255,235,0,1);
+    	cursor: pointer;
+    }
+    
 </style>
 </head>
 <script
@@ -221,14 +226,16 @@
     <section>
         <ul>
             <li class="red">전체</li>
-            <li class="yellow">남자</li>
-            <li class="green">여자</li>
+            <li class="yellow">남성</li>
+            <li class="green">여성</li>
         </ul>
     </section>
 </nav>
 
 <article>
-    <header style="text-align: center;"><h1 id="keyword"></h1></header>
+    <header style="text-align: center;">
+    	<h1 id="keyword" style="font-size: 35px;"></h1>
+    </header>
     <section>
         <div class="chart">
             <canvas id="c1" width="820" height="200"></canvas>
@@ -238,8 +245,8 @@
         <table>
             <thead>
             <tr>
-                <th>원본글</th>
-                <th>사이트</th>
+                <th style="width: 870px;">Original Data</th>
+                <th>Gender</th>
             </tr>
             </thead>
             <tbody id="tResult">
@@ -270,7 +277,13 @@
 		}).done(function (result) {
 			for(var i = 0; i < result.length; i++){
 // 				console.log(result[i].originaldata);
-				str += "<tr><td>" + result[i].originaldata + "</td><td>" + result[i].siteno + "</td></tr>";
+				
+				if(result[i].siteno == 1){
+					var gender = "| 여성";
+				} else {
+					var gender = "| 남성";
+				}
+				str += "<tr><td>" + result[i].originaldata + "</td><td>" + gender + "</td></tr>";
 			}
 			$("#tResult").html(str);
 		});
@@ -301,8 +314,8 @@
 			async:false
 		}).done(function (result) {
 			var list = result;
-			console.dir(list);
-			console.log(typeof(list[0]));
+// 			console.dir(list);
+// 			console.log(typeof(list[0]));
 			arrAll[arrCount] = list[0] + list[1];
 			arrGirl[arrCount] = list[0];
 			arrBoy[arrCount] = list[1];
