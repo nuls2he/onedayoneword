@@ -140,7 +140,6 @@ body {
 }
 
 input {
-	margin-top: 15px;
 	font-family: inherit;
 	-webkit-appearance: none;
 	-moz-appearance: none;
@@ -204,10 +203,10 @@ input:placeholder-shown+label {
 }
 
 .login-right {
-	padding: 100px;
+	padding: 40px;
 	top: 0;
 	right: 0;
-	width: 600px;
+	width: 400px;
 	-webkit-transform: translateX(400px) translateZ(0);
 	transform: translateX(400px) translateZ(0);
 	transition: all 770ms cubic-bezier(0.51, 0.04, 0.12, 0.99);
@@ -274,7 +273,8 @@ input:placeholder-shown+label {
 	margin-bottom: 5px;
 	font-size: 12px;
 }
-input[type="text"]:disabled{
+
+input[id="id"]:disabled{
 background : #fff;
 }
 </style>
@@ -283,89 +283,116 @@ background : #fff;
 <body>
 
 	<div class="login-wrapper open">
+		
 		<div class="login-right">
 			<div class="h2">My Page</div>
-			<table id="list" style="width: 400px;">
-				<tr><td>
-				<div class="form-group">
-					<input type="text" id="id" disabled="disabled"> 
-				</div>
-				</td></tr>
-				<tr><td>
-				<div class="form-group">
-					<input type="text" id="age"  disabled="disabled"> 
-				</div>
-				</td></tr>
-				<tr><td>
-				<div class="form-group">
-					<input type="text" id="time"  disabled="disabled"> 
-				</div>
-				</td></tr>
-				<tr><td>
-				<div class="form-group">
-					<input type="text" id="pwfind"  disabled="disabled"> 
-				</div>
-				</td></tr>
-			</table>
+			<div class="form-group">
+				<input type="text" id="id" placeholder="Id" disabled="disabled"> 
+			</div>
+			<div class="form-group">
+				<input type="password" id="pw" placeholder="Password"> 
+			</div>
+			<div class="form-group">
+				<input type="password" id="pwCheck" placeholder="Password check">
+			</div>
+			<div class="pwCheck" id="pwcheckDiv"></div>
+	
+			<span class="select "> <select name="age"
+				onclick="return false;" id="age">
+					<option value="10">10대</option>
+        			<option value="20">20대</option>
+        			<option value="30">30대</option>
+			</select>
+			</span>
+			<span class="select"> <select name="time"
+				onclick="return false;" id="time" >
+					<option value="12">12시</option>
+					<option value="3">3시</option>
+					<option value="6">6시</option>
+			</select>
+		</span>
+			<span class="select "> <select name="pwfind"
+				onclick="return false;" id="pwfind">
+					<option>인상깊게 읽은 책은 ?</option>
+        			<option>나의 주량은 ?</option>
+        			<option>창피했던 기억은 ?</option>
+        			<option>나의 보물 1호는 ?</option>
+        			<option>창피했던 기억은 ?</option>
+			</select>
+		</span>
+			
+			<div>
+				<input type="text" id="answer" placeholder="답변 해주세요"> 
+			</div>
+			
 			<div class="button-area">
-				<button class="btn btn-primary" id="updateBtn" style="padding-left: 41%;">수정하기</button>
+				<button class="btn btn-primary" id="updateBtn">등록</button>
 			</div>
 		</div>
 	</div>
 
-	<form id="actionForm" method="get" action="/member/mypageupdate">
-	    <input type="hidden" name="id">
-	</form>
 
-		<script src="https://code.jquery.com/jquery-3.2.1.min.js"
-		integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-		crossorigin="anonymous"></script>
-	<script src="/resources/HTML/js/chart.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	crossorigin="anonymous"></script>
+<script src="/resources/HTML/js/chart.js"></script>
 
-	<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+<script>
+// Initialize Firebase
+var config = {
+	apiKey : "AIzaSyAD_qm6cmfsf6dMmTqXPDYlylDq5yGZLSQ",
+	authDomain : "oneday-1123.firebaseapp.com",
+	databaseURL : "https://oneday-1123.firebaseio.com",
+	projectId : "oneday-1123",
+	storageBucket : "oneday-1123.appspot.com",
+	messagingSenderId : "360329597510"
+};
+firebase.initializeApp(config);
+</script>
+	
 	<script>
-		// Initialize Firebase
-		var config = {
-			apiKey : "AIzaSyAD_qm6cmfsf6dMmTqXPDYlylDq5yGZLSQ",
-			authDomain : "oneday-1123.firebaseapp.com",
-			databaseURL : "https://oneday-1123.firebaseio.com",
-			projectId : "oneday-1123",
-			storageBucket : "oneday-1123.appspot.com",
-			messagingSenderId : "360329597510"
-		};
-		firebase.initializeApp(config);
-	</script>
-	
-	<script> 
-	
+	 var id =  "${login}";
+	 
 
-    var id = "${login}" ;
-    
-    console.log(id);
-    var html ="";
-    
-    (function(){
-        var userData = firebase.database().ref("/member/"+id);
-        userData.on("value",function(e){
-            var user = e.val();
-            html = $("#id").   val("ID　　　　 　 :　　" +user.id);
-            html = $("#age").  val("Age　　　 　   :　　" +user.age+"대");
-            html = $("#time"). val("Time　　　       :　　" +user.time+"시");
-            html = $("#pwfind").val("passwordHint  :　　" +user.pwfind);
-/*             html += "<tr><td>ID</td><td>" + user.id + "</td></tr>";
-            html += "<tr><td>Age</td><td>" + user.age + "</td></tr>";
-            html += "<tr><td>Time</td><td>" + user.time + "</td></tr>";
-            html += "<tr><td>pwdHint</td><td>" + user.pwfind + "</td></tr>";
-            $("#list").html(html); */
-        });
-    }());
+	    (function(){
+	        var userData = firebase.database().ref("/member/"+id);
+	        userData.on("value",function(e){
+	            var user = e.val();
+	            html = $("#id").val(user.id);
+	     
+	        });
+	    }());
+		 $("#updateBtn").on("click",function(){
+				var data = firebase.database().ref("/member/"+id);
+				
+						data.update({
+							pw : $("#pw").val() ,
+							age : $("#age").val() ,
+							time : $("#time").val() ,
+							pwfind : $("#pwfind").val() ,
+							answer : $("#answer").val() ,
+						});
+						alert("회원 정보가 수정되었습니다.");
+						location.href ="/main/index";
+					});
+		    
+		    $("#pwCheck").on("keyup", function() {
+				var $pw = $("#pw").val();
+				var $pwCheck = $("#pwCheck").val();
 
-    $("#updateBtn").click(function(){
-        var actionForm = $("#actionForm") ;
-        actionForm.find("input[name='id']").val($("#id").val());
-        actionForm.submit();
+				if ($pw != $pwCheck) {
 
-    });
+					$("#pwcheckDiv").html("비밀번호와 불일치");
+				} else {
+					$("#pwcheckDiv").html("비밀번호와 일치");
+				}
+				if ($pwCheck == "") {
+					$("#pwcheckDiv").html("");
+				}
+			});
+
+
 	</script>
 </body>
 </html>

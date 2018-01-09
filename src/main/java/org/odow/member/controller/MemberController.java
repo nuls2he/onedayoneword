@@ -96,8 +96,6 @@ public class MemberController {
 		
 	}
 	
-
-
 	@PostMapping("/index")
 	@ResponseBody
 	public Model index1(Model model ,String id , Boolean remember) {
@@ -110,13 +108,13 @@ public class MemberController {
 	}
 	
 	@GetMapping("/mypage")
-	public void mypage(Model model , HttpSession session) {
-		if(session.getAttribute("login") != null) {
+	public void mypage(Model model) {
+		/*if(session.getAttribute("login") != null) {
 			System.out.println("들어옴");
 			System.out.println(session.getAttribute("login"));
 		}else {
 			System.out.println("왜됌...");
-		}
+		}*/
 	}
 	
 	
@@ -127,6 +125,11 @@ public class MemberController {
 		
 		@GetMapping("/update")
 		public void update(@RequestParam("id")String id ,Model model) {
+			model.addAttribute("id" ,id);
+		}
+		
+		@GetMapping("/mypageupdate")
+		public void mypageupdate(@RequestParam("id")String id ,Model model) {
 			model.addAttribute("id" ,id);
 		}
 	

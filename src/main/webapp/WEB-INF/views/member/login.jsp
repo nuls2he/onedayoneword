@@ -275,8 +275,8 @@ input:placeholder-shown+label {
 
 .checkbox-container {
 	display: flex;
-	margin-top: 10px;
-	margin-bottom: 10px;
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
 
 .text-checkbox {
@@ -375,8 +375,8 @@ input[type="checkbox"]:checked:after {
 }
 
 .pwCheck {
-	margin-top: 10px;
-	margin-bottom: 10px;
+	margin-top: 5px;
+	margin-bottom: 5px;
 	font-size: 12px;
 }
 </style>
@@ -409,21 +409,18 @@ input[type="checkbox"]:checked:after {
 			</div>
 			<div class="pwCheck" id="pwcheckDiv"></div>
 			
-		<!-- 	<div class="checkbox-container">
+		<div class="checkbox-container">
 				<input type="checkbox" name="child" id="m" value="남자">
 				<div class="text-checkbox">남자</div>
 				<input type="checkbox" name="child" id="f" value="여자">
 				<div class="text-checkbox">여자</div>
-			</div> -->
-			
-
+			</div> 
+	
 			<span class="select "> <select name="age"
 				onclick="return false;" id="age">
 					<option value="10">10대</option>
         			<option value="20">20대</option>
         			<option value="30">30대</option>
-        			<option value="40">40대</option>
-        	
 			</select>
 			</span>
 
@@ -438,15 +435,16 @@ input[type="checkbox"]:checked:after {
 					<option value="3">3시</option>
 					<option value="6">6시</option>
 			</select>
-			</span>
+		</span>
 			<span class="select "> <select name="pwfind"
 				onclick="return false;" id="pwfind">
-					<option>좋아하는 색은 무엇입니까?</option>
-        			<option>좋아하는 음식은 무엇입니까?</option>
-        			<option>제일 기억에 남는 순간은 ?</option>
+					<option>인상깊게 읽은 책은 ?</option>
+        			<option>나의 주량은 ?</option>
+        			<option>창피했던 기억은 ?</option>
+        			<option>나의 보물 1호는 ?</option>
+        			<option>창피했던 기억은 ?</option>
 			</select>
-			</span>
-			
+		</span>
 			
 			<div>
 				<input type="text" id="answer" placeholder="답변 해주세요"> 
@@ -494,6 +492,8 @@ input[type="checkbox"]:checked:after {
 			firebase.database().ref("member/" + member.id).set(member);
 			location.href = '/member/loginhome';
 		}
+		var m ="false";
+		var f ="false";
 		var temp = '';
 		
 		$("#saveBtn").on("click", function() {
@@ -501,11 +501,23 @@ input[type="checkbox"]:checked:after {
 			token.on("value", function(e){
 				temp = e.val();
 				
+				var chk = document.getElementsByName("child");
+				for(var i=0; i<chk.length ; i++){
+					if(chk[i].checked == true){
+						switch(chk[i].value){
+						case "남자" : m ="true"; break;
+						case "여자" : f ="true"; break;
+						}
+					}
+				}
+				
 				var member = {
 					id : $("#id").val(),
 					pw : $("#pw").val(),
 					age : $("#age").val(),
 					time : $("#time").val(),
+					m : m ,
+					f : f ,
 					pwfind : $("#pwfind").val(),
 					answer : $("#answer").val(),
 					token : temp
