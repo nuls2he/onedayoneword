@@ -339,9 +339,7 @@ background : #fff;
 	<script> 
 	
 
-    var id = "${login}" ;
-    
-    console.log(id);
+    var id = "${login}";
     var html ="";
     
     (function(){
@@ -352,11 +350,6 @@ background : #fff;
             html = $("#age").  val("Age　　　 　   :　　" +user.age+"대");
             html = $("#time"). val("Time　　　       :　　" +user.time+"시");
             html = $("#pwfind").val("passwordHint  :　　" +user.pwfind);
-/*             html += "<tr><td>ID</td><td>" + user.id + "</td></tr>";
-            html += "<tr><td>Age</td><td>" + user.age + "</td></tr>";
-            html += "<tr><td>Time</td><td>" + user.time + "</td></tr>";
-            html += "<tr><td>pwdHint</td><td>" + user.pwfind + "</td></tr>";
-            $("#list").html(html); */
         });
     }());
 

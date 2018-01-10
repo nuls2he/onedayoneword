@@ -108,15 +108,9 @@ public class MemberController {
 	}
 	
 	@GetMapping("/mypage")
-	public void mypage(Model model) {
-		/*if(session.getAttribute("login") != null) {
-			System.out.println("들어옴");
-			System.out.println(session.getAttribute("login"));
-		}else {
-			System.out.println("왜됌...");
-		}*/
+	public void mypage() {
+		
 	}
-	
 	
 		@GetMapping("/passwordfind")
 		public void passwordfind() {
