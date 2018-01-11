@@ -293,7 +293,7 @@ background : #fff;
 				</td></tr>
 				<tr><td>
 				<div class="form-group">
-					<input type="text" id="age"  disabled="disabled"> 
+					<inpu823ft type="text" id="age"  disabled="disabled"> 
 				</div>
 				</td></tr>
 				<tr><td>
