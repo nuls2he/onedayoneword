@@ -110,9 +110,9 @@
             background-color: rgba(255,255,255,0.75);
         }
         
-        .header:hover{
-        	background-color: rgba(0,0,0,0.5);
-        }
+/*         .header:hover{ */
+/*         	background-color: rgba(0,0,0,0.5); */
+/*         } */
         
     </style>
 
@@ -158,6 +158,8 @@
 <script src="/resources/HTML/vendor/jquery.min.js" type="text/javascript"></script>
 
 <script>
+	console.log("${login}");
+
     var table = [
         "1", "", "", 1, 1,
         "2", "", "", 2, 2,

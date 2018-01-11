@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!--========== HEADER ==========-->
 <header class="header navbar-fixed-top">
@@ -32,11 +33,15 @@
 						<li class="nav-item"><a class="nav-item-child nav-item-hover"
 							href="/main/index">Home</a></li>
 						<li class="nav-item"><a class="nav-item-child nav-item-hover"
-							id="goChat">채팅</a></li>
+							id="goChat">Chat</a></li>
 						<li class="nav-item"><a class="nav-item-child nav-item-hover"
-							href="/main/boardlist">게시판</a></li>
+							href="/main/boardlist">Board</a></li>
 						<li class="nav-item"><a class="nav-item-child nav-item-hover"
 							href="/../member/mypage">My Page</a></li>
+						<c:if test="${login eq 'admin'}">
+							<li class="nav-item"><a class="nav-item-child nav-item-hover"
+								href="/main/admin">Admin</a></li>
+						</c:if>
 						<li class="nav-item"><a class="nav-item-child nav-item-hover"
 							href="/logout">Log out</a></li>
 					</ul>
