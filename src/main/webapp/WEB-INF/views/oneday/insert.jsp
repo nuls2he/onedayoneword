@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -25,7 +25,7 @@
         <!-- Favicon -->
         <link rel="shortcut icon" href="favicon.ico"/>
         
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
         
         <link rel="stylesheet" type="text/css" href="/resources/HTML/css/sweetalert2.min.css">
 <style>
@@ -39,7 +39,7 @@
   width: 250px;
   position:relative;  
   display:block;
-  margin:4px 0 8px;
+  margin:4px 15px 8px;
   margin-bottom:20px;
   border-radius:3px;
   background:#f3f3f3 30%;
@@ -126,51 +126,58 @@
   display: none;
 }
 
-/* Popup */
-#wrap {
-	position: absolute;
-	top: 0; left: 0; right: 0; bottom: 0;
-	background-color: #333;
-	overflow: hidden;
-}
-
-#popup {
-	position: absolute;
-	width: 300px;
-	height: auto;
-	top: 50%; left: 50%;
-	margin-left: -150px; margin-top: 100px; 
-
-	-webkit-perspective: 800px;
-  	-webkit-perspective-origin: 50% 50px;
-   perspective: 800px;
-   perspective-origin: 50% 50px;  	
-}
-
-.piece {
-	background: rgba(95,144,222,0.5);
-	float: left;
-}
-
-#popup h1 {
-	position: absolute;
-	text-align: center;
+/* test */
+.board{
 	width: 100%;
-	height: 40px;
-	top: 50%; margin-top: -20px;	
-	font-family: 'Noto Sans', sans-serif;
-	color: #ccc;
+	height: 100%;
+	background: #2761ab;
+	/*border-radius: 8px;
+	 box-shadow: 12px 8px 0 rgba(0, 0 ,0, 0.1); */
+
 }
 
-.reverse {
-	position: absolute;
-	top: 30px;
-	left: 50%;
-	margin-left: -30px;
-	font-family: 'Noto Sans', sans-serif;
-	color: #ccc;
-	cursor: pointer;
+.dropboard{
+	width: 100%;
+	height: 100%;
+	background: #87aee0;
+	border-radius: 8px;
+	 /*box-shadow: 12px 8px 0 rgba(0, 0 ,0, 0.1); */
+
 }
+/* .col-sm-6{
+	padding-left:0;
+} */
+hr{
+	height: 2px;
+	margin-top: 7px;
+	margin-bottom: 7px;
+	background: #ccc;
+}
+
+.padTest{
+	padding-top: 30px;
+	padding-bottom: 50px;
+}
+
+input, textarea{
+  	display:block;
+    width: 100%;
+    padding: 15px 0 15px 12px;
+    font-family: "Arvo";
+    font-weight: 400;
+    border: none;
+    outline: none;
+    color: #000;
+    border: 1px solid rgba(0,0,0,0.3);
+    border-radius: 4px;
+    transition: all .3s ease-in-out;
+    position: relative;
+    font-size: 13px;
+}
+input:focus, textarea:focus{
+	box-shadow: inset 0 3px 8px #000;
+}
+
 </style>
 </head>
 
@@ -180,54 +187,64 @@
 	<c:import url="../includes/header.jsp"></c:import>
 	
 	<!--========== PARALLAX ==========-->
-        <div class="parallax-window" data-parallax="scroll" data-image-src="/resources/HTML/img/1920x1080/01.jpg">
-            <div class="parallax-content container">
-                <h1 class="carousel-title">글쓰기</h1>
-                <p>여기다<br/> 글을 쓰면 됨</p>
-            </div>
-        </div>
-        
-        <div class="bg-color-sky-light">
-        	<div class="content-lg container">
-       			<div class="row">
-				
-				<div>
-					<div class="col-sm-5 sm-margin-b-30">
-               		<h2 class="color-white">Send Us A Note</h2>
-               			
-                        <form id="actionForm" action="/main/boardlist" method="post">
-                        	<span class="select" >
-								    <select name="location" onclick="return false;" id="location" >
-								    	<option value="선택">-선택-</option>
-								        <option value="강서구">강서구</option>
-								        <option value="서초구">서초구</option>
-								        <option value="강동구">강동구</option>
-								        <option value="강남구">강남구</option>
-								    </select>
-						    </span> 
-                            <input type="text" class="form-control footer-input margin-b-20" name="title" placeholder="title" required>
-                            <!-- <input type="text" class="form-control footer-input margin-b-20" name="writer" placeholder="writer" required> -->
-                            <textarea class="form-control footer-input margin-b-30" rows="6" name="content" placeholder="content" required></textarea>
-                            <button  id="submit" type="submit" class="btn-theme btn-theme-sm btn-base-bg text-uppercase">글쓰기</button>
-                   		</form>
-                   		
-                  	</div>
+	<div class="parallax-window" data-parallax="scroll"
+		data-image-src="/resources/HTML/img/gogogogo.gif">
+		<div class="parallax-content container">
+			<h1 class="carousel-title">BOARD</h1>
+			<!--                 <p>한 달여 동안 조 이름을 네 번 바꿨지만 우리는 아직도 마음에 들지 안항서 새로 지은 조 이름은 <br/> 와사비</p> -->
+		</div>
+	</div>
 
-                  	<div class="col-sm-6  sm-margin-b-30">
-                  		
-                  		<div class="row">
-							<div class="fileDrop"></div>
-							
-							<div class="uploadedList"></div>
+	<div class="bg-color-sky-light">
+		<div class="padTest container">
+			<div class="row">
+				<div class="board" style="padding: 15px 15px 15px 15px;">
+					<form id="actionForm" action="/main/boardlist" method="post">
+						<div class="row">
+							<div class="wrap center col-sm-6">
+								<input type="text" name="title" id="name" placeholder="title">
+							</div>
+
+							<div class="select col-sm-6" style="float: right;">
+								<select name="location" onclick="return false;" id="location">
+									<option value="선택">-선택-</option>
+									<option value="강서구">10대</option>
+									<option value="서초구">20대</option>
+									<option value="강동구">30대</option>
+								</select>
+							</div>
 						</div>
-                  	</div>
-				</div>
-				
-              	</div>     		
-			</div>
-        </div>
 
-	<c:import url="../includes/footer.jsp"></c:import>
+						<div class="row" style="padding-top:1px;">
+							<div class="col-sm-12">
+								<textarea rows="6" name="content" placeholder="content"
+									style="resize: none;"></textarea>
+							</div>
+						</div>
+						<div class="row" style="padding-top:10px;">
+
+							<div class="col-sm-12">
+								<div class="dropboard" style="padding: 10px 10px 10px 10px;">
+									<div class="fileDrop"></div>
+
+									<div class="uploadedList"></div>
+								</div>
+							</div>
+						</div>
+						<hr>
+						<div class="row">
+							<div class="col-sm-12">
+								<button id="submit" type="submit"
+									class="searchBtn btn btn-primary" style="float: right">글쓰기</button>
+							</div>
+						</div>
+					</form>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
 
 	<!-- Back To Top -->
 	<a href="javascript:void(0);" class="js-back-to-top back-to-top">Top</a>
@@ -294,7 +311,7 @@
 							console.log(files);
 							console.log(files.length);
 							
-							if(files.length >= 3 || $dataList.children().length >= 3){
+							if(files.length >= 2 || $dataList.children().length >= 2){
 								console.log("그만넣으셈");
 								return;
 							}
@@ -480,7 +497,8 @@
 		}
 
 		// ------------FirebaseDB Test----------------
-</script>
+
+	</script>
 
 
 </body>

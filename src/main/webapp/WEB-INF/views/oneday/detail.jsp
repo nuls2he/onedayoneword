@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -35,10 +35,11 @@
 .bg-reply-color{
 	background:#888888
 }
-.test-margin{
-	margin:auto
-}
 
+hr{
+	height: 2px;
+	background: #ccc;
+}
 /* test */
 h2 {
   font: 33px sans-serif;
@@ -46,95 +47,72 @@ h2 {
   text-align: center;
   text-transform: uppercase;
 }
-h2.background {
-  position: relative;
-  z-index: 1;
+
+.board{
+	width: 100%;
+	height: 100%;
+	background: #fff;
+	box-shadow: 12px 8px 0 rgba(0, 0 ,0, 0.2); 
+	border-right: 1px solid black;
+	border-bottom: 1px solid black;
+	border-left: 1px solid rgba(0, 0, 0, 0.2);
+	border-top: 1px solid rgba(0, 0, 0, 0.2);
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
 }
-h2.background:before {
-  border-top: 2px solid #dfdfdf;
-  content: "";
-  margin: 0 auto;
-  /* this centers the line to the full width specified */
-  position: absolute;
-  /* positioning must be absolute here, and relative positioning must be applied to the parent */
-  top: 50%;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 95%;
-  z-index: -1;
+
+.padTest{
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
-h2.background span {
-  /* to hide the lines from behind the text, you have to set the background color the same as the container */
-  background: #fff;
-  padding: 0 15px;
+.imgtest{
+	border: 2px solid #ffcccc;
+	border-radius: 7px;
+	-moz-border-radius: 7px;
+	-khtml-border-radius: 7px;
+	-webkit-border-radius: 7px;
 }
-h2.double:before {
-  /* this is just to undo the :before styling from above */
-  border-top: none;
+
+.box {
+    color:#000;
+    margin:auto;
+    padding:40px;
+    width: 100%;
+    height:100%;
+    background:#fff;
+    border-radius:3px;
+    border-bottom:4px solid #5e95cd;
+    /* box-shadow: 0px 0px 30px #888888; */
 }
-h2.double:after {
-  border-bottom: 1px solid blue;
-  -webkit-box-shadow: 0 1px 0 0 red;
-  -moz-box-shadow: 0 1px 0 0 red;
-  box-shadow: 0 1px 0 0 red;
-  content: "";
-  margin: 0 auto;
-  /* this centers the line to the full width specified */
-  position: absolute;
-  top: 45%;
-  left: 0;
-  right: 0;
-  width: 95%;
-  z-index: -1;
+.overlimit{color: red;}
+
+.replytest{
+ 	width: 90%;
+	height: 100%;
+/* 	margin-top: 20px;
+	margin-bottom: 20px; */
+	margin: 20px 50px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-radius:3px;
+	background:#fff;
+	box-shadow: 0px 0px 30px #888888; 
 }
-h2.no-background {
-  position: relative;
-  overflow: hidden;
+
+.poptut{
+
+  animation: poptut 1s .4s forwards;
+
 }
-h2.no-background span {
-  display: inline-block;
-  vertical-align: baseline;
-  zoom: 1;
-  *display: inline;
-  *vertical-align: auto;
-  position: relative;
-  padding: 0 20px;
-}
-h2.no-background span:before,
-h2.no-background span:after {
-  content: '';
-  display: block;
-  width: 1000px;
-  position: absolute;
-  top: 0.73em;
-  border-top: 1px solid red;
-}
-h2.no-background span:before {
-  right: 100%;
-}
-h2.no-background span:after {
-  left: 100%;
-}
-h2.no-span {
-  display: table;
-  white-space: nowrap;
-}
-h2.no-span:before,
-h2.no-span:after {
-  border-top: 1px solid green;
-  content: '';
-  display: table-cell;
-  position: relative;
-  top: 0.5em;
-  width: 45%;
-}
-h2.no-span:before {
-  right: 1.5%;
-}
-h2.no-span:after {
-  left: 1.5%;
-}
+/* img{
+	border: 2px solid #ffcccc;
+	border-radius: 7px;
+	-moz-border-radius: 7px;
+	-khtml-border-radius: 7px;
+	-webkit-border-radius: 7px;
+} */
 </style>
 <title>Insert title here</title>
 </head>
@@ -143,47 +121,87 @@ h2.no-span:after {
 	<c:import url="../includes/header.jsp"></c:import>
 	
 	<!--========== PARALLAX ==========-->
-        <div class="parallax-window" data-parallax="scroll" data-image-src="/resources/HTML/img/1920x1080/yellow.png">
+       <div class="parallax-window" data-parallax="scroll" data-image-src="/resources/HTML/img/gogogogo.gif">
             <div class="parallax-content container">
                 <h1 class="carousel-title">BOARD</h1>
+<!--                 <p>한 달여 동안 조 이름을 네 번 바꿨지만 우리는 아직도 마음에 들지 안항서 새로 지은 조 이름은 <br/> 와사비</p> -->
             </div>
         </div>
         
-        <div class="color-white">
-        	<div class="content-lg container">
-       			<div class="row">
-       				<h2 class="color-sky-blue">Send Us A Note</h2>
-       				<h2 class="background"></h2>
-
-					<hr>
-       				<div class="col-sm-3 sm-margin-b-30">
-       				</div>
-               		<div id="mark" class="col-sm-5" style="margin-left:10%;margin-right:10%">
-	               		
-	               		<c:forEach var="data" items="">
-	               			
-	               		</c:forEach>
-	               		<img class="test-margin" width="300px" height="300px" src="">
-	               		<img class="test-margin" width="300px" height="300px" src="">
-	               		<div class="uploadedList"></div>
-                  	</div>
-                  	<div class="col-sm-3 sm-margin-b-30">
-       				</div>
-              	</div>     	
-              	<div class="row">
-              		<p align="center" id="contentData"></p>
-              	</div>
-              	<div id="testDiv">
-	           		<button id="list" style="float: right">목록</button>
-	         		<button id="modify" style="float: right">수정</button>
-	         		<button id="remove" style="float: right">삭제</button>
-	          	</div>
+        <div class="bg-color-sky-light">
+        	<div class="padTest container">
+	        	<div class="row">
+	        			<div class="board" style="padding: 0 20px;">
+	        				<div class="row" style="background-color: #22a2ea; border-radius: 8px;margin-bottom: 15px;">
+	        					<h2 style="color: #fff;">글제목</h2>
+								<hr>
+	        				</div>
+							<div class="row">
+								<div id="mark" class="col-sm-6">
+								</div>
+								<div class="col-sm-6" id="wrap">
+									<!-- <p align="center" id="contentData" style="color:black;"></p> -->
+									<div class="dummy"></div>
+									<textarea id="contentData"  rows="15" style="width:100%; border:none; resize:none;" readonly="readonly"></textarea>
+								</div>
+							</div>
+							<div class="row" style="padding-bottom: 10px;">
+	
+				              		<hr>
+					           		<button id="list" class="searchBtn btn btn-primary" 
+					           		style="float: right; color:black;background-color: #6b9f2c;">목록</button>
+					         		<button id="modify" class="searchBtn btn btn-primary" type="button" 
+					         		style="float: right; color:black;background-color: #00356a;">수정</button>
+					         		<button id="remove" class="searchBtn btn btn-primary" 
+					         		style="float: right; color:black;background-color: #cc191a;">삭제</button>
+									
+							</div>
+							
+							<div class="row">
+								<hr>
+							</div>
+							
+							<div class="row">
+								<section class="box">
+									<h3>What's up?</h3>
+									<textarea id="status" rows="5" style="width:100%; resize:none; margin-right: 20px;"></textarea>
+									<button class="btn btn-large btn-primary pull-right" type="submit">등록</button>
+								</section>
+							</div>
+							
+	
+								<div class="replytest row">
+									<div class="col-sm-10">
+										<div style="width: 100%; margin-left: 20px;">작성자명</div>
+										<hr style="margin-top: 5px;">
+										<div  style="width: 100%; margin-left: 20px;">댓글내용</div>
+									</div>
+									<div class="col-sm-1">
+										<div class="row" style="margin-bottom: 3px;" align="center">
+											<button class="btn btn-large btn-primary pull" type="submit">수정</button>
+										</div>
+										<div class="row" align="center">
+											<button class="btn btn-large btn-primary pull" type="submit">삭제</button>
+										</div>
+									</div>
+								</div>
+								
+								<div id="reportPage" style="text-align: center;">
+									<ul class="pagination mypage" style="margin: 0 auto;">
+						<!-- 				<li class="page-item"><a class="page-link" href="#">Prev</a></li> -->
+						<!-- 				<li class="page-item"><a class="page-link" href="#">Next</a></li> -->
+									</ul>
+								</div>
+						</div>
+	        	</div> 	
 			</div>
 			
         </div>
-        <div class="bg-reply-color">
-        	<div class="content-lg container">
-       			<div class="row">
+
+        <!-- <div class="bg-reply-color">
+        	<div class="row">
+        			<div class="col-sm-1">
+        			</div>
                		<div class="col-sm-5 sm-margin-b-30">
 	               		<h2 class="color-white">Reply</h2>
 	               		<input type="text" id="title" name="title">
@@ -192,13 +210,14 @@ h2.no-span:after {
                   	</div>
               	</div>     	
               	<div class="row">
-              		<div id="listReply">
+              		<div class="col-sm-1">
+        			</div>
+              		<div class="col-sm-8 sm-margin-b-30">
+              			<div id="listReply">
+              			</div>
               		</div>
              	</div>	
-			</div>
-        </div>
-
-	<c:import url="../includes/footer.jsp"></c:import>
+        </div> -->
 	
 	<form action="/oneday/modify" method=get id="testForm">
 		<input type="hidden" name="no">
@@ -211,7 +230,7 @@ h2.no-span:after {
 	<!-- CORE PLUGINS -->
 	<script src="/resources/HTML/vendor/jquery.min.js"	type="text/javascript"></script>
 	<script src="/resources/HTML/vendor/jquery-migrate.min.js"	type="text/javascript"></script>
-	<script src="/resources/HTML/vendor/bootstrap//resources/HTML/js/bootstrap.min.js"	type="text/javascript"></script>
+	<!-- <script src="/resources/HTML/vendor/bootstrap//resources/HTML/js/bootstrap.min.js"	type="text/javascript"></script> -->
 
 	<!-- PAGE LEVEL PLUGINS -->
 	<script src="/resources/HTML/vendor/jquery.easing.js" type="text/javascript"></script>
@@ -219,11 +238,11 @@ h2.no-span:after {
 	<script src="/resources/HTML/vendor/jquery.smooth-scroll.js"	type="text/javascript"></script>
 	<script src="/resources/HTML/vendor/jquery.wow.min.js"	type="text/javascript"></script>
 	<script src="/resources/HTML/vendor/jquery.parallax.min.js"	type="text/javascript"></script>
-	<script src="/resources/HTML/vendor/swiper//resources/HTML/js/swiper.jquery.min.js"	type="text/javascript"></script>
+	<!-- <script src="/resources/HTML/vendor/swiper/resources/HTML/js/swiper.jquery.min.js"	type="text/javascript"></script> -->
 
 	<!-- PAGE LEVEL SCRIPTS -->
 	<script src="/resources/HTML/js/layout.min.js" type="text/javascript"></script>
-	<script src="/resources/HTML/js/components/swiper.min.js"	type="text/javascript"></script>
+	<!-- <script src="/resources/HTML/js/components/swiper.min.js"	type="text/javascript"></script> -->
 	<script src="/resources/HTML/js/components/wow.min.js" type="text/javascript"></script>
 
 	<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
@@ -233,12 +252,18 @@ h2.no-span:after {
 		var testForm = $("#testForm");
 	
 		$("#modify").on("click", function(){
-			testForm.find("input[name='no']").val(41);
+			testForm.find("input[name='no']").val(${no});
 			testForm.submit();
 		});
 		
+		$("#list").on("click", function(){
+			location.href="/main/boardlist";
+		});
 		var testStr = "";
 		var arr = [];
+		
+		// 댓글 넘버
+		var replyNo = 0;
 		
 		(function(){
 			
@@ -257,15 +282,17 @@ h2.no-span:after {
 			// ------------Initialize Firebase---------------
 			
 			$("#remove").on("click", function(){
-				firebase.database().ref('/List/38').remove();
-			});
-			$("#modify").on("click", function(){
-				//firebase.database().ref('/List/39').remove();
+				firebase.database().ref('/Board/' + ${no}).remove();
 			});
 			
-			//---------------------------------------------
+			// 사진하고 글 띄우기
+			showDetail();
+			// 댓글 띄우기
+			replyReset();
+		}());
 
-			firebase.database().ref('/Board/1/path').once('value', function(snapshot){
+		function showDetail(){
+			firebase.database().ref('/Board/' + ${no} + '/path').once('value', function(snapshot){
 				if(snapshot.val() != null){
 					// 사진이 있다는 거니 사진 띄우라 알았니?
 					console.log(snapshot.val());
@@ -275,9 +302,9 @@ h2.no-span:after {
 						for(var i = 0; i < snapshot.val().length; i++){
 							console.log(snapshot.val()[i]);
 
-							testStr += "<img src='displayFile?fileName=";
+							testStr += "<img class='imgtest' src='displayFile?fileName=";
 							testStr += snapshot.val()[i];
-							testStr += "' width='300px' height='300px'/><br>";
+							testStr += "' width='300px' height='300px' align='center' style='display:block; margin: auto;'/><br>";
 
 						}
 						$("#mark").html(testStr);
@@ -285,9 +312,9 @@ h2.no-span:after {
 					}
 					else{
 						
-						testStr += "<img src='displayFile?fileName=";
+						testStr += "<img class='imgtest' src='displayFile?fileName=";
 						testStr += snapshot.val();
-						testStr += "' width='300px' height='300px'/><br>";
+						testStr += "' width='300px' height='300px' align='center' style='display:block; margin: auto;'/><br>";
 						
 						$("#mark").html(testStr);
 						
@@ -295,23 +322,140 @@ h2.no-span:after {
 				}
 			});
 			
-			var testStr2 = "";
-			
 			// 이제 글을 띄우면 됨
-			firebase.database().ref('/Board/1/content').once('value', function(snapshot){
+			firebase.database().ref('/Board/' + ${no} + '/content').once('value', function(snapshot){
 				console.log("들어오나?");
 				if(snapshot.val() != null){
 					$("#contentData").text(snapshot.val());
 				}
 			});
-		}());
-
+		}
+		
+//------------------------------순호 소스----------------------------------------
+		
+		/* // 한페이지에 보여지는 글목록 수와 페이징 사이즈 수
+		var listSize = 10;
+		var pageSize = 5;
+		
+		// 페이징 변수
+		var listCount = 0;
+		var page = 1;
+		var listEnd;  // var listEnd = page * 2;  페이지에 보여주는 글목록의 시작부터 끝
+		var listStart; // var listStart = listEnd - 1;
+		
+		// 페이지 번호 클릭시 받아서 처리(버튼 생성할때 처리하는 부분 만들어야함)
+		var pageNum = 1;
+		var prev = false;
+		var next = true;
+			
+		// 페이징
+		function paging(listCount) {
+			var str = "";
+			var pagingEnd = pageNum + (pageSize - 1); // var pagingEnd = pageNum + 2;
+			var count = (listCount / listSize) + 1;  
+			// var count = (listCount / 2) + 1;
+			
+			if(pagingEnd > count){
+				pagingEnd = count;
+				next = false;
+			}
+			
+			if(pageNum != 1){
+				prev = true;
+			} else {
+				prev = false;
+			}
+			
+			if(listCount <= (listSize * pageSize)){ next = false; }
+			
+			if(prev){str += "<li class='page-item' id='prev'><a class='page-link' href='#'>Prev</a></li>"};
+			
+			for(var i = pageNum; i <= pagingEnd; i++){
+				if(page != i){
+					str += "<li class='page-item'><a class='page-link' href='/main/boardlist?page=" + i + "&pageNum=" + pageNum + "'>" + i + "</a></li>";	
+				} else {
+					str += "<li class='page-item active'><a class='page-link' href='/main/boardlist?page=" + i + "&pageNum=" + pageNum + "'>" + i + "</a></li>";
+				}
+			}
+			
+			if(next){str += "<li class='page-item' id='next'><a class='page-link' href='#'>next</a></li>"};
+			
+			$(".mypage").html(str);
+		}; */
+		
+		//---------------------------------------------------
+		
+		function replyReset(){
+			firebase.database().ref('/Board/' + ${no} + '/replyData/').once('value', function(snapshot){
+				if(snapshot.val() != null){
+					
+					var output = "";
+					
+					if(Array.isArray(snapshot.val())) {
+						
+						listCount = snapshot.val().length - 1;
+						
+						for(var i = 1; i < snapshot.val().length; i++){
+							
+							/* 
+							<div class="replytest row">
+								<div class="col-sm-10">
+									<div style="width: 100%; margin-left: 20px;">작성자명</div>
+									<hr style="margin-top: 5px;">
+									<div  style="width: 100%; margin-left: 20px;">댓글내용</div>
+								</div>
+								<div class="col-sm-1">
+									<div class="row" style="margin-bottom: 3px;" align="center">
+										<button class="btn btn-large btn-primary pull" type="submit">수정</button>
+									</div>
+									<div class="row" align="center">
+										<button class="btn btn-large btn-primary pull" type="submit">삭제</button>
+									</div>
+								</div>
+							</div> 
+							*/
+							output += "<div class='col-sm-10'>";
+							
+							output += "		<span>" + i + "</span><br>";
+							output += "		<div style='width: 100%; margin-left: 20px;'>" + snapshot.val()[i].replyTitle + "</span>";
+							output += "		<hr style='margin-top: 5px;'>"
+							output += "		<span>내용 : " + snapshot.val()[i].replyContent + "</span>";
+							output += "		<button style='display:block;float: right;'>삭제</button>";
+							
+							output += "</div>";
+						}
+						
+						
+					}else{
+						
+						listCount = snapshot.val().length - 1;
+						
+						output += "<div class='testClass'>";
+						
+						output += "		<span>1</span><br>";
+						output += "		<span>제목 : " + snapshot.val().replyTitle + "</span>";
+						output += "		<span>내용 : " + snapshot.val().replyContent + "</span>";
+						output += "		<button style='display:block;float: right;'>삭제</button>";
+							
+						output += "</div>";
+					}
+					$(".replytest").html(output);
+					if(listEnd > listCount){
+						listEnd = listCount;
+					}
+					listEnd = page * listSize;
+					listStart = listEnd - (listSize - 1);
+					
+					paging(listCount);
+				}
+			});
+			
+		}
+		
 		//---------------------------------------------
 		
-		
 		// 이미지는 /List/글번호/path
-
-		var num = 0;
+		// 댓글이 글 안에 저장되어서 가져오는 형태로
 		$("#testBtn").click(function(){
 			
 			var data = {
@@ -320,35 +464,14 @@ h2.no-span:after {
 			};
 			
 			// 리스트에서 글을 클릭하면 넘겨주는 글번호를 가지고 등록해야함
-			// 현재는 그냥 따로 reply를 밖에 만들어서 테스트만 해봄
-			num++;
-			firebase.database().ref('/reply/' + num).set(data);
+			replyNo++;
+			firebase.database().ref('/Board/' + ${no} + '/replyNo').set(replyNo);
+			firebase.database().ref('/Board/' + ${no} + '/replyData/' + replyNo).set(data);
 			
-			firebase.database().ref().child('/reply').once('value', function(snapshot){
-				
-				var testArr = snapshot.val();
-				
-				var output = "";
-				
-				
-				// 수정과 삭제를 하기 위해서는 만들면서 이벤트를 등록해줘야함
-				for(var i = 1; i < testArr.length; i++){
-					console.log(i);
-					console.log(testArr[i].replyTitle);
-					
-					output += "<div class='testClass'>";
-					
-					output += "		<span>"+ i + "</span><br>";
-					output += "		<span>제목 : "+ testArr[i].replyTitle + "</span>";
-					output += "		<span>내용 : "+ testArr[i].replyContent + "</span>";
-					output += "		<button style='margin:right'>삭제</button>";
-						
-					output += "</div>";
-				}
-				
-				$("#listReply").html(output);
-			});
+			replyReset();
         });
+		
+		
 		
 	</script>
 
