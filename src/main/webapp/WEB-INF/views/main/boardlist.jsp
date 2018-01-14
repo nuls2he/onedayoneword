@@ -268,6 +268,7 @@
 			}
 			
 			$("#tList").html(html);
+			
 			paging(listCount);
 		});	
 		
