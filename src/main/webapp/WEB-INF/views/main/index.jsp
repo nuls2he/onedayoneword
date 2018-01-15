@@ -140,8 +140,8 @@
                    		
                    		<div id="menu">
 						    <button id="table">네이버</button>
-						    <button id="sphere">10대 남자</button>
-						    <button id="helix">10대 여자</button>
+						    <button id="sphere">남  자</button>
+						    <button id="helix">여  자</button>
 						    <button id="grid">전체 보기</button>
 						</div>
                </div>
@@ -159,6 +159,9 @@
 
 <script>
 	console.log("${login}");
+	
+    var type = "${type}";
+    console.log("-----" + type);
 
     var table = [
         "1", "", "", 1, 1,
@@ -315,6 +318,10 @@
     // 네이버 리스트
     var button = document.getElementById( 'table' );
     button.addEventListener( 'click', function ( event ) {
+		naver();
+    }, false );
+    
+    function naver () {
     	var $container = $("#container");
         index = 0;
         objects = [];
@@ -329,11 +336,15 @@
     	$container.empty();
     	init();
         transform( targets.table, 2000 );
-    }, false );
+    };
     
     // 남자 리스트
     var button = document.getElementById( 'sphere' );
     button.addEventListener( 'click', function ( event ) {
+		boy();
+    }, false );
+    
+    function boy(){
     	var $container = $("#container");
         index = 0;
         objects = [];
@@ -345,11 +356,15 @@
     	$container.empty();
     	init();
         transform( targets.sphere, 2000 );
-    }, false );
+    };
     
     // 여자 리스트
     var button = document.getElementById( 'helix' );
     button.addEventListener( 'click', function ( event ) {
+		girl();
+    }, false );
+    
+    function girl () {
     	var $container = $("#container");
         index = 0;
         objects = [];
@@ -361,11 +376,15 @@
     	$container.empty();
     	init();
         transform( targets.helix, 2000 );
-    }, false );
+    };
     
     // 전체 리스트
     var button = document.getElementById( 'grid' );
     button.addEventListener( 'click', function ( event ) {
+		all();
+    }, false );
+    
+    function all() {
     	var $container = $("#container");
         index = 0;
         objects = [];
@@ -377,15 +396,44 @@
     	$container.empty();
     	init();
         transform( targets.grid, 2000 );
-    }, false );
+    };
     
-    transform( targets.grid, 2000);
+    if(!type){
+    	all();
+		$("#grid").css("background-color", "rgba(255,255,255,0.75)").
+		css("color", "black");
+    } else {
+    	switch(type){
+    	case "f":
+    		girl();
+    		$("#helix").css("background-color", "rgba(255,255,255,0.75)").
+    		css("color", "black");
+    		break;
+    	case "m":
+    		boy();
+    		$("#sphere").css("background-color", "rgba(255,255,255,0.75)").
+    		css("color", "black");
+    		break;
+    	case "naver":
+    		naver();
+    		$("#table").css("background-color", "rgba(255,255,255,0.75)").
+    		css("color", "black");
+    		break;
+    	}
+    }
     
     $("#container").on("click", "div[class=symbol]",function () {
     	var keyword = $(this).text();
     	window.open("popup?keyword=" + keyword,"popup","width=1100, height=500");
     });
     
+	$("#menu").on("click", "button", function () {
+		$("button").css("background-color", "").
+		css("color", "");
+		$(this).css("background-color", "rgba(255,255,255,0.75)").
+		css("color", "black");
+	});
+	
 </script>
 
 <!-- Back To Top -->

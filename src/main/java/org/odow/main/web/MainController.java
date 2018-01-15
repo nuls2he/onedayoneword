@@ -29,11 +29,13 @@ public class MainController {
 	MainService service;
 	
 	@GetMapping("/index")
-	public void index(Model model , HttpSession session) {
+	public void index(Model model , HttpSession session, 
+			@RequestParam(value="type", defaultValue="") String type) {
 		model.addAttribute("aList", service.getAll());
 		model.addAttribute("bList", service.getBoy());
 		model.addAttribute("gList", service.getGirl());
 		model.addAttribute("nList", service.getNaver());
+		model.addAttribute("type", type);
 	}
 	
 	@GetMapping("/boardlist")
