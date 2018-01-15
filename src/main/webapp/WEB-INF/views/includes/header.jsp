@@ -59,7 +59,7 @@
 	crossorigin="anonymous"></script>
 
 
-	<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.8.2/firebase.js"></script>
 	<script>
 		// Initialize Firebase
 		var config = {
@@ -72,10 +72,7 @@
 		};
 		firebase.initializeApp(config);
 	</script>
-
-
-
-
+	
 <script>
 	var id = "${login}";
 

@@ -155,20 +155,6 @@
 <script src="/resources/HTML/js/tween.min.js"></script>
 <script src="/resources/HTML/js/TrackballControls.js"></script>
 <script src="/resources/HTML/js/CSS3DRenderer.js"></script>
-
-<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
-<script>
-	// Initialize Firebase
-	var config = {
-		apiKey : "AIzaSyAOt6m87XjCvQIAyEmCwPCFTtzPbucKATI",
-		authDomain : "study-332a5.firebaseapp.com",
-		databaseURL : "https://study-332a5.firebaseio.com",
-		projectId : "study-332a5",
-		storageBucket : "study-332a5.appspot.com",
-		messagingSenderId : "973012229121"
-	};
-	firebase.initializeApp(config);
-</script>
 		
 	<c:import url="../includes/header.jsp"></c:import>
 		
@@ -251,10 +237,11 @@
 	
 	// 전체 데이터 조회
 	function readAllData() {
-		var boardList = firebase.database().ref().child("/board");
+		var boardList = firebase.database().ref("/board");
+		console.dir(boardList);
 		
 		boardList.on("value", function(snapshot) {
-
+			console.dir(snapshot.val());
 			var listData = snapshot.val();
 			listCount = listData.length - 1;
 			
