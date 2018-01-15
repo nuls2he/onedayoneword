@@ -206,11 +206,11 @@ input:focus, textarea:focus{
 							</div>
 
 							<div class="select col-sm-6" style="float: right;">
-								<select name="location" onclick="return false;" id="location">
+								<select name="age" onclick="return false;" id="age">
 									<option value="선택">-선택-</option>
-									<option value="강서구">10대</option>
-									<option value="서초구">20대</option>
-									<option value="강동구">30대</option>
+									<option value="10대">10대</option>
+									<option value="20대">20대</option>
+									<option value="30대">30대</option>
 								</select>
 							</div>
 						</div>
@@ -272,12 +272,12 @@ input:focus, textarea:focus{
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/easing/EasePack.min.js"></script>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenLite.min.js"></script>
 
-	<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+	<!-- <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script> -->
 	
 	<script src="/resources/HTML/js/sweetalert2.min.js"></script>
 
 	<script>
-		// ------------Initialize Firebase---------------
+		/* // ------------Initialize Firebase---------------
 		
 		var config = {
 			apiKey : "AIzaSyCHAm0uDpjUGUPNPptNtoFStgFX3yWsrqs",
@@ -289,7 +289,7 @@ input:focus, textarea:focus{
 		};
 		firebase.initializeApp(config);
 		
-		// ------------Initialize Firebase---------------
+		// ------------Initialize Firebase--------------- */
 
 		var dateArr = [];
 		var fileNameArr = [];
@@ -412,8 +412,8 @@ input:focus, textarea:focus{
 			
 			e.preventDefault();
 			
-			console.log($("#location").val());
-			if($("#location option").index($("#location option:selected")) == 0){
+			console.log($("#age").val());
+			if($("#age option").index($("#age option:selected")) == 0){
 				swal(
 						  '선택은 하셔야죠...',
 						  '알아서 올려주지 않습니다.',
@@ -461,7 +461,7 @@ input:focus, textarea:focus{
 	            
 	            console.log("넘어오라!");
         		number ++;
-	            location.href = "/main/boardlist";
+	            //location.href = "/main/boardlist";
 			});
         });
 		// 아이디도 있어야함 
@@ -483,16 +483,28 @@ input:focus, textarea:focus{
 			
 			console.log(pictures);
 			
+			var date = new Date();
+			
+			var month = date.getMonth() + 1;
+			var day = date.getDate();
+			var year = date.getFullYear();
+			
+			var regdate = year + '-' + month + '-' + day;
+			console.log(year + '-' + month + '-' + day);
+			console.log($("#age").val());
+			
 			//댓글은 어떻하나....
 			var writeData = {
-				location : $("#location").val(),
+				no: no,
+				age : $("#age").val(),
 				title : title,
 				writer : 'imymemine',
 				content : content,
-				path : pictures	
+				path : pictures,
+				regdate: regdate
 			};
 						
-			firebase.database().ref('/Board/' + no).set(writeData);
+			firebase.database().ref('/board/' + no).set(writeData);
 			//firebase.database().ref('/List/20').set(writeData);
 		}
 

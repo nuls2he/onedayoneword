@@ -269,7 +269,7 @@ input:focus, textarea:focus{
 	<script src="/resources/HTML/js/components/swiper.min.js"	type="text/javascript"></script>
 	<script src="/resources/HTML/js/components/wow.min.js" type="text/javascript"></script>
 
-	<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+	<!-- <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script> -->
 
 	<script>
 	
@@ -279,7 +279,7 @@ input:focus, textarea:focus{
 
 		(function(){
 			
-			// ------------Initialize Firebase---------------
+			/* // ------------Initialize Firebase---------------
 			writeNo = ${no};
 			
 			var config = {
@@ -292,7 +292,7 @@ input:focus, textarea:focus{
 			};
 			firebase.initializeApp(config);
 			
-			// ------------Initialize Firebase---------------
+			// ------------Initialize Firebase--------------- */
 			String.prototype.replaceAt=function(index, character) {
 			    return this.substr(0, index) + character + this.substr(index + 1);
 			}

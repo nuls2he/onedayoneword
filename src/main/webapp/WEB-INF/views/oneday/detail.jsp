@@ -245,7 +245,7 @@ h2 {
 	<!-- <script src="/resources/HTML/js/components/swiper.min.js"	type="text/javascript"></script> -->
 	<script src="/resources/HTML/js/components/wow.min.js" type="text/javascript"></script>
 
-	<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+	<!-- <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script> -->
 
 	<script>
 
@@ -267,8 +267,7 @@ h2 {
 		
 		(function(){
 			
-			// ------------Initialize Firebase---------------
-			
+ 			// ------------Initialize Firebase---------------
 			var config = {
 				apiKey : "AIzaSyCHAm0uDpjUGUPNPptNtoFStgFX3yWsrqs",
 				authDomain : "likethis-35671.firebaseapp.com",
@@ -279,19 +278,21 @@ h2 {
 			};
 			firebase.initializeApp(config);
 			
-			// ------------Initialize Firebase---------------
+			// ------------Initialize Firebase--------------- 
 			
 			$("#remove").on("click", function(){
+				//firebase.database().ref('/board/' + ${no}).remove();
 				firebase.database().ref('/Board/' + ${no}).remove();
 			});
 			
 			// 사진하고 글 띄우기
 			showDetail();
 			// 댓글 띄우기
-			replyReset();
+			replyReset(1);
 		}());
 
 		function showDetail(){
+			//firebase.database().ref('/board/' + ${no} + '/path').once('value', function(snapshot){
 			firebase.database().ref('/Board/' + ${no} + '/path').once('value', function(snapshot){
 				if(snapshot.val() != null){
 					// 사진이 있다는 거니 사진 띄우라 알았니?
@@ -323,6 +324,7 @@ h2 {
 			});
 			
 			// 이제 글을 띄우면 됨
+			//firebase.database().ref('/board/' + ${no} + '/content').once('value', function(snapshot){
 			firebase.database().ref('/Board/' + ${no} + '/content').once('value', function(snapshot){
 				console.log("들어오나?");
 				if(snapshot.val() != null){
@@ -333,13 +335,13 @@ h2 {
 		
 //------------------------------순호 소스----------------------------------------
 		
-		/* // 한페이지에 보여지는 글목록 수와 페이징 사이즈 수
+		// 한페이지에 보여지는 글목록 수와 페이징 사이즈 수
 		var listSize = 10;
 		var pageSize = 5;
 		
 		// 페이징 변수
 		var listCount = 0;
-		var page = 1;
+		var page;
 		var listEnd;  // var listEnd = page * 2;  페이지에 보여주는 글목록의 시작부터 끝
 		var listStart; // var listStart = listEnd - 1;
 		
@@ -349,7 +351,7 @@ h2 {
 		var next = true;
 			
 		// 페이징
-		function paging(listCount) {
+		/* function paging(listCount) {
 			var str = "";
 			var pagingEnd = pageNum + (pageSize - 1); // var pagingEnd = pageNum + 2;
 			var count = (listCount / listSize) + 1;  
@@ -385,15 +387,34 @@ h2 {
 		
 		//---------------------------------------------------
 		
-		function replyReset(){
+		function replyReset(pageNum){
+			
+			//var boardList = firebase.database().ref('/board/' + ${no}).child("/replyData");
+			var boardList = firebase.database().ref('/Board/' + ${no}).child("/replyData");
+			
+			boardList.on("value", function(snapshot){
+				console.log(snapshot.val().length - 1);
+			});
+			
+			
+			//firebase.database().ref('/board/' + ${no} + '/replyData/').once('value', function(snapshot){
 			firebase.database().ref('/Board/' + ${no} + '/replyData/').once('value', function(snapshot){
 				if(snapshot.val() != null){
 					
 					var output = "";
 					
+					
+					
 					if(Array.isArray(snapshot.val())) {
 						
+						listEnd = pageNum * listSize;
+						listStart = listEnd - (listSize - 1);
+						
 						listCount = snapshot.val().length - 1;
+						
+						if(listEnd > listCount){
+							listEnd = listCount;
+						}
 						
 						for(var i = 1; i < snapshot.val().length; i++){
 							
@@ -428,7 +449,14 @@ h2 {
 						
 					}else{
 						
+						listEnd = pageNum * listSize;
+						listStart = listEnd - (listSize - 1);
+						
 						listCount = snapshot.val().length - 1;
+						
+						if(listEnd > listCount){
+							listEnd = listCount;
+						}
 						
 						output += "<div class='testClass'>";
 						
@@ -440,13 +468,10 @@ h2 {
 						output += "</div>";
 					}
 					$(".replytest").html(output);
-					if(listEnd > listCount){
-						listEnd = listCount;
-					}
-					listEnd = page * listSize;
-					listStart = listEnd - (listSize - 1);
 					
-					paging(listCount);
+					
+					
+					//paging(listCount);
 				}
 			});
 			
@@ -465,6 +490,8 @@ h2 {
 			
 			// 리스트에서 글을 클릭하면 넘겨주는 글번호를 가지고 등록해야함
 			replyNo++;
+			//firebase.database().ref('/board/' + ${no} + '/replyNo').set(replyNo);
+			//firebase.database().ref('/board/' + ${no} + '/replyData/' + replyNo).set(data);
 			firebase.database().ref('/Board/' + ${no} + '/replyNo').set(replyNo);
 			firebase.database().ref('/Board/' + ${no} + '/replyData/' + replyNo).set(data);
 			
