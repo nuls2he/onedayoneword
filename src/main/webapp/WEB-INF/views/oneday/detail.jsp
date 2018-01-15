@@ -121,84 +121,95 @@ h2 {
 	<c:import url="../includes/header.jsp"></c:import>
 	
 	<!--========== PARALLAX ==========-->
-       <div class="parallax-window" data-parallax="scroll" data-image-src="/resources/HTML/img/gogogogo.gif">
-            <div class="parallax-content container">
-                <h1 class="carousel-title">BOARD</h1>
-<!--                 <p>한 달여 동안 조 이름을 네 번 바꿨지만 우리는 아직도 마음에 들지 안항서 새로 지은 조 이름은 <br/> 와사비</p> -->
-            </div>
-        </div>
-        
-        <div class="bg-color-sky-light">
-        	<div class="padTest container">
-	        	<div class="row">
-	        			<div class="board" style="padding: 0 20px;">
-	        				<div class="row" style="background-color: #22a2ea; border-radius: 8px;margin-bottom: 15px;">
-	        					<h2 style="color: #fff;">글제목</h2>
-								<hr>
-	        				</div>
-							<div class="row">
-								<div id="mark" class="col-sm-6">
-								</div>
-								<div class="col-sm-6" id="wrap">
-									<!-- <p align="center" id="contentData" style="color:black;"></p> -->
-									<div class="dummy"></div>
-									<textarea id="contentData"  rows="15" style="width:100%; border:none; resize:none;" readonly="readonly"></textarea>
-								</div>
-							</div>
-							<div class="row" style="padding-bottom: 10px;">
-	
-				              		<hr>
-					           		<button id="list" class="searchBtn btn btn-primary" 
-					           		style="float: right; color:black;background-color: #6b9f2c;">목록</button>
-					         		<button id="modify" class="searchBtn btn btn-primary" type="button" 
-					         		style="float: right; color:black;background-color: #00356a;">수정</button>
-					         		<button id="remove" class="searchBtn btn btn-primary" 
-					         		style="float: right; color:black;background-color: #cc191a;">삭제</button>
-									
-							</div>
-							
-							<div class="row">
-								<hr>
-							</div>
-							
-							<div class="row">
-								<section class="box">
-									<h3>What's up?</h3>
-									<textarea id="status" rows="5" style="width:100%; resize:none; margin-right: 20px;"></textarea>
-									<button class="btn btn-large btn-primary pull-right" type="submit">등록</button>
-								</section>
-							</div>
-							
-	
-								<div class="replytest row">
-									<div class="col-sm-10">
-										<div style="width: 100%; margin-left: 20px;">작성자명</div>
-										<hr style="margin-top: 5px;">
-										<div  style="width: 100%; margin-left: 20px;">댓글내용</div>
-									</div>
-									<div class="col-sm-1">
-										<div class="row" style="margin-bottom: 3px;" align="center">
-											<button class="btn btn-large btn-primary pull" type="submit">수정</button>
-										</div>
-										<div class="row" align="center">
-											<button class="btn btn-large btn-primary pull" type="submit">삭제</button>
-										</div>
-									</div>
-								</div>
-								
-								<div id="reportPage" style="text-align: center;">
-									<ul class="pagination mypage" style="margin: 0 auto;">
-						<!-- 				<li class="page-item"><a class="page-link" href="#">Prev</a></li> -->
-						<!-- 				<li class="page-item"><a class="page-link" href="#">Next</a></li> -->
-									</ul>
-								</div>
-						</div>
-	        	</div> 	
-			</div>
-			
-        </div>
+	<div class="parallax-window" data-parallax="scroll"
+		data-image-src="/resources/HTML/img/gogogogo.gif">
+		<div class="parallax-content container">
+			<h1 class="carousel-title">BOARD</h1>
+			<!--                 <p>한 달여 동안 조 이름을 네 번 바꿨지만 우리는 아직도 마음에 들지 안항서 새로 지은 조 이름은 <br/> 와사비</p> -->
+		</div>
+	</div>
 
-        <!-- <div class="bg-reply-color">
+	<div class="bg-color-sky-light">
+		<div class="padTest container">
+			<div class="row">
+				<div class="board" style="padding: 0 20px;">
+					<div class="row"
+						style="background-color: #22a2ea; border-radius: 8px; margin-bottom: 15px;">
+						<h2 style="color: #fff;">글제목</h2>
+						<hr>
+					</div>
+					<div class="row">
+						<div id="mark" class="col-sm-6"></div>
+						<div class="col-sm-6" id="wrap">
+							<!-- <p align="center" id="contentData" style="color:black;"></p> -->
+							<div class="dummy"></div>
+							<textarea id="contentData" rows="15"
+								style="width: 100%; border: none; resize: none;"
+								readonly="readonly"></textarea>
+						</div>
+					</div>
+					<div class="row" style="padding-bottom: 10px;">
+
+						<hr>
+						<button id="list" class="searchBtn btn btn-primary"
+							style="float: right; color: black; background-color: #6b9f2c;">목록</button>
+						<button id="modify" class="searchBtn btn btn-primary"
+							type="button"
+							style="float: right; color: black; background-color: #00356a;">수정</button>
+						<button id="remove" class="searchBtn btn btn-primary"
+							style="float: right; color: black; background-color: #cc191a;">삭제</button>
+
+					</div>
+
+					<div class="row">
+						<hr>
+					</div>
+
+					<div class="row">
+						<section class="box">
+							<h3>What's up?</h3>
+							<textarea id="status" rows="5"
+								style="width: 100%; resize: none; margin-right: 20px;"></textarea>
+							<button id="testBtn" class="btn btn-large btn-primary pull-right"
+								type="submit">등록</button>
+						</section>
+					</div>
+
+					<div>
+						<div class="testReply">
+							<div class="replytest row">
+								<div class="col-sm-10">
+									<div style="width: 100%; margin-left: 20px;">작성자명</div>
+									<hr style="margin-top: 5px;">
+									<div style="width: 100%; margin-left: 20px;">댓글내용</div>
+								</div>
+								<div class="col-sm-1">
+									<div class="row" style="margin-bottom: 3px;" align="center">
+										<button class="btn btn-large btn-primary pull" type="submit">수정</button>
+									</div>
+									<div class="row" align="center">
+										<button class="btn btn-large btn-primary pull" type="submit">삭제</button>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div id="reportPage" style="text-align: center;">
+							<ul class="pagination mypage" style="margin: 0 auto;">
+								<!-- 				<li class="page-item"><a class="page-link" href="#">Prev</a></li> -->
+								<!-- 				<li class="page-item"><a class="page-link" href="#">Next</a></li> -->
+							</ul>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<!-- <div class="bg-reply-color">
         	<div class="row">
         			<div class="col-sm-1">
         			</div>
@@ -335,67 +346,31 @@ h2 {
 		
 //------------------------------순호 소스----------------------------------------
 		
-		// 한페이지에 보여지는 글목록 수와 페이징 사이즈 수
-		var listSize = 10;
+		// 한페이지에 몇개를 보여줄껀지
+		var listSize = 5;
+		
+		// 보여줄 페이지수
 		var pageSize = 5;
 		
-		// 페이징 변수
+		// 총 댓글의 갯수가 몇개인지
 		var listCount = 0;
+		
 		var page;
 		var listEnd;  // var listEnd = page * 2;  페이지에 보여주는 글목록의 시작부터 끝
 		var listStart; // var listStart = listEnd - 1;
 		
 		// 페이지 번호 클릭시 받아서 처리(버튼 생성할때 처리하는 부분 만들어야함)
+		// 현재 페이지
 		var pageNum = 1;
 		var prev = false;
 		var next = true;
-			
-		// 페이징
-		/* function paging(listCount) {
-			var str = "";
-			var pagingEnd = pageNum + (pageSize - 1); // var pagingEnd = pageNum + 2;
-			var count = (listCount / listSize) + 1;  
-			// var count = (listCount / 2) + 1;
-			
-			if(pagingEnd > count){
-				pagingEnd = count;
-				next = false;
-			}
-			
-			if(pageNum != 1){
-				prev = true;
-			} else {
-				prev = false;
-			}
-			
-			if(listCount <= (listSize * pageSize)){ next = false; }
-			
-			if(prev){str += "<li class='page-item' id='prev'><a class='page-link' href='#'>Prev</a></li>"};
-			
-			for(var i = pageNum; i <= pagingEnd; i++){
-				if(page != i){
-					str += "<li class='page-item'><a class='page-link' href='/main/boardlist?page=" + i + "&pageNum=" + pageNum + "'>" + i + "</a></li>";	
-				} else {
-					str += "<li class='page-item active'><a class='page-link' href='/main/boardlist?page=" + i + "&pageNum=" + pageNum + "'>" + i + "</a></li>";
-				}
-			}
-			
-			if(next){str += "<li class='page-item' id='next'><a class='page-link' href='#'>next</a></li>"};
-			
-			$(".mypage").html(str);
-		}; */
-		
+
+		var str = "";
+		var pageEnd;
+		var count;
 		//---------------------------------------------------
 		
-		function replyReset(pageNum){
-			
-			//var boardList = firebase.database().ref('/board/' + ${no}).child("/replyData");
-			var boardList = firebase.database().ref('/Board/' + ${no}).child("/replyData");
-			
-			boardList.on("value", function(snapshot){
-				console.log(snapshot.val().length - 1);
-			});
-			
+		function replyReset(page){
 			
 			//firebase.database().ref('/board/' + ${no} + '/replyData/').once('value', function(snapshot){
 			firebase.database().ref('/Board/' + ${no} + '/replyData/').once('value', function(snapshot){
@@ -403,48 +378,71 @@ h2 {
 					
 					var output = "";
 					
+					// 페이지 계산
+					
+					
+					//$(".mypage").html(str);
+					// 배열이 아닐 경우
 					
 					
 					if(Array.isArray(snapshot.val())) {
 						
-						listEnd = pageNum * listSize;
-						listStart = listEnd - (listSize - 1);
-						
+						// 배열일 경우
 						listCount = snapshot.val().length - 1;
+						listEnd = page * listSize;
+						listStart = listEnd - (listSize - 1);
 						
 						if(listEnd > listCount){
 							listEnd = listCount;
 						}
 						
-						for(var i = 1; i < snapshot.val().length; i++){
+						for(var i = listStart; i <= listEnd; i++){
 							
-							/* 
-							<div class="replytest row">
-								<div class="col-sm-10">
-									<div style="width: 100%; margin-left: 20px;">작성자명</div>
-									<hr style="margin-top: 5px;">
-									<div  style="width: 100%; margin-left: 20px;">댓글내용</div>
-								</div>
-								<div class="col-sm-1">
-									<div class="row" style="margin-bottom: 3px;" align="center">
-										<button class="btn btn-large btn-primary pull" type="submit">수정</button>
-									</div>
-									<div class="row" align="center">
-										<button class="btn btn-large btn-primary pull" type="submit">삭제</button>
-									</div>
-								</div>
-							</div> 
-							*/
-							output += "<div class='col-sm-10'>";
-							
-							output += "		<span>" + i + "</span><br>";
-							output += "		<div style='width: 100%; margin-left: 20px;'>" + snapshot.val()[i].replyTitle + "</span>";
-							output += "		<hr style='margin-top: 5px;'>"
-							output += "		<span>내용 : " + snapshot.val()[i].replyContent + "</span>";
-							output += "		<button style='display:block;float: right;'>삭제</button>";
-							
+							output += "<div class='replytest row'>";
+							output += "		<div class='col-sm-10'>";
+							output += "			<div style='width: 100%; margin-left: 20px;'>" + i + "</div>";
+							output += "			<hr style='margin-top: 5px;'>";	
+							output += "			<div  style='width: 100%; margin-left: 20px;'>" + snapshot.val()[i].replyContent + "</div>";
+							output += "		</div>";
+							output += "		<div class='col-sm-1'>";
+							output += "			<div class='row' style='margin-bottom: 3px;' align='center'>";
+							output += "				<button class='btn btn-large btn-primary pull' type='submit'>수정</button>";
+							output += "			</div>";
+							output += "			<div class='row' align='center'>";
+							output += "				<button class='btn btn-large btn-primary pull' type='submit' data-num='" + i + "'>삭제</button>";
+							output += "			</div>";
+							output += "		</div>";
 							output += "</div>";
 						}
+						
+						
+						pageEnd = pageNum + (pageSize - 1);
+						count = (listCount / listSize) + 1;
+						
+						if(pageEnd > count){
+							pageEnd = count;
+							next = false;
+						}
+						
+						if(pageNum != 1){
+							prev = true;
+						} else {
+							prev = false;
+						}
+						
+						if(listCount <= (listSize * pageSize)){ next = false; }
+						
+						if(prev){str += "<li class='page-item' id='prev'><a class='page-link' href='#'>Prev</a></li>"};
+						
+						for(var i = 1; i <= pageEnd; i++){
+							if(page != i){
+								str += "<li class='page-item'><a class='page-link' href='/main/boardlist?page=" + i + "&pageNum=" + pageNum + "'>" + i + "</a></li>";	
+							} else {
+								str += "<li class='page-item active'><a class='page-link' href='/main/boardlist?page=" + i + "&pageNum=" + pageNum + "'>" + i + "</a></li>";
+							}
+						}
+						
+						if(next){str += "<li class='page-item' id='next'><a class='page-link' href='#'>next</a></li>"};
 						
 						
 					}else{
@@ -467,8 +465,8 @@ h2 {
 							
 						output += "</div>";
 					}
-					$(".replytest").html(output);
-					
+					$(".testReply").html(output);
+					$(".mypage").html(str);
 					
 					
 					//paging(listCount);
@@ -484,8 +482,8 @@ h2 {
 		$("#testBtn").click(function(){
 			
 			var data = {
-				replyTitle : $("#title").val(),
-				replyContent : $("#content").val()
+				replyTitle : "naya",
+				replyContent : $("#status").val()
 			};
 			
 			// 리스트에서 글을 클릭하면 넘겨주는 글번호를 가지고 등록해야함
@@ -495,7 +493,7 @@ h2 {
 			firebase.database().ref('/Board/' + ${no} + '/replyNo').set(replyNo);
 			firebase.database().ref('/Board/' + ${no} + '/replyData/' + replyNo).set(data);
 			
-			replyReset();
+			//replyReset();
         });
 		
 		
