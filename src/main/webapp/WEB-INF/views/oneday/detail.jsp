@@ -156,7 +156,7 @@ h2 {
 						<button id="modify" class="searchBtn btn btn-primary"
 							type="button"
 							style="float: right; color: black; background-color: #00356a;">수정</button>
-						<button id="remove" class="searchBtn btn btn-primary"
+						<button id="delete" class="searchBtn btn btn-primary"
 							style="float: right; color: black; background-color: #cc191a;">삭제</button>
 
 					</div>
@@ -291,13 +291,22 @@ h2 {
 			
 			// ------------Initialize Firebase--------------- 
 			
-			$("#remove").on("click", function(){
+			$("#delete").on("click", function(){
 				//firebase.database().ref('/board/' + ${no}).remove();
 				firebase.database().ref('/Board/' + ${no}).remove();
 			});
 			
 			// 사진하고 글 띄우기
 			showDetail();
+			
+			firebase.database().ref('/Board/' + ${no}).once('value', function(snapshot){
+				if(snapshot.val().replyNo != null){
+					console.log(snapshot.val().replyNo);
+					replyNo = snapshot.val().replyNo;
+				}
+				
+			});
+			
 			// 댓글 띄우기
 			replyReset(1);
 		}());
@@ -350,7 +359,7 @@ h2 {
 		var listSize = 5;
 		
 		// 보여줄 페이지수
-		var pageSize = 5;
+		var pageSize = 3;
 		
 		// 총 댓글의 갯수가 몇개인지
 		var listCount = 0;
@@ -365,25 +374,20 @@ h2 {
 		var prev = false;
 		var next = true;
 
-		var str = "";
+		
 		var pageEnd;
 		var count;
 		//---------------------------------------------------
 		
-		function replyReset(page){
+		function replyReset(page, num){
 			
 			//firebase.database().ref('/board/' + ${no} + '/replyData/').once('value', function(snapshot){
 			firebase.database().ref('/Board/' + ${no} + '/replyData/').once('value', function(snapshot){
 				if(snapshot.val() != null){
 					
 					var output = "";
-					
-					// 페이지 계산
-					
-					
-					//$(".mypage").html(str);
-					// 배열이 아닐 경우
-					
+					var str = "";
+					var number;
 					
 					if(Array.isArray(snapshot.val())) {
 						
@@ -395,7 +399,7 @@ h2 {
 						if(listEnd > listCount){
 							listEnd = listCount;
 						}
-						
+						//console.log(listStart, listEnd);
 						for(var i = listStart; i <= listEnd; i++){
 							
 							output += "<div class='replytest row'>";
@@ -409,20 +413,29 @@ h2 {
 							output += "				<button class='btn btn-large btn-primary pull' type='submit'>수정</button>";
 							output += "			</div>";
 							output += "			<div class='row' align='center'>";
-							output += "				<button class='btn btn-large btn-primary pull' type='submit' data-num='" + i + "'>삭제</button>";
+							output += "				<button  id='remove" + i + "' class='btn btn-large btn-primary pull' type='submit' data-num='" + i + "'>삭제</button>";
 							output += "			</div>";
 							output += "		</div>";
 							output += "</div>";
 						}
-						
-						
+						//console.log("num", num);
+						if(num){
+							pageNum = num;
+						}
+						console.log("pageNum", pageNum);
 						pageEnd = pageNum + (pageSize - 1);
-						count = (listCount / listSize) + 1;
+						if(listCount % listSize != 0){
+							count = (listCount / listSize);
+						}
+						count = (listCount / listSize);
 						
 						if(pageEnd > count){
-							pageEnd = count;
+							pageEnd = Math.ceil(count);
 							next = false;
+						}else{
+							next = true;
 						}
+						
 						
 						if(pageNum != 1){
 							prev = true;
@@ -432,17 +445,44 @@ h2 {
 						
 						if(listCount <= (listSize * pageSize)){ next = false; }
 						
-						if(prev){str += "<li class='page-item' id='prev'><a class='page-link' href='#'>Prev</a></li>"};
-						
-						for(var i = 1; i <= pageEnd; i++){
+						if(prev){
+							number = pageNum - pageSize;
+		
+							str += "<li class='page-item' id='prev'><a class='page-link' onclick='replyReset(" + number + ", " + number + ")'>Prev</a></li>";
+						}
+						console.log("pageNum", pageNum);
+						console.log("pageEnd", pageEnd);
+						for(var i = pageNum; i <= pageEnd; i++){
 							if(page != i){
-								str += "<li class='page-item'><a class='page-link' href='/main/boardlist?page=" + i + "&pageNum=" + pageNum + "'>" + i + "</a></li>";	
+								str += "<li class='page-item'><a class='page-link' onclick='replyReset(" + i + ")'>" + i + "</a></li>";	
 							} else {
-								str += "<li class='page-item active'><a class='page-link' href='/main/boardlist?page=" + i + "&pageNum=" + pageNum + "'>" + i + "</a></li>";
+								str += "<li class='page-item active'><a class='page-link' onclick='replyReset(" + i + ")'>" + i + "</a></li>";
 							}
 						}
 						
-						if(next){str += "<li class='page-item' id='next'><a class='page-link' href='#'>next</a></li>"};
+						if(next){
+							number = pageNum + pageSize;
+							
+							str += "<li class='page-item' id='next'><a class='page-link' onclick='replyReset(" + number + ", " + number + ")'>next</a></li>";
+						}
+						
+						$(".testReply").html(output);
+						$(".mypage").html(str);
+						
+
+						$("[id^=remove]").on("click", function(){
+							var num = $(this).attr("data-num");
+							console.log(num);
+							console.log("page", page);
+							console.log("number", number);
+							console.log("length", $(".testReply").children().length);
+							if($(".testReply").children().length == 1){
+								console.log(page - 1);
+								
+							}
+							//firebase.database().ref('/Board/' + ${no} + '/replyData/' + num).remove();
+							//replyReset(page, number);
+						});
 						
 						
 					}else{
@@ -465,10 +505,7 @@ h2 {
 							
 						output += "</div>";
 					}
-					$(".testReply").html(output);
-					$(".mypage").html(str);
-					
-					
+
 					//paging(listCount);
 				}
 			});
