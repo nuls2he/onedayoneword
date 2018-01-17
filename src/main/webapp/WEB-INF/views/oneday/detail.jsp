@@ -2,9 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 	<link rel="apple-touch-icon" sizes="76x76" href="/resources/img/apple-icon.png">
 	<link rel="icon" type="image/png" href="/resources/img/favicon.png">	
@@ -114,9 +115,9 @@ h2 {
 	-webkit-border-radius: 7px;
 } */
 </style>
-<title>Insert title here</title>
+<title>oneday oneword</title>
 </head>
-<body class="profile-page">
+<body class="index-page page-on-scroll">
 
 	<c:import url="../includes/header.jsp"></c:import>
 	
@@ -277,8 +278,13 @@ h2 {
 		var replyNo = 0;
 		
 		(function(){
+			console.log("${login}");
 			
- 			// ------------Initialize Firebase---------------
+			/* if("${login}" == ""){
+				location.href = "/logout"
+			} */
+			
+ 			 // ------------Initialize Firebase---------------
 			var config = {
 				apiKey : "AIzaSyCHAm0uDpjUGUPNPptNtoFStgFX3yWsrqs",
 				authDomain : "likethis-35671.firebaseapp.com",
@@ -404,18 +410,20 @@ h2 {
 							
 							output += "<div class='replytest row'>";
 							output += "		<div class='col-sm-10'>";
-							output += "			<div style='width: 100%; margin-left: 20px;'>" + i + "</div>";
+							output += "			<div style='width: 100%; margin-left: 20px;'>" + snapshot.val()[i].replyTitle + "</div>";
 							output += "			<hr style='margin-top: 5px;'>";	
 							output += "			<div  style='width: 100%; margin-left: 20px;'>" + snapshot.val()[i].replyContent + "</div>";
 							output += "		</div>";
-							output += "		<div class='col-sm-1'>";
-							output += "			<div class='row' style='margin-bottom: 3px;' align='center'>";
-							output += "				<button class='btn btn-large btn-primary pull' type='submit'>수정</button>";
-							output += "			</div>";
-							output += "			<div class='row' align='center'>";
-							output += "				<button  id='remove" + i + "' class='btn btn-large btn-primary pull' type='submit' data-num='" + i + "'>삭제</button>";
-							output += "			</div>";
-							output += "		</div>";
+							if( snapshot.val()[i].replyTitle == "${login}"){
+								output += "		<div class='col-sm-1'>";
+								output += "			<div class='row' style='margin-bottom: 3px;' align='center'>";
+								output += "				<button class='btn btn-large btn-primary pull' type='submit'>수정</button>";
+								output += "			</div>";
+								output += "			<div class='row' align='center'>";
+								output += "				<button  id='remove" + i + "' class='btn btn-large btn-primary pull' type='submit' data-num='" + i + "'>삭제</button>";
+								output += "			</div>";
+								output += "		</div>";
+							}
 							output += "</div>";
 						}
 						//console.log("num", num);
@@ -423,11 +431,17 @@ h2 {
 							pageNum = num;
 						}
 						console.log("pageNum", pageNum);
-						pageEnd = pageNum + (pageSize - 1);
+						
 						if(listCount % listSize != 0){
-							count = (listCount / listSize);
+							count = (listCount / listSize) + 1;
 						}
 						count = (listCount / listSize);
+						
+						if(count < pageNum){
+							pageNum -= pageSize;
+						}
+						
+						pageEnd = pageNum + (pageSize - 1);
 						
 						if(pageEnd > count){
 							pageEnd = Math.ceil(count);

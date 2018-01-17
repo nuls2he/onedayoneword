@@ -498,7 +498,8 @@ input:focus, textarea:focus{
 				no: no,
 				age : $("#age").val(),
 				title : title,
-				writer : 'imymemine',
+				/* writer : 'imymemine', */
+				writer : "${login}",
 				content : content,
 				path : pictures,
 				regdate: regdate
