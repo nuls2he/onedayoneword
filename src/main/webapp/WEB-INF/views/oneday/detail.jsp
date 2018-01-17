@@ -136,8 +136,10 @@ h2 {
 				<div class="board" style="padding: 0 20px;">
 					<div class="row"
 						style="background-color: #22a2ea; border-radius: 8px; margin-bottom: 15px;">
-						<h2 style="color: #fff;">글제목</h2>
+						<h2 id="title" style="color: #fff;"></h2>
 						<hr>
+						<h5 style="padding: 0 0 0 10px;font-size: 20px;">작성자 : ${login}</h5>
+						
 					</div>
 					<div class="row">
 						<div id="mark" class="col-sm-6"></div>
@@ -178,21 +180,7 @@ h2 {
 
 					<div>
 						<div class="testReply">
-							<div class="replytest row">
-								<div class="col-sm-10">
-									<div style="width: 100%; margin-left: 20px;">작성자명</div>
-									<hr style="margin-top: 5px;">
-									<div style="width: 100%; margin-left: 20px;">댓글내용</div>
-								</div>
-								<div class="col-sm-1">
-									<div class="row" style="margin-bottom: 3px;" align="center">
-										<button class="btn btn-large btn-primary pull" type="submit">수정</button>
-									</div>
-									<div class="row" align="center">
-										<button class="btn btn-large btn-primary pull" type="submit">삭제</button>
-									</div>
-								</div>
-							</div>
+							
 						</div>
 
 						<div id="reportPage" style="text-align: center;">
@@ -285,7 +273,7 @@ h2 {
 			} */
 			
  			 // ------------Initialize Firebase---------------
-			var config = {
+			/* var config = {
 				apiKey : "AIzaSyCHAm0uDpjUGUPNPptNtoFStgFX3yWsrqs",
 				authDomain : "likethis-35671.firebaseapp.com",
 				databaseURL : "https://likethis-35671.firebaseio.com",
@@ -293,13 +281,14 @@ h2 {
 				storageBucket : "likethis-35671.appspot.com",
 				messagingSenderId : "637146865404"
 			};
-			firebase.initializeApp(config);
+			firebase.initializeApp(config); */
 			
 			// ------------Initialize Firebase--------------- 
 			
 			$("#delete").on("click", function(){
-				//firebase.database().ref('/board/' + ${no}).remove();
-				firebase.database().ref('/Board/' + ${no}).remove();
+				firebase.database().ref('/board/' + ${no}).remove();
+				//firebase.database().ref('/Board/' + ${no}).remove();
+				location.href="/main/boardlist";
 			});
 			
 			// 사진하고 글 띄우기
@@ -318,8 +307,8 @@ h2 {
 		}());
 
 		function showDetail(){
-			//firebase.database().ref('/board/' + ${no} + '/path').once('value', function(snapshot){
-			firebase.database().ref('/Board/' + ${no} + '/path').once('value', function(snapshot){
+			firebase.database().ref('/board/' + ${no} + '/path').once('value', function(snapshot){
+			//firebase.database().ref('/Board/' + ${no} + '/path').once('value', function(snapshot){
 				if(snapshot.val() != null){
 					// 사진이 있다는 거니 사진 띄우라 알았니?
 					console.log(snapshot.val());
@@ -349,10 +338,15 @@ h2 {
 				}
 			});
 			
+			firebase.database().ref('/Board/' + ${no} + '/title').once('value', function(snapshot){
+				if(snapshot.val() != null){
+					$("#title").text(snapshot.val());
+				}
+			});
+			
 			// 이제 글을 띄우면 됨
-			//firebase.database().ref('/board/' + ${no} + '/content').once('value', function(snapshot){
-			firebase.database().ref('/Board/' + ${no} + '/content').once('value', function(snapshot){
-				console.log("들어오나?");
+			firebase.database().ref('/board/' + ${no} + '/content').once('value', function(snapshot){
+			//firebase.database().ref('/Board/' + ${no} + '/content').once('value', function(snapshot){
 				if(snapshot.val() != null){
 					$("#contentData").text(snapshot.val());
 				}
@@ -387,8 +381,8 @@ h2 {
 		
 		function replyReset(page, num){
 			
-			//firebase.database().ref('/board/' + ${no} + '/replyData/').once('value', function(snapshot){
-			firebase.database().ref('/Board/' + ${no} + '/replyData/').once('value', function(snapshot){
+			firebase.database().ref('/board/' + ${no} + '/replyData/').once('value', function(snapshot){
+			//firebase.database().ref('/Board/' + ${no} + '/replyData/').once('value', function(snapshot){
 				if(snapshot.val() != null){
 					
 					var output = "";
@@ -424,27 +418,38 @@ h2 {
 								output += "			</div>";
 								output += "		</div>";
 							}
+							/* output += "		<div class='col-sm-1'>";
+							output += "			<div class='row' align='center'>";
+							output += "				<button  id='remove" + i + "' class='btn btn-large btn-primary pull' type='submit' data-num='" + i + "'>삭제</button>";
+							output += "			</div>";
+							output += "		</div>"; */
 							output += "</div>";
 						}
 						//console.log("num", num);
+
+						console.log("pageNum", pageNum);
 						if(num){
 							pageNum = num;
 						}
-						console.log("pageNum", pageNum);
 						
-						if(listCount % listSize != 0){
+						/* if(listCount % listSize != 0){
 							count = (listCount / listSize) + 1;
-						}
-						count = (listCount / listSize);
+						} */
+						//count = (listCount / listSize) + 1;
+						(listCount % listSize != 0) ? count = Math.ceil(listCount / listSize) : count = (listCount / listSize);
+						//count = (listCount / listSize);
 						
 						if(count < pageNum){
+							//console.log("여기들어와?");
 							pageNum -= pageSize;
 						}
 						
 						pageEnd = pageNum + (pageSize - 1);
 						
+						console.log(count);
 						if(pageEnd > count){
-							pageEnd = Math.ceil(count);
+							//pageEnd = Math.ceil(count);
+							pageEnd = count;
 							next = false;
 						}else{
 							next = true;
@@ -491,11 +496,11 @@ h2 {
 							console.log("number", number);
 							console.log("length", $(".testReply").children().length);
 							if($(".testReply").children().length == 1){
-								console.log(page - 1);
-								
+								//console.log(page - 1);
+								page--;
 							}
-							//firebase.database().ref('/Board/' + ${no} + '/replyData/' + num).remove();
-							//replyReset(page, number);
+							firebase.database().ref('/Board/' + ${no} + '/replyData/' + num).remove();
+							replyReset(page);
 						});
 						
 						
@@ -533,18 +538,19 @@ h2 {
 		$("#testBtn").click(function(){
 			
 			var data = {
-				replyTitle : "naya",
+				/* replyTitle : "${login}", */
+				replyTitle : "iamhero",
 				replyContent : $("#status").val()
 			};
 			
 			// 리스트에서 글을 클릭하면 넘겨주는 글번호를 가지고 등록해야함
 			replyNo++;
-			//firebase.database().ref('/board/' + ${no} + '/replyNo').set(replyNo);
-			//firebase.database().ref('/board/' + ${no} + '/replyData/' + replyNo).set(data);
-			firebase.database().ref('/Board/' + ${no} + '/replyNo').set(replyNo);
-			firebase.database().ref('/Board/' + ${no} + '/replyData/' + replyNo).set(data);
+			firebase.database().ref('/board/' + ${no} + '/replyNo').set(replyNo);
+			firebase.database().ref('/board/' + ${no} + '/replyData/' + replyNo).set(data);
+			//firebase.database().ref('/Board/' + ${no} + '/replyNo').set(replyNo);
+			//firebase.database().ref('/Board/' + ${no} + '/replyData/' + replyNo).set(data);
 			
-			//replyReset();
+			replyReset();
         });
 		
 		

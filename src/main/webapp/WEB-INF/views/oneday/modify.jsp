@@ -201,11 +201,11 @@ input:focus, textarea:focus{
 							</div>
 
 							<div class="select col-sm-6" style="float: right;">
-								<select name="location" onclick="return false;" id="location">
+								<select name="age" onclick="return false;" id="age">
 									<option value="선택">-선택-</option>
-									<option value="강서구">10대</option>
-									<option value="서초구">20대</option>
-									<option value="강동구">30대</option>
+									<option value="10대">10대</option>
+									<option value="20대">20대</option>
+									<option value="30대">30대</option>
 								</select>
 							</div>
 						</div>
@@ -240,8 +240,6 @@ input:focus, textarea:focus{
 
 		</div>
         </div>
-
-	<c:import url="../includes/footer.jsp"></c:import>
 	
 	<form action="/oneday/detail" method=get id="testForm">
 		<input type="hidden" name="no">
@@ -279,10 +277,10 @@ input:focus, textarea:focus{
 
 		(function(){
 			
-			/* // ------------Initialize Firebase---------------
+			// ------------Initialize Firebase---------------
 			writeNo = ${no};
 			
-			var config = {
+			/* var config = {
 				apiKey : "AIzaSyCHAm0uDpjUGUPNPptNtoFStgFX3yWsrqs",
 				authDomain : "likethis-35671.firebaseapp.com",
 				databaseURL : "https://likethis-35671.firebaseio.com",
@@ -290,22 +288,22 @@ input:focus, textarea:focus{
 				storageBucket : "likethis-35671.appspot.com",
 				messagingSenderId : "637146865404"
 			};
-			firebase.initializeApp(config);
+			firebase.initializeApp(config); */
 			
-			// ------------Initialize Firebase--------------- */
+			// ------------Initialize Firebase---------------
 			String.prototype.replaceAt=function(index, character) {
 			    return this.substr(0, index) + character + this.substr(index + 1);
 			}
 			
-			firebase.database().ref('/Board/' + writeNo).once('value', function(snapshot){
+			firebase.database().ref('/board/' + writeNo).once('value', function(snapshot){
 				if(snapshot.val() != null){
-					$("#location").val(snapshot.val().location).attr("selected", "selected");
+					$("#age").val(snapshot.val().location).attr("selected", "selected");
 					$("input[name='title']").val(snapshot.val().title);
 					$("textarea[name='content']").val(snapshot.val().content);
 				}	
 			});
 
-			firebase.database().ref('/Board/' + writeNo + '/path').once('value', function(snapshot){
+			firebase.database().ref('/board/' + writeNo + '/path').once('value', function(snapshot){
 				if(snapshot.val() != null) {
 					var str;
 
@@ -503,14 +501,15 @@ input:focus, textarea:focus{
 			
 			//댓글은 어떻하나....
 			var writeData = {
-				location : $("#location").val(),
+				age : $("#age").val(),
 				title : title,
-				writer : 'imymemine',
+				/* writer : 'imymemine', */
+				writer : '${login}',
 				content : content,
-				path : pictures	
+				path : pictures
 			};
 						
-			firebase.database().ref('/Board/' + no).set(writeData);
+			firebase.database().ref('/board/' + no).update(writeData);
 			//firebase.database().ref('/List/20').set(writeData);
 		}
 
